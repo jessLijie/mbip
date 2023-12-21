@@ -13,69 +13,20 @@ body {
     font-size: 21px;
 }
 
-.address-section {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
+table {
+    
+    width: 100%;
 }
 
-.address-section b {
-    font-weight: bold;
-    margin-bottom: 5px; 
+th, td {
+    text-align: left;
+    padding: 15px;
+    
 }
 
-.address-section p {
-    margin: 0; 
-    margin-right: 100px; 
+th {
+    background-color: #f2f2f2;
 }
-
-.date-section {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-}
-
-.date-section b {
-    font-weight: bold;
-    margin-bottom: 5px; 
-}
-
-.date-section p {
-    margin: 0; 
-    margin-right: 100px; 
-}
-
-.prorata-factor-section {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-}
-
-.prorata-factor-section b {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.prorata-factor-section p {
-    margin: 0;
-    margin-right: 345px; 
-}
-.current-consumption-section {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-}
-
-.current-consumption-section b {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.current-consumption-section p {
-    margin: 0;
-    margin-right: 390px; 
-}
-
 
 .carbon-footprint-section {
     display: flex;
@@ -90,10 +41,8 @@ body {
 }
 
 .carbon-footprint-section p {
-    margin: 0; /* Adjust the margin as needed */
+    margin: 0; 
 }
-
-
 
 .button-container {
     display: flex;
