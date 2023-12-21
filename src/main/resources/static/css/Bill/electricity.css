@@ -1,0 +1,80 @@
+body {
+    background-color: #CCF3EA;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+h1 {
+    font-family: Poller One;
+    font-size: 36px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.historybtn {
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 50px;
+
+}
+
+.historybtn button {
+    display: flex;
+    margin-right: auto;
+    border-radius: 5px;
+    background: #A7C3F9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 149px;
+    height: 39px;
+    border-color: #A7C3F9;
+}
+
+.historybtn svg {
+    margin-right: 15px;
+    margin-top: 5px;
+    padding-left: 10px;
+}
+
+.historybtn span {
+    font-size: 20px;
+    margin-bottom: 2px;
+    margin-top: 5px;
+}
+
+.insertbtn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.insertbtn button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    border-radius: 10px;
+    background: rgba(134, 215, 200, 0.67);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    width: 380px;
+    height: 168px;
+    flex-shrink: 0;
+    border-color: #A7C3F9;
+    margin: auto;
+}
+
+.insertbtn svg {
+    margin: 15px;
+    margin-top: 5px;
+}
+
+.insertbtn span {
+    margin-top: 10px;
+    color: #000;
+    text-align: center;
+    font-family: Rakkas;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 10px;
+    /* Adjust the padding to position the text at the bottom */
+}
