@@ -1,0 +1,160 @@
+body {
+    background-color: #CCF3EA;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+.container {
+    width: 800px;
+    border-radius: 15px;
+    background: #FFF;
+    padding: 70px;
+    margin: 50px auto;
+    font-size: 21px;
+}
+
+.address-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.address-section b {
+    font-weight: bold;
+    margin-bottom: 5px; 
+}
+
+.address-section p {
+    margin: 0; 
+    margin-right: 100px; 
+}
+
+.date-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.date-section b {
+    font-weight: bold;
+    margin-bottom: 5px; 
+}
+
+.date-section p {
+    margin: 0; 
+    margin-right: 100px; 
+}
+
+.prorata-factor-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.prorata-factor-section b {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.prorata-factor-section p {
+    margin: 0;
+    margin-right: 345px; 
+}
+.current-consumption-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.current-consumption-section b {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.current-consumption-section p {
+    margin: 0;
+    margin-right: 390px; 
+}
+
+
+.carbon-footprint-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+}
+
+.carbon-footprint-section b {
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-left: 50px;
+}
+
+.carbon-footprint-section p {
+    margin: 0; /* Adjust the margin as needed */
+}
+
+
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Adjust the space between the buttons */
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.backbtn svg{
+   margin-left: 100px;
+}
+
+.historybtn {
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 50px;
+
+}
+
+.historybtn button { 
+    display: flex;
+    margin-left: auto;
+    border-radius: 5px;
+    background: #A7C3F9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 149px;
+    height: 39px;
+    border-color: #A7C3F9;
+}
+
+.historybtn svg {
+    margin-right: 15px; 
+    margin-top: 5px;
+    padding-left: 10px;
+}
+
+.historybtn span {
+    font-size: 20px;
+    margin-bottom: 2px;
+    margin-top: 5px;
+}
+
+@media (max-width: 800px) {
+    .historybtn button {
+        width: 120px; /* Adjust the width for smaller screens */
+    }
+
+    .historybtn svg {
+        width: 25px; /* Adjust the icon size for smaller screens */
+        height: 25px;
+    }
+
+    .historybtn span {
+        font-size: 20px; /* Adjust the font size for smaller screens */
+    }
+
+    .container {
+        width: 70%; 
+        max-width: 65%;
+        margin: 50px auto; 
+        font-size: 15px;
+    }
+}
