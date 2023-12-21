@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>View Details</title>
-        <link rel="stylesheet" type="text/css" href="/css/viewdetails.css">
+        <link rel="stylesheet" type="text/css" href="/css/Bill/viewdetails.css">
 
     </head>
 
