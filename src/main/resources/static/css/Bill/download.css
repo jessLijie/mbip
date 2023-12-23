@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    background: #DBE2EF;
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
+
+h2,
+h4,
+p {
+    margin: 0;
+}
+
+.page {
+    background: #fff;
+    display: block;
+    margin: 0rem auto 0rem auto;
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+}
+
+
+.page[size="A4"] {
+    width: 21cm;
+    height: 29.7cm;
+    overflow-x: hidden;
+}
+
+h3 {
+    margin-top: 1cm;
+    text-align: center;
+}
+
+table {
+    margin-top: 1cm;
+    margin: 80px;
+
+}
+
+th,
+td {
+    padding: 20px;
+    text-align: left;
+}
+
+.center-container {
+    text-align: center;
+    margin-top: 80px;
+}
+
+#downloadButtonContainer {
+    text-align: right;
+    margin-right: 20px;
+    
+}
+
+@media print {
+
+    /* Hide header and footer */
+    @page {
+        size: auto;
+        margin: 0;
+    }
+
+    header,
+    footer {
+        display: none;
+    }
+}

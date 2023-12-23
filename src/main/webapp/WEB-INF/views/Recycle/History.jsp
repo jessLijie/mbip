@@ -199,7 +199,8 @@
                   View Details
                 </div>
               </a>
-                <button class="downloadbutton">
+              <a href="/downloadreport" >
+                <button class="downloadbutton" >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="13"
@@ -214,6 +215,8 @@
                   </svg>
                   Download
                 </button>
+               
+               </a> 
               </td>
             </tr>
             <tr>
@@ -240,7 +243,7 @@
                   </svg>
                   View Details
                 </div>
-                <button class="downloadbutton">
+                <button  class="downloadbutton">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="13"
