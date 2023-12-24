@@ -7,13 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class homeController {
+public class historyViewController {
    
-    @RequestMapping({"/hello"})
-    public String greet(@RequestParam String name, Model model){
-        model.addAttribute("name",name);
+    @RequestMapping({"/historyView"})
+    public String greet(){
         // model.addAttribute("showHeader", false);
-        return "/Electricity/ElectricityMainPage";
-
+        return "/Electricity/ViewDetailHistory";
     }
 }

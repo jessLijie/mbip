@@ -6,13 +6,8 @@
     <title>Welcome</title>
     <link rel="stylesheet" href="/css/Bill/History.css">
     <script src="js/Bill/History.js"></script>
-    <script src="js/script.js"></script>
 </head>
-<%@include file="../navbar.jsp"%> 
-<body >
-  
- 
-
+<jsp:include page="../navbar.jsp"/> <body>
     <div class="container">
       <div class="container2">
         <table class="tablehistory">
@@ -38,8 +33,7 @@
               </button>
                 <div id="filterBox" class="filterbox">
                   <div class="filteryear">
-                    <button id="leftArrowYear">
-                    <svg 
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="12"
                       height="14"
@@ -51,10 +45,8 @@
                         fill="#243E69"
                       />
                     </svg>
-                  </button>
-                    <h2 id="yearDisplay">2023</h2>
-                    <button id="rightArrowYear">
-                    <svg 
+                    <h2>2023</h2>
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="11"
                       height="14"
@@ -66,7 +58,6 @@
                         fill="#243E69"
                       />
                     </svg>
-                  </button>
                   </div>
 
                   <hr />
