@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class historyViewController {
-   
+public class historyviewController {
+
     @RequestMapping({"/historyView"})
     public String greet(){
         // model.addAttribute("showHeader", false);
