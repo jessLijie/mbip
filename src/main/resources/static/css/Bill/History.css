@@ -148,6 +148,13 @@ tbody {
 #showFilter{
   background-color: transparent;
   border:none;
+  cursor:pointer;
+}
+#showFilter:hover{
+  background-color: transparent;
+  border:none;
+  filter: drop-shadow(0px 4px 4px rgba(209, 209, 209, 0.25));
+  cursor:pointer;
 }
 
 .filteryear {
@@ -225,4 +232,11 @@ input[type="checkbox"] {
 
 a{
     text-decoration: none;
+}
+
+
+#leftArrowYear,#rightArrowYear{
+  background-color: transparent;
+  cursor: pointer;
+  border:none;
 }
