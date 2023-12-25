@@ -51,7 +51,7 @@
     </div>
 
     <div class="container mt-2" style="width: 77%">
-        <div class="row">
+        <div class="row m-5">
             <!--left side-->
             <div class="col-md-4 d-flex flex-column justify-content-between">
                 <div class="bg-white p-4 px-5 rounded shadow m-3 text-center"><!--current water consumption section-->
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 
-                <button type="button" class="p-2 mx-5 m-3 rounded shadow text-center" style="background-color: #A3FF6B; border:none;">
+                <button type="button" class="p-2 mx-5 m-3 rounded shadow text-center" style="background-color: #A3FF6B; border:none;"><!--download report section-->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
                         <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
                         <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
@@ -81,7 +81,7 @@
 
             <!--right side-->
             <div class="col-md-8">
-                <div class="bg-white p-4 px-5 rounded shadow m-3 h-100"><!--details section-->
+                <div class="bg-white p-4 px-5 rounded shadow m-3"><!--details section-->
                     <h3 class="text-center mb-4 mt-2"><b>Water Bills</b></h3>
                     <div class="row mb-4">
                         <div class="col-md-5"><b>Address:</b></div>
