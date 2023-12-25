@@ -14,6 +14,6 @@ public class homeController {
         model.addAttribute("name",name);
         // model.addAttribute("showHeader", false);
         //return "/Electricity/ElectricityMainPage";
-        return "insertWaterConsumption";
+        return "waterFootprint";
     }
 }
