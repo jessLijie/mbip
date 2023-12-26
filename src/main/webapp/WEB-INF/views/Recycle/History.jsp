@@ -9,12 +9,29 @@
     <script src="js/script.js"></script>
 </head>
 <%@include file="../navbar.jsp"%> 
-<body >
+<body style="background-color: #ccf3ea;">
   
- 
-
-    <div class="container">
-      <div class="container2">
+    
+      <a href="/Recycle">
+        <div class="backbtn">
+        <svg  xmlns="http://www.w3.org/2000/svg" width="31" height="29" viewBox="0 0 31 29" fill="none">
+            <ellipse cx="15.5" cy="13.5" rx="15.5" ry="13.5" transform="matrix(-1 0 0 1 31 0)"
+                fill="#A7C3F9" />
+            <path
+                d="M7.49103 14.5607C6.90524 13.9749 6.90524 13.0251 7.49103 12.4393L17.037 2.8934C17.6228 2.30761 18.5725 2.30761 19.1583 2.8934C19.7441 3.47919 19.7441 4.42893 19.1583 5.01472L10.673 13.5L19.1583 21.9853C19.7441 22.5711 19.7441 23.5208 19.1583 24.1066C18.5725 24.6924 17.6228 24.6924 17.037 24.1066L7.49103 14.5607ZM22.4482 15H8.55169V12H22.4482V15Z"
+                fill="black" />
+            <ellipse cx="15.5" cy="14.5" rx="15.5" ry="14.5" transform="matrix(-1 0 0 1 31 0)"
+                fill="#A7C3F9" />
+            <path
+                d="M5.93934 13.9393C5.35355 14.5251 5.35355 15.4749 5.93934 16.0607L15.4853 25.6066C16.0711 26.1924 17.0208 26.1924 17.6066 25.6066C18.1924 25.0208 18.1924 24.0711 17.6066 23.4853L9.12132 15L17.6066 6.51472C18.1924 5.92893 18.1924 4.97918 17.6066 4.3934C17.0208 3.80761 16.0711 3.80761 15.4853 4.3934L5.93934 13.9393ZM26 13.5L7 13.5V16.5L26 16.5V13.5Z"
+                fill="black" />
+        </svg>
+      </div>
+      </a>
+    
+    <div class="outcontainer">
+      
+      <div class="outcontainer2">
         <table class="tablehistory">
           <thead>
             <td class="col1">No</td>
@@ -186,7 +203,7 @@
               <td>12.11.2020 - 12.12.2020</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button" >
-                <a href="/historyView">
+                <a href="/RecycleHistoryView">
                 <div class="viewdetailbutton">
                  
                   <svg
@@ -208,7 +225,7 @@
                   View Details
                 </div>
               </a>
-              <a href="/downloadreport" >
+              <a href="/RecycleDownloadReport" >
                 <button class="downloadbutton" >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -252,6 +269,7 @@
                   </svg>
                   View Details
                 </div>
+                <a href="/RecycleDownloadReport" >
                 <button  class="downloadbutton">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -308,6 +326,7 @@
                   </svg>
                   Download
                 </button>
+              </a>
               </td>
             </tr>
             <tr>

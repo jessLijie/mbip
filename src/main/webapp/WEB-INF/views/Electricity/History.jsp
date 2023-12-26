@@ -8,8 +8,8 @@
     <script src="js/Bill/History.js"></script>
 </head>
 <jsp:include page="../navbar.jsp"/> <body>
-    <div class="container">
-      <div class="container2">
+    <div class="outcontainer">
+      <div class="outcontainer2">
         <table class="tablehistory">
           <thead>
             <td class="col1">No</td>
