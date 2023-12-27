@@ -13,7 +13,7 @@ public class homeController {
     public String greet(@RequestParam String name, Model model){
         model.addAttribute("name",name);
         // model.addAttribute("showHeader", false);
-        //return "/Electricity/ElectricityMainPage";
-        return "waterFootprint";
+        return "/Electricity/ElectricityMainPage";
+        //return "/Dashboard/UserDashboard";
     }
 }
