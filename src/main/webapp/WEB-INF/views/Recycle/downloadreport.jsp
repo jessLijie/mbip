@@ -12,6 +12,7 @@
     </head>
 
     <body>
+        <%@include file="../navbar.jsp"%> 
         <div class="page" size="A4">
             <div class="center-container">
                 <img src="/images/mbip.png" alt="MBIP Logo" width="650" height="120">

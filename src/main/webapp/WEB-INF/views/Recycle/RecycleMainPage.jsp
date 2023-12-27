@@ -4,9 +4,9 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Electricity Consumption</title>
+        <title>Recycle Consumption</title>
         <link rel="stylesheet" type="text/css" href="/css/Bill/electricity.css">
-
+<%@include file="../navbar.jsp"%> 
     </head>
 
     <body>

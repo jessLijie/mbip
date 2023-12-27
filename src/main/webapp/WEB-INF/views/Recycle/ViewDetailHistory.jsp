@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>View Details</title>
         <link rel="stylesheet" type="text/css" href="/css/Bill/viewdetails.css">
-
+        <%@include file="../navbar.jsp"%> 
     </head>
 
     <body>
