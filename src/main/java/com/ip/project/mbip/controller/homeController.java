@@ -16,4 +16,10 @@ public class homeController {
         //return "/Electricity/ElectricityMainPage";
         return "waterFootprint";
     }
+
+    
+    @RequestMapping({"/login"})
+    public String login(){
+        return "welcome";
+    }
 }

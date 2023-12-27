@@ -8,8 +8,8 @@
     <script src="js/Bill/History.js"></script>
 </head>
 <jsp:include page="../navbar.jsp"/> <body>
-    <div class="container">
-      <div class="container2">
+    <div class="outcontainer">
+      <div class="outcontainer2">
         <table class="tablehistory">
           <thead>
             <td class="col1">No</td>
@@ -177,7 +177,7 @@
               <td>12.11.2020 - 12.12.2020</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button" >
-                <a href="/historyView">
+                <a href="/ElectricityHistoryView">
                 <div class="viewdetailbutton">
                  
                   <svg
@@ -199,7 +199,7 @@
                   View Details
                 </div>
               </a>
-              <a href="/downloadreport" >
+              <a href="/ElectricityDownloadReport" >
                 <button class="downloadbutton" >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -7,7 +7,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/css/Bill/download.css">
-        <title>Electricity Bills</title>
+        <title>Recyle Record</title>
         <script src="js/Bill/download.js"></script>
         <style>
             @media print {
@@ -49,7 +49,7 @@
             <div class="center-container">
                 <img src="/images/mbip.png" alt="MBIP Logo" width="650" height="120">
             </div>
-            <h3>Electricity Bills</h3>
+            <h3>Recyle Record</h3>
             <table>
                 <tr>
                     <td><b>Name: </b></td>
@@ -74,11 +74,7 @@
                     <td>17.01.2021 - 16.02.2021 (31 days)</td>
                 </tr>
                 <tr>
-                    <td><b>Prorata Factor:</b></td>
-                    <td>1.00000</td>
-                </tr>
-                <tr>
-                    <td><b>Current Consumption Value (kWh):</b></td>
+                    <td><b>Current Recycle Collection (kg):</b></td>
                     <td>186</td>
                 </tr>
                 <tr>
