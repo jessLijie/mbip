@@ -6,10 +6,11 @@
         <meta charset="UTF-8">
         <title>View Details</title>
         <link rel="stylesheet" type="text/css" href="/css/Bill/viewdetails.css">
-        <%@include file="../navbar.jsp"%> 
+      
     </head>
-    <%@include file="../navbar.jsp"%> 
+    <jsp:include page="../navbar.jsp"/> 
     <body>
+        
         <div id="main">
             <div class="button-container">
                 <div class="backbtn" onclick="window.location.href='/RecycleHistory';">
@@ -39,7 +40,7 @@
                 </div>
             </div>
             
-            <div class="container">
+            <div class="viewhistory-container">
                 <h3>Recycle Record</h3>
                 <table>
                     <tr>
