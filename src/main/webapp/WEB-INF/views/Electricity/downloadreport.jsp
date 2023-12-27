@@ -17,7 +17,7 @@
             }
         </style>
     </head>
-
+    <jsp:include page="../navbar.jsp"/> 
     <body>
         <div class="outcontainer">
             <div class="button-container">
