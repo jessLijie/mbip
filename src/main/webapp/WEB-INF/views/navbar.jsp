@@ -14,6 +14,16 @@
         float: right;
         padding-right:50px;
     }
+    .dropdown:hover>.dropdown-menu {
+  display: block;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,11 +35,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="/userDashboard">Dashboard</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="#">Water</a>
+              <a class="nav-link" href="/Water">Water</a>
             </li>
 
             <li class="nav-item">
@@ -37,7 +47,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Recycle</a>
+                <a class="nav-link" href="/Recycle">Recycle</a>
               </li>
             
           </ul>
@@ -45,7 +55,21 @@
         </div>
 
         <div class="profile-sec">
-            Profile
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              ><i class="bi bi-person"></i>
+              Profile
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="profile">View Profile</a></li>
+                <li><a class="dropdown-item" href="login">Logout</a></li>
+              </ul>
+            </div>
         </div>
       </nav>
       
