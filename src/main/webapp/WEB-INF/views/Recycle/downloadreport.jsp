@@ -10,7 +10,7 @@
         <title>Recyle Record</title>
         <script src="js/Bill/download.js"></script>
     </head>
-
+    <%@include file="../navbar.jsp"%> 
     <body>
         <div class="page" size="A4">
             <div class="center-container">

@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class homeController {
    
-    @RequestMapping({"/hello"})
-    public String greet(@RequestParam String name, Model model){
-        model.addAttribute("name",name);
-        // model.addAttribute("showHeader", false);
-        //return "/Electricity/ElectricityMainPage";
+    @RequestMapping({"/Water"})
+    public String water(){
         return "waterFootprint";
+    }
+
+    
+    @RequestMapping({"/login"})
+    public String login(){
+        return "welcome";
     }
 }

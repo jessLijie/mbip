@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class historyviewController {
+public class historyViewController {
 
     @RequestMapping({"/historyView"})
     public String greet(){

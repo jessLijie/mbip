@@ -29,7 +29,7 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="#">Water</a>
+              <a class="nav-link" href="/Water">Water</a>
             </li>
 
             <li class="nav-item">
@@ -37,7 +37,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Recycle</a>
+                <a class="nav-link" href="/Recycle">Recycle</a>
               </li>
             
           </ul>

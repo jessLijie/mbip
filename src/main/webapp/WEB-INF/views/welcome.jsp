@@ -12,7 +12,7 @@
 
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="">
           <h1>Create Account</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -38,7 +38,8 @@
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
+          <!-- temp -->
+          <button><a href="/Recycle">Sign In</a></button>
         </form>
       </div>
       <div class="overlay-container">
