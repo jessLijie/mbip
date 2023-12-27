@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Electricity Consumption</title>
+        <title>Water Main Page</title>
         <link rel="stylesheet" type="text/css" href="/css/Bill/electricity.css">
 
     </head>
@@ -28,19 +28,19 @@
             <div class="container">
 
                 <div style="text-align: center;">
-                    <img src="/images/electricity.png" alt="image" width="300" height="300" />
+                    <img src="/images/water.png" alt="image" width="300" height="300" />
                 </div>
 
 
-                <h1><b>Electricity</b></h1>
+                <h1><b>Water</b></h1>
                 
-                <div class="insertbtn" onclick="window.location.href='/InsertElectricityConsumption'; ">
+                <div class="insertbtn" onclick="window.location.href='/InsertWaterConsumption'; ">
                     <button type="button">
                         
                             <div style="text-align: center;">
                                 <img src="/images/image 128.png" alt="image" width="77" height="90" />
                             </div>
-                            <span><b>Insert Eletricity Bills</b> </span>
+                            <span><b>Insert Water Bills</b> </span>
                         
                     </button>
                 </div>

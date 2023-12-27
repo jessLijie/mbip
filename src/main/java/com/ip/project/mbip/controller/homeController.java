@@ -12,9 +12,7 @@ public class homeController {
     @RequestMapping({"/hello"})
     public String greet(@RequestParam String name, Model model){
         model.addAttribute("name",name);
-        // model.addAttribute("showHeader", false);
-        //return "/Electricity/ElectricityMainPage";
-        return "waterFootprint";
+        return "welcome";
     }
 
     
