@@ -38,7 +38,8 @@
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
+          <!-- temp -->
+          <button><a href="/userDashboard"style="text-decoration: none;">Sign In</a></button>
         </form>
       </div>
       <div class="overlay-container">

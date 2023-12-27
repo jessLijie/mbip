@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
 </head>
 <body>
+    
     <%@include file= "/WEB-INF/views/navbar.jsp" %>
     <div class="card-container">
 

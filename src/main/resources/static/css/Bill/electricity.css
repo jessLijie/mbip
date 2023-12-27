@@ -4,6 +4,20 @@ body {
     margin: 0;
 }
 
+.outcontainer {
+    background-color: #ccf3ea;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.button-container {
+    display: flex;
+    margin-bottom: 50px;
+}
+
 h1 {
     font-family: Poller One;
     font-size: 36px;
@@ -12,12 +26,11 @@ h1 {
 }
 
 .historybtn {
-    text-align: left;
     margin-top: 20px;
+    text-align: left;
     margin-left: 50px;
 
 }
-
 .historybtn button {
     display: flex;
     margin-right: auto;
@@ -32,13 +45,16 @@ h1 {
 .historybtn svg {
     margin-right: 15px;
     margin-top: 5px;
-    padding-left: 10px;
+    margin-left: 10px;
 }
 
 .historybtn span {
     font-size: 20px;
     margin-bottom: 5px;
-    margin-top: 5px;
+    text-decoration: none;
+}
+
+a {
     text-decoration: none;
 }
 
@@ -77,5 +93,8 @@ h1 {
     font-weight: 400;
     line-height: normal;
     padding-bottom: 10px;
-    /* Adjust the padding to position the text at the bottom */
+    
+    
 }
+
+

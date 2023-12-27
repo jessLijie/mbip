@@ -4,15 +4,24 @@ body {
     font-size: 16px;
     font-weight: 300;
     width: 100%;
-    background: #DBE2EF;
     font-family: 'Roboto Condensed', sans-serif;
+    background-color: #ccf3ea;
+}
 
+.outcontainer {
+    background-color: #ccf3ea;
 }
 
 h2,
 h4,
 p {
     margin: 0;
+}
+
+.backbtn svg {
+    margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .page {
@@ -23,7 +32,6 @@ p {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 
 }
-
 
 .page[size="A4"] {
     width: 21cm;
@@ -41,6 +49,12 @@ table {
     margin: 80px;
 
 }
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed */
+    align-items: center; /* Adjust as needed */
+    
+}
 
 th,
 td {
@@ -56,19 +70,33 @@ td {
 #downloadButtonContainer {
     text-align: right;
     margin-right: 20px;
-    
+
 }
 
 @media print {
 
-    /* Hide header and footer */
-    @page {
-        size: auto;
-        margin: 0;
+    .backbtn,
+    #downloadButton {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
     }
 
-    header,
-    footer {
-        display: none;
+    .backbtn svg {
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    table {
+        margin: 20px;
+    }
+
+    th, td {
+        padding: 8px;
     }
 }

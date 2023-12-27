@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="/css/Bill/viewdetails.css">
         <%@include file="../navbar.jsp"%> 
     </head>
-
+    <%@include file="../navbar.jsp"%> 
     <body>
         <div id="main">
             <div class="button-container">
