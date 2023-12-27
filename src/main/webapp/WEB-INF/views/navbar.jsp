@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="/userDashboard">Home</a>
             </li>
             
             <li class="nav-item">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="profile-sec">
-            Profile
+            <a href="login" style="text-decoration: none;">Profile</a>
         </div>
       </nav>
       
