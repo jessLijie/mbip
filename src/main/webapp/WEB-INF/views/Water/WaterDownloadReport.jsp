@@ -7,7 +7,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/css/Bill/download.css">
-        <title>Water Bills</title>
+        <title>Water Bills - Download Report</title>
         <script src="js/Bill/download.js"></script>
         <style>
             @media print {
