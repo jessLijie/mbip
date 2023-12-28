@@ -4,12 +4,12 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Electricity Consumption</title>
+        <title>Recycle Consumption</title>
         <link rel="stylesheet" type="text/css" href="/css/Bill/electricity.css">
-
     </head>
     <%@include file="../navbar.jsp"%> 
     <body>
+        <div class="outcontainer">
         <div class="button-container">
 
             <div class="historybtn">
@@ -32,30 +32,19 @@
             
 
             <h1><b>Recycle</b></h1>
-            <a href="/InsertRecycleConsumption">
-            <div class="insertbtn">
+            
+                <div class="insertbtn" onclick="window.location.href='/InsertRecycleConsumption'; ">
                 
                 <button type="button">
                 
                     <div style="text-align: center;">
                         <img src="/images/image 128.png" alt="image" width="77" height="90" />
                     </div>
-                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="77" height="90" viewBox="0 0 77 90" fill="none">
-                        <path
-                            d="M53.8994 67.5H19.2494V27H42.3494V22.5H19.2494C17.1319 22.5 15.3994 24.525 15.3994 27V67.5C15.3994 69.975 17.1319 72 19.2494 72H53.8994C56.0169 72 57.7494 69.975 57.7494 67.5V40.5H53.8994V67.5Z"
-                            fill="black" />
-                        <path d="M26.9482 36V40.5H42.3482H46.1982V36H26.9482Z" fill="black" />
-                        <path d="M26.9482 45H46.1982V49.5H26.9482V45Z" fill="black" />
-                        <path d="M26.9482 54H46.1982V58.5H26.9482V54Z" fill="black" />
-                        <path d="M57.7482 13.5H53.8982V22.5H46.1982V27H53.8982V36H57.7482V27H65.4482V22.5H57.7482V13.5Z"
-                            fill="black" />
-                    </svg> -->
                     <span><b>Insert Recycle Record</b> </span>
                 </button>
-            </a>
             </div>
 
-
+        </div>
         </div>
     </body>
 

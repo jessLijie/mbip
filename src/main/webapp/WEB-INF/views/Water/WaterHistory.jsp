@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Water History</title>
     <link rel="stylesheet" href="/css/Bill/History.css">
     <script src="js/Bill/History.js"></script>
 </head>
@@ -177,7 +177,7 @@
               <td>12.11.2020 - 12.12.2020</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button" >
-                <a href="/ElectricityHistoryView">
+                <a href="/WaterHistoryDetail">
                 <div class="viewdetailbutton">
                  
                   <svg
@@ -199,7 +199,7 @@
                   View Details
                 </div>
               </a>
-              <a href="/ElectricityDownloadReport" >
+              <a href="/WaterDownloadReport" >
                 <button class="downloadbutton" >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +221,7 @@
             </tr>
             <tr>
               <td>2</td>
-              <td>12.11.2020 - 12.12.2020</td>
+              <td>12.12.2020 - 12.01.2021</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button">
                 <div class="viewdetailbutton">
@@ -262,7 +262,7 @@
             </tr>
             <tr>
               <td>3</td>
-              <td>12.11.2020 - 12.12.2020</td>
+              <td>12.01.2021 - 12.02.2021</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button">
                 <div class="viewdetailbutton">
@@ -303,7 +303,7 @@
             </tr>
             <tr>
               <td>4</td>
-              <td>12.11.2020 - 12.12.2020</td>
+              <td>12.02.2021 - 12.03.2021</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button">
                 <div class="viewdetailbutton">
@@ -344,7 +344,7 @@
             </tr>
             <tr>
               <td>5</td>
-              <td>12.11.2020 - 12.12.2020</td>
+              <td>12.03.2021 - 12.04.2021</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button">
                 <div class="viewdetailbutton">
@@ -385,7 +385,7 @@
             </tr>
             <tr>
               <td>6</td>
-              <td>12.11.2020 - 12.12.2020</td>
+              <td>12.04.2021 - 12.05.2021</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button">
                 <div class="viewdetailbutton">
@@ -427,7 +427,7 @@
 
             <tr>
               <td>7</td>
-              <td>12.11.2020 - 12.12.2020</td>
+              <td>12.05.2021 - 12.06.2021</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button">
                 <div class="viewdetailbutton">

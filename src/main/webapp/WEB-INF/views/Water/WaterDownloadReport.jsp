@@ -7,7 +7,7 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/css/Bill/download.css">
-        <title>Recyle Record</title>
+        <title>Water Bills - Download Report</title>
         <script src="js/Bill/download.js"></script>
         <style>
             @media print {
@@ -21,7 +21,7 @@
     <body>
         <div class="outcontainer">
             <div class="button-container">
-            <div class="backbtn" onclick="window.location.href='/ElectricityHistory';">
+            <div class="backbtn" onclick="window.location.href='/WaterHistory';">
                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="29" viewBox="0 0 31 29" fill="none">
                     <ellipse cx="15.5" cy="13.5" rx="15.5" ry="13.5" transform="matrix(-1 0 0 1 31 0)"
                         fill="#A7C3F9" />
@@ -49,7 +49,7 @@
             <div class="center-container">
                 <img src="/images/mbip.png" alt="MBIP Logo" width="650" height="120">
             </div>
-            <h3>Recyle Record</h3>
+            <h3>Water Bills</h3>
             <table>
                 <tr>
                     <td><b>Name: </b></td>
@@ -71,15 +71,19 @@
                 </tr>
                 <tr>
                     <td><b>Date:</b></td>
-                    <td>17.01.2021 - 16.02.2021 (31 days)</td>
+                    <td>12.11.2020 - 12.12.2020 (31 Days)</td>
                 </tr>
                 <tr>
-                    <td><b>Current Recycle Collection (kg):</b></td>
-                    <td>186</td>
+                    <td><b>Prorata Factor:</b></td>
+                    <td>1.03333</td>
+                </tr>
+                <tr>
+                    <td><b>Current Consumption Value (kWh):</b></td>
+                    <td>35</td>
                 </tr>
                 <tr>
                     <td><b>Carbon Footprint (kg CO<sub>2</sub>): </b></td>
-                    <td>108.624 kgCO<sub>2</sub></td>
+                    <td>14.665 kgCO<sub>2</sub></td>
                 </tr>
 
             </table>

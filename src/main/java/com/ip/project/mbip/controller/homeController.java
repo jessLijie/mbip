@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class homeController {
    
-    @RequestMapping({"/Water"})
-    public String water(){
-        return "waterFootprint";
+    @RequestMapping({"/hello"})
+    public String greet(@RequestParam String name, Model model){
+        model.addAttribute("name",name);
+        return "welcome";
     }
 
     
