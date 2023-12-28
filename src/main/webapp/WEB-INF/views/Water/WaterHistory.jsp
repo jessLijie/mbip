@@ -177,7 +177,7 @@
               <td>12.11.2020 - 12.12.2020</td>
               <td>No 40 Taman Bunga, 84000, Muar , Johor</td>
               <td class="button" >
-                <a href="/ElectricityHistoryView">
+                <a href="/WaterHistoryDetail">
                 <div class="viewdetailbutton">
                  
                   <svg
@@ -199,7 +199,7 @@
                   View Details
                 </div>
               </a>
-              <a href="/ElectricityDownloadReport" >
+              <a href="/WaterDownloadReport" >
                 <button class="downloadbutton" >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
