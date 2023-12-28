@@ -13,7 +13,7 @@
 </head>
 <body style="background-color: #CCF3EA">
 
-    <button type="button" class="px-4 p-2 m-4 mb-0 ms-5 rounded shadow" style="background-color: #A7C3F9; border:none;">
+    
         <button type="button" class="px-4 p-2 m-4 mb-0 ms-5 rounded shadow"  onclick="window.location.href='/RecycleHistory;' "style="background-color: #A7C3F9; border:none; ">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                 <path
