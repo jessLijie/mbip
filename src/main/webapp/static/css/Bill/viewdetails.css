@@ -1,0 +1,112 @@
+html {
+    background-color: #CCF3EA;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+#main{
+    background-color: #CCF3EA;
+    
+}
+h3{
+    text-align: center;
+    margin-top: 0px;
+}
+.viewhistory-container {
+    width: 900px;
+    border-radius: 14px;
+    background: #FFF;
+    padding: 70px;
+    margin: 50px auto;
+    font-size: 21px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+table {
+    
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 15px;
+    
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.carbon-footprint-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+}
+
+.carbon-footprint-section b {
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-left: 50px;
+}
+
+.carbon-footprint-section p {
+    margin: 0; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Adjust the space between the buttons */
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.backbtn svg{
+   margin-left: 100px;
+}
+
+.historybtn {
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 50px;
+
+}
+
+.historybtn button { 
+    display: flex;
+    margin-left: auto;
+    border-radius: 5px;
+    background: #A7C3F9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 149px;
+    height: 39px;
+    border-color: #A7C3F9;
+}
+
+.historybtn svg {
+    margin-right: 15px; 
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.historybtn span {
+    font-size: 20px;
+    margin-bottom: 2px;
+    
+}
+
+@media only screen and (max-width: 800px) {
+    .historybtn button {
+        width: 120px; /* Adjust the width for smaller screens */
+    }
+
+    .historybtn span {
+        font-size: 20px; /* Adjust the font size for smaller screens */
+    }
+
+    .viewhistory-container {
+        width: 600px;
+        max-width: 100%;
+        margin: 20px auto; 
+        font-size: 15px;
+
+    }
+}

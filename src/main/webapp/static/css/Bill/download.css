@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #ccf3ea;
+}
+
+.outcontainer {
+    background-color: #ccf3ea;
+}
+
+h2,
+h4,
+p {
+    margin: 0;
+}
+
+.backbtn svg {
+    margin-left: 100px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.page {
+    background: #fff;
+    display: block;
+    margin: 0rem auto 0rem auto;
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+}
+
+.page[size="A4"] {
+    width: 21cm;
+    height: 29.7cm;
+    overflow-x: hidden;
+}
+
+h3 {
+    margin-top: 1cm;
+    text-align: center;
+}
+
+table {
+    margin-top: 10vh; 
+    margin-left: 90px;
+    margin-right: auto;
+
+
+}
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed */
+    align-items: center; /* Adjust as needed */
+    
+}
+
+th,
+td {
+    padding: 20px;
+    text-align: left;
+}
+
+.center-container {
+    text-align: center;
+    margin-top: 80px;
+}
+
+#downloadButtonContainer {
+    text-align: right;
+    margin-right: 20px;
+
+}
+
+@media print {
+
+    .backbtn,
+    #downloadButton {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .backbtn svg {
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    table {
+        margin: 20px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
