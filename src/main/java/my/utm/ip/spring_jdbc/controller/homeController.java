@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/mbip")
 public class homeController {
    
     @RequestMapping({"/hello"})
-    public String greet(@RequestParam String name, Model model){
-        model.addAttribute("name",name);
+    public String greet(){
         return "welcome";
     }
 
