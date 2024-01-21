@@ -3,7 +3,6 @@ package my.utm.ip.spring_jdbc.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +30,26 @@ public class homeController {
             HttpSession session)
     {
 
-        String sql = "Select id, username, password from user where username=? ";
+        String sql = "Select id, username, password, role from user where username=? ";
         List<Map<String, Object>> result = template.queryForList(sql, un);
         
         if (!result.isEmpty()) {
             Map<String, Object> user = result.get(0);
             String storedPassword = (String) user.get("password");
+            String role = (String) user.get("role");
+
 
             if (pass.equals(storedPassword)) {
-                // HttpSession session = request.getSession();
-                // int userid = 1;
                 int userid = (int) user.get("id");
                 session.setAttribute("userid", userid);
+                if(role.equals("user")){
                 return "redirect:/userDashboard";
+                }
+
+                else {
+                    return "Admin/adminDashboard";
+                }
+                
             }
         }
 

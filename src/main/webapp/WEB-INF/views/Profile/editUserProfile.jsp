@@ -47,7 +47,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" id="fullname" value="${fullname}" name="fullname" >
+                                    <input type="text" id="fullname" value="${fullname}" name="fullname" required>
                                 </div>
                             </div>
                             <hr>
@@ -56,7 +56,7 @@
                                     <h6 class="mb-0">Birthday</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="date" id="birthdate" value="${birthdate}" name="birthdate">
+                                    <input type="date" id="birthdate" value="${birthdate}" name="birthdate" required>
                                 </div>
                             </div>
                             <hr>
@@ -74,7 +74,7 @@
                                     <h6 class="mb-0">Password</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="password" id="password" value="${password}" name="password" >
+                                    <input type="password" id="password" value="${password}" name="password" required>
                                     <i class="toggle-password fas fa-eye" onclick="togglePasswordVisibility('password')"></i>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" id="phone" value="${phone}" name="phone" >
+                                    <input type="text" id="phone" value="${phone}" name="phone" required>
                                 </div>
                             </div>
                             <hr>
@@ -93,13 +93,13 @@
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" id="add1" value="${add1}"  name="add1">,
+                                    <input type="text" id="add1" value="${add1}"  name="add1" required>,
                     
-                                    <input type="text" id="add2" value="${add2}" name="add2">,
+                                    <input type="text" id="add2" value="${add2}" name="add2" required>,
                                 
-                                    <input type="text" id="zipcode" value="${zipcode}"name="zipcode" >,
+                                    <input type="text" id="zipcode" value="${zipcode}"name="zipcode" required>,
                                 
-                                    <input type="text" id="state" value="${state}"name="state" >
+                                    <input type="text" id="state" value="${state}"name="state" required>
                                 </div>
                             </div>
                             <hr>
