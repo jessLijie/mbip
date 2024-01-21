@@ -61,7 +61,7 @@ public class adminController {
         List<Bill> billList = new ArrayList<>();
 
         if (billString.contains("electricity")) {
-            String sql = "SELECT * FROM electricity WHERE userid=1 ";
+            String sql = "SELECT * FROM electricity WHERE userid="+userid;
             List<Bill> billListElectricity = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
             for (Bill bill : billListElectricity) {
                 bill.setbilltype("Electricity");
@@ -70,7 +70,7 @@ public class adminController {
         }
 
         if (billString.contains("water")) {
-            String sql = "SELECT * FROM water WHERE userid=1 ";
+            String sql = "SELECT * FROM water WHERE userid="+userid;
             List<Bill> billListWater = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
             for (Bill bill : billListWater) {
                 bill.setbilltype("Water");
@@ -78,7 +78,7 @@ public class adminController {
             billList.addAll(billListWater);
         }
         if (billString.contains("recycle")) {
-            String sql = "SELECT * FROM recycle WHERE userid=1 ";
+            String sql = "SELECT * FROM recycle WHERE userid="+userid;
             List<Bill> billListRecycle = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
             for (Bill bill : billListRecycle) {
                 bill.setbilltype("Recycle");
