@@ -100,4 +100,13 @@ public class Recycle {
                 ", carbonFootprint=" + carbonFootprint +
                 '}';
     }
-}
+
+    public static String getPeriod(int month, int year) {
+        String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        if (month >= 1 && month <= 12) {
+            return monthNames[month - 1] + " " + year;
+        } else {
+            // Handle invalid month values
+            return "";
+        }
+}}
