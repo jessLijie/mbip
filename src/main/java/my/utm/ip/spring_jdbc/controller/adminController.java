@@ -28,18 +28,19 @@ public class adminController {
 
     @RequestMapping("/viewrecord")
     public ModelAndView viewrecord(HttpSession session) {
+        int userid = (int) session.getAttribute("userid");
         ModelAndView mv = new ModelAndView("/Admin/adminviewrecord");
-        String sql = "SELECT * FROM electricity WHERE userid=1 ";
+        String sql = "SELECT * FROM electricity WHERE userid="+userid;
         List<Bill> billListElectricity = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
         for (Bill bill : billListElectricity) {
             bill.setbilltype("Electricity");
         }
-        sql = "SELECT * FROM water WHERE userid=1 ";
+        sql = "SELECT * FROM water WHERE userid="+userid;
         List<Bill> billListWater = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
         for (Bill bill : billListWater) {
             bill.setbilltype("Water");
         }
-        sql = "SELECT * FROM recycle WHERE userid=1 ";
+        sql = "SELECT * FROM recycle WHERE userid="+userid;
         List<Bill> billListRecycle = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
         for (Bill bill : billListRecycle) {
             bill.setbilltype("Recycle");
@@ -55,6 +56,7 @@ public class adminController {
 
     @RequestMapping("/applyFilterBill")
     public ModelAndView applyFilter(@RequestParam("billString") String billString, HttpSession session) {
+        int userid = (int) session.getAttribute("userid");
         ModelAndView mv = new ModelAndView("/Admin/adminviewrecord");
         List<Bill> billList = new ArrayList<>();
 
