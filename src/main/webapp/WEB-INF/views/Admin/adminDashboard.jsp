@@ -28,8 +28,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                           <td>${user.id}</td>
                           <td>${user.fullname}</td>
                           <td>${user.email}</td>
-                          <!-- can pass user.id into link ref -->
-                          <td><a href="" style="text-decoration: none;"><i class="fas fa-eye" id="eyeIcon"></i></a></td>
+                          <td><a href="/viewrecord?userid=${user.id}" style="text-decoration: none;"><i class="fas fa-eye" id="eyeIcon"></i></a></td>
                           
                       </tr>
                   </c:forEach>

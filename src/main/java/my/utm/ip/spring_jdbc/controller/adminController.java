@@ -27,8 +27,7 @@ public class adminController {
     JdbcTemplate template;
 
     @RequestMapping("/viewrecord")
-    public ModelAndView viewrecord(HttpSession session) {
-        int userid = (int) session.getAttribute("userid");
+    public ModelAndView viewrecord(@RequestParam("userid") int userid,HttpSession session) {
         ModelAndView mv = new ModelAndView("/Admin/adminviewrecord");
         String sql = "SELECT * FROM electricity WHERE userid="+userid;
         List<Bill> billListElectricity = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
@@ -55,8 +54,7 @@ public class adminController {
     }
 
     @RequestMapping("/applyFilterBill")
-    public ModelAndView applyFilter(@RequestParam("billString") String billString, HttpSession session) {
-        int userid = (int) session.getAttribute("userid");
+    public ModelAndView applyFilter(@RequestParam("billString") String billString,@RequestParam("userid") int userid) {
         ModelAndView mv = new ModelAndView("/Admin/adminviewrecord");
         List<Bill> billList = new ArrayList<>();
 

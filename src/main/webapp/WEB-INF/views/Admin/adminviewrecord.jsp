@@ -12,7 +12,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   </head>
 
   <body style="background-color: #ccf3ea">
-    <a href="/Recycle">
+    <a href="/adminDashboard">
       <div class="backbtn">
         <svg
           xmlns="http://www.w3.org/2000/svg"
