@@ -33,6 +33,16 @@ public class User {
         this.matricsNo = "";
     }
 
+    
+
+    public User(int id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+
+
     public User(int id, String username, String password, String fullname, Date birthdate, String email, String add1,
             String add2, String zipcode, String state, String job, String phone, String matricsNo) {
         this.id = id;
@@ -128,4 +138,6 @@ public class User {
     public void setMatricsNo(String matricsNo) {
         this.matricsNo = matricsNo;
 }
+
+
 }

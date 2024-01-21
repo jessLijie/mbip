@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html;  charset=ISO-8859-1" 
+pageEncoding="ISO-8859-1" isELIgnored="false" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,9 +12,14 @@
     .main-body{
         margin-top: 10px;
     }
+    input{
+      border: none;
+      background-color: white;
+    }
 
     
 </style>
+
 <%@include file= "/WEB-INF/views/navbar.jsp" %>
 <body>
     <div class="container">
@@ -26,9 +33,9 @@
                       <div class="d-flex flex-column align-items-center text-center">
                         <img src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
-                          <h4>Kim Kardashian</h4>
-                          <p class="text-secondary mb-1">Student, UTM</p>
-                          <p class="text-muted font-size-sm">User ID:123ADN30</p>
+                          <h4>${fullname}</h4>
+                          <p class="text-secondary mb-1">Student ID: ${matricsNo}</p>
+                          <p class="text-muted font-size-sm">Username: ${name}</p>
                           
                         </div>
                       </div>
@@ -44,7 +51,16 @@
                           <h6 class="mb-0">Full Name</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          Kim Kardashian
+                          ${fullname}
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Birthday</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          ${birthdate}
                         </div>
                       </div>
                       <hr>
@@ -53,25 +69,26 @@
                           <h6 class="mb-0">Email</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          kim3333@gmail.com
+                          ${email}
                         </div>
                       </div>
                       <hr>
                       <div class="row">
                         <div class="col-sm-3">
-                          <h6 class="mb-0">Password</h6>
+                            <h6 class="mb-0">Password</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          ************ 
+                            <input type="password" id="password" value="${password}" disabled>
+                            <i class="toggle-password fas fa-eye" onclick="togglePasswordVisibility()"></i>
+
                         </div>
-                      </div>
-                      <hr>
+                    </div><hr>
                       <div class="row">
                         <div class="col-sm-3">
                           <h6 class="mb-0">Phone</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          +(60)12-345 6789
+                          ${phone}
                         </div>
                     </div>
                       <hr>
@@ -80,7 +97,7 @@
                           <h6 class="mb-0">Address</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          MA7, KTDI
+                          ${add1}, ${add2}, ${zipcode}, ${state}
                         </div>
                       </div>
                       <hr>
@@ -91,16 +108,26 @@
                       </div>
                     </div>
                   </div>
-    
-                  
-    
-    
-    
                 </div>
               </div>
     
             </div>
         </div>
-   
+        <script>
+          function togglePasswordVisibility() {
+              var passwordInput = document.getElementById("password");
+              var eyeIcon = document.querySelector(".toggle-password");
+      
+              if (passwordInput.type === "password") {
+                  passwordInput.type = "text";
+                  eyeIcon.classList.remove("fa-eye");
+                  eyeIcon.classList.add("fa-eye-slash");
+              } else {
+                  passwordInput.type = "password";
+                  eyeIcon.classList.remove("fa-eye-slash");
+                  eyeIcon.classList.add("fa-eye");
+              }
+          }
+      </script>
 </body>
 </html>

@@ -1,4 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;  charset=ISO-8859-1" 
+pageEncoding="ISO-8859-1" isELIgnored="false" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +13,7 @@
 <body>
     
     <%@include file= "/WEB-INF/views/navbar.jsp" %>
+    <%@ page session="true" %>
     <div class="card-container">
 
     <!-- Electricity Consumption Card -->
