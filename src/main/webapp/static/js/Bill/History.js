@@ -42,5 +42,5 @@ function applyFilter() {
     });
     const monthsString = selectedMonths.join(',');
    
-    window.location.href = `/applyFilter?year=${year}&month=${monthsString}`;
+    window.location.href = `/recycle/applyFilter?year=${year}&month=${monthsString}`;
 }

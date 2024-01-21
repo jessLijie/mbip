@@ -1,6 +1,6 @@
 package my.utm.ip.spring_jdbc.model;
 
-public class Electricity {
+public class Water {
     private int id;
     private int userid;
     private String address;
@@ -9,7 +9,7 @@ public class Electricity {
     private double currentConsumption;
     private double carbonFootprint;
 
-    public Electricity(int id, int userid, String address, int year,int month, double currentConsumption, double carbonFootprint) {
+    public Water(int id, int userid, String address, int year,int month, double currentConsumption, double carbonFootprint) {
         this.id = id;
         this.userid = userid;
         this.address = address;
@@ -20,7 +20,7 @@ public class Electricity {
 
     }
 
-    public Electricity() {
+    public Water() {
         this.id = 0;
         this.userid = 0;
         this.address = "";
@@ -90,7 +90,7 @@ public class Electricity {
 
     @Override
     public String toString() {
-        return "Electricity{" +
+        return "Water{" +
                 "id=" + id +
                 ", userid=" + userid +
                 ", address='" + address + '\'' +

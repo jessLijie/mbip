@@ -1,6 +1,6 @@
 package my.utm.ip.spring_jdbc.model;
 
-public class Electricity {
+public class Bill {
     private int id;
     private int userid;
     private String address;
@@ -8,8 +8,9 @@ public class Electricity {
     private int month;
     private double currentConsumption;
     private double carbonFootprint;
+    private String billtype;
 
-    public Electricity(int id, int userid, String address, int year,int month, double currentConsumption, double carbonFootprint) {
+    public Bill(int id, int userid, String address, int year,int month, double currentConsumption, double carbonFootprint,String billtype) {
         this.id = id;
         this.userid = userid;
         this.address = address;
@@ -17,10 +18,11 @@ public class Electricity {
         this.month = month;
         this.currentConsumption = currentConsumption;
         this.carbonFootprint = carbonFootprint;
+        billtype=this.billtype;
 
     }
 
-    public Electricity() {
+    public Bill() {
         this.id = 0;
         this.userid = 0;
         this.address = "";
@@ -28,8 +30,17 @@ public class Electricity {
         this.month = 0;
         this.currentConsumption = 0.0;
         this.carbonFootprint = 0.0;
-
+        billtype="";
     }
+
+    public String getbilltype(){
+        return billtype;
+    }
+
+    public void setbilltype(String billtype){
+        this.billtype = billtype;
+    }
+
 
     public int getId() {
         return id;
@@ -90,7 +101,7 @@ public class Electricity {
 
     @Override
     public String toString() {
-        return "Electricity{" +
+        return "Bill{" +
                 "id=" + id +
                 ", userid=" + userid +
                 ", address='" + address + '\'' +
