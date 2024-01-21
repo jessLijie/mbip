@@ -10,6 +10,6 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     </head>
 
     <body>
-        Admin
+        <button>Add Event</button>
     </body>
 </html>
