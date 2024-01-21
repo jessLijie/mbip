@@ -28,69 +28,7 @@ public class userProfileController {
     @Autowired
     JdbcTemplate template;
 
-    @RequestMapping("/viewrecord")
-    public ModelAndView viewrecord(HttpSession session) {
-        ModelAndView mv = new ModelAndView("/Admin/adminviewrecord");
-        String sql = "SELECT * FROM electricity WHERE userid=1 ";
-        List<Bill> billListElectricity = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
-        for (Bill bill : billListElectricity) {
-            bill.setbilltype("Electricity");
-        }
-        sql = "SELECT * FROM water WHERE userid=1 ";
-        List<Bill> billListWater = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
-        for (Bill bill : billListWater) {
-            bill.setbilltype("Water");
-        }
-        sql = "SELECT * FROM recycle WHERE userid=1 ";
-        List<Bill> billListRecycle = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
-        for (Bill bill : billListRecycle) {
-            bill.setbilltype("Recycle");
-        }
-        List<Bill> billList = new ArrayList<>();
-        billList.addAll(billListElectricity);
-        billList.addAll(billListWater);
-        billList.addAll(billListRecycle);
-        Collections.sort(billList, Comparator.comparing(Bill::getYear).thenComparing(Bill::getMonth));
-        mv.addObject("billList", billList);
-        return mv;
-    }
-
-    @RequestMapping("/applyFilterBill")
-    public ModelAndView applyFilter(@RequestParam("billString") String billString, HttpSession session) {
-        ModelAndView mv = new ModelAndView("/Admin/adminviewrecord");
-        List<Bill> billList = new ArrayList<>();
-
-        if (billString.contains("electricity")) {
-            String sql = "SELECT * FROM electricity WHERE userid=1 ";
-            List<Bill> billListElectricity = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
-            for (Bill bill : billListElectricity) {
-                bill.setbilltype("Electricity");
-            }
-            billList.addAll(billListElectricity);
-        }
-
-        if (billString.contains("water")) {
-            String sql = "SELECT * FROM water WHERE userid=1 ";
-            List<Bill> billListWater = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
-            for (Bill bill : billListWater) {
-                bill.setbilltype("Water");
-            }
-            billList.addAll(billListWater);
-        }
-        if (billString.contains("recycle")) {
-            String sql = "SELECT * FROM recycle WHERE userid=1 ";
-            List<Bill> billListRecycle = template.query(sql, new BeanPropertyRowMapper<>(Bill.class));
-            for (Bill bill : billListRecycle) {
-                bill.setbilltype("Recycle");
-            }
-            billList.addAll(billListRecycle);
-        }
-
-        Collections.sort(billList, Comparator.comparing(Bill::getYear).thenComparing(Bill::getMonth));
-        mv.addObject("billList", billList);
-        return mv;
-    }
-
+   
     @RequestMapping("/profile")
     public ModelAndView profile(HttpSession session) {
         ModelAndView mv = new ModelAndView("/Profile/userProfile");
