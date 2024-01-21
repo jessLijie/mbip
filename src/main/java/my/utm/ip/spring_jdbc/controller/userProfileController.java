@@ -111,6 +111,7 @@ public class userProfileController {
         String add2 = (String) user.get("add2");
         String zipcode = (String) user.get("zipcode");
         String state = (String) user.get("state");
+        String role = (String) session.getAttribute("role");
         mv.addObject("name", name);
         mv.addObject("fullname", fullname);
         mv.addObject("birthdate", birthdate);
@@ -122,6 +123,7 @@ public class userProfileController {
         mv.addObject("add2", add2);
         mv.addObject("zipcode", zipcode);
         mv.addObject("state", state);
+        mv.addObject("role", role);
 
         return mv;
     }

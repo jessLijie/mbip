@@ -42,12 +42,14 @@ public class homeController {
             if (pass.equals(storedPassword)) {
                 int userid = (int) user.get("id");
                 session.setAttribute("userid", userid);
+                session.setAttribute("role", role);
                 if(role.equals("user")){
                 return "redirect:/userDashboard";
                 }
 
                 else {
-                    return "Admin/adminDashboard";
+
+                    return "redirect:/adminDashboard";
                 }
                 
             }
