@@ -67,7 +67,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <li><a class="dropdown-item" href="profile">View Profile</a></li>
-                <li><a class="dropdown-item" href="mbip/">Logout</a></li>
+                <li><a class="dropdown-item" href="/mbip/">Logout</a></li>
               </ul>
             </div>
         </div>

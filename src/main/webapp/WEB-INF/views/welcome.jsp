@@ -17,7 +17,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <div class="container" id="container"  style="margin-top: 50px;">
       <div class="form-container sign-up-container">
         <!-- Sign Up -->
-        <form action="#">
+        <form action="/profile/insert">
           <h1>Create Account</h1>
           <div class="social-container">
             <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -25,13 +25,14 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <span>or use your email for registration</span>
-          <input type="text" placeholder="Username" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" name="password" id="passwordInput" />
+          <input type="text" placeholder="Username" name="username" required/>
+          <input type="email" placeholder="Email" name="email"required />
+          <input type="text" placeholder="Matrics No." name="matricsNo" required />
+          <input type="password" placeholder="Password" name="password" id="passwordInput"required />
           <button type="button" id="togglePassword">
             <i class="fas fa-eye" id="eyeIcon"></i> Show Password
             </button>
-<br>
+          <br>
           <button>Sign Up</button>
         </form>
       </div>
@@ -45,8 +46,8 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <span>or use your account</span>
-          <input type="text" placeholder="Username" name="username" />
-          <input type="password" placeholder="Password" name="password" id="passwordInput" />
+          <input type="text" placeholder="Username" name="username"required />
+          <input type="password" placeholder="Password" name="password" id="passwordInput"required />
           <button type="button" id="togglePassword">
             <i class="fas fa-eye" id="eyeIcon"></i> Show Password
             </button>

@@ -103,7 +103,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                       <hr>
                       <div class="row">
                         <div class="col-sm-12">
-                          <a class="btn btn-info " href="#" style="float: right;">Edit Info</a>
+                          <a class="btn btn-info " href="/profile/edit" style="float: right;">Edit Info</a>
                         </div>
                       </div>
                     </div>
