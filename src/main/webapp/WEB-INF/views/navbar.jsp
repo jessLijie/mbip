@@ -1,3 +1,6 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,28 +37,46 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <c:if test="${role eq 'user'}">
             <li class="nav-item active">
               <a class="nav-link" href="/userDashboard">Dashboard</a>
             </li>
+            </c:if>
             
+            <c:if test="${role eq 'user'}">
             <li class="nav-item">
               <a class="nav-link" href="/Water">Water</a>
-            </li>
+            </li></c:if>
 
+            <c:if test="${role eq 'user'}">
             <li class="nav-item">
                 <a class="nav-link" href="/Electricity">Electricity</a>
-              </li>
+              </li></c:if>
 
+              <c:if test="${role eq 'user'}">
               <li class="nav-item">
                 <a class="nav-link" href="/Recycle">Recycle</a>
-              </li>
+              </li></c:if>
             
+              <c:if test="${role eq 'admin'}">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">User List</a>
+                </li>
+              </c:if>
+
+              <c:if test="${role eq 'admin'}">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Event</a>
+                </li>
+              </c:if>
           </ul>
         
         </div>
 
         <div class="profile-sec">
+          <c:if test="${role eq 'user'}">
             <div class="dropdown">
+              
               <button
                 class="btn btn-primary dropdown-toggle"
                 type="button"
@@ -67,9 +88,17 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <li><a class="dropdown-item" href="profile">View Profile</a></li>
+             
                 <li><a class="dropdown-item" href="/mbip/">Logout</a></li>
               </ul>
             </div>
+          </c:if>
+          <c:if test="${role eq 'admin'}">
+            <button style="border-radius: .5rem; background-color: rgb(16, 94, 167); border: 0px; color: white;padding: 5px 10px;">
+              <a class="dropdown-item" href="/mbip/">Log Out</a>
+            </button>
+            
+          </c:if>
         </div>
       </nav>
       

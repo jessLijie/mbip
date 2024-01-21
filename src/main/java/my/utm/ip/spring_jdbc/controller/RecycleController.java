@@ -42,8 +42,8 @@ public class RecycleController
         String sql = "SELECT * FROM recycle WHERE userid=1";
 
         List<Recycle> recycleList = template.query(sql, new BeanPropertyRowMapper<>(Recycle.class));
-        
         mv.addObject("recycleList", recycleList);
+        
         String userSql = "SELECT * FROM user WHERE userid=1";
         List<User> userList = template.query(userSql, new BeanPropertyRowMapper<>(User.class));
         if (!userList.isEmpty()) {

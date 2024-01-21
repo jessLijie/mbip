@@ -28,7 +28,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
           <input type="text" placeholder="Username" name="username" required/>
           <input type="email" placeholder="Email" name="email"required />
           <input type="text" placeholder="Matrics No." name="matricsNo" required />
-          <input type="password" placeholder="Password" name="password" id="passwordInput"required />
+          <input type="password" placeholder="Password" name="password" id="passwordInput" required />
           <button type="button" id="togglePassword">
             <i class="fas fa-eye" id="eyeIcon"></i> Show Password
             </button>
@@ -47,7 +47,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
           </div>
           <span>or use your account</span>
           <input type="text" placeholder="Username" name="username"required />
-          <input type="password" placeholder="Password" name="password" id="passwordInput"required />
+          <input type="password" placeholder="Password" name="password" id="passwordInput" required />
           <button type="button" id="togglePassword">
             <i class="fas fa-eye" id="eyeIcon"></i> Show Password
             </button>
@@ -90,6 +90,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
         }
     });
 </script>
+
     <script src="../static/js/script.js"></script>
     <script src="../static/js/login.js"></script>
   </body>
