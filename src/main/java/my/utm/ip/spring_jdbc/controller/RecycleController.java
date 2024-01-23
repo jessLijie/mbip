@@ -103,7 +103,7 @@ public class RecycleController {
         ModelAndView modelAndView = new ModelAndView("/Recycle/RecycleDownloadReport");
         User user = userService.getUserById(userid);
        
-        String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint FROM Recycle WHERE id=?";
+        String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint FROM recycle WHERE id=?";
         Recycle recycleBill = template.queryForObject(sql, new Object[] { billId },
                 new BeanPropertyRowMapper<>(Recycle.class));
 

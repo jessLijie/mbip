@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html;  charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html;  charset=ISO-8859-1" 
 pageEncoding="ISO-8859-1" isELIgnored="false" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="my.utm.ip.spring_jdbc.model.User" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,8 +89,8 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <td>${electricityBill.address}</td>
                     </tr>
                     <tr>
-                        <td><b>Date:</b></td>
-                        <td>${electricityBill.date}</td>
+                        <td><b>Period:</b></td>
+                        <td>${period}</td>
                     </tr>
                     <tr>
                         <td><b>Prorata Factor:</b></td>
@@ -100,12 +98,11 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     </tr>
                     <tr>
                         <td><b>Current Consumption Value (kWh):</b></td>
-                        <td>${electricityBill.currentConsumption}</td>
+                        <td><fmt:formatNumber value="${electricityBill.currentConsumption}" pattern="0.00"/></td>
                     </tr>
                     <tr>
                         <td><b>Carbon Footprint (kg CO<sub>2</sub>): </b></td>
-                        <td>${carbonFootprint}
-                            kgCO<sub>2</sub></td>
+                        <td><fmt:formatNumber value="${electricityBill.carbonFootprint}" pattern="0.00"/></td>
                     </tr>
 
                 </table>

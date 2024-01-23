@@ -45,17 +45,22 @@
             
             <c:if test="${role eq 'user'}">
             <li class="nav-item">
-              <a class="nav-link" href="/Water">Water</a>
+              <a class="nav-link" href="/water/Water">Water</a>
             </li></c:if>
 
             <c:if test="${role eq 'user'}">
             <li class="nav-item">
-                <a class="nav-link" href="/Electricity">Electricity</a>
+                <a class="nav-link" href="/electricity/Electricity">Electricity</a>
               </li></c:if>
 
               <c:if test="${role eq 'user'}">
               <li class="nav-item">
                 <a class="nav-link" href="/recycle/RecycleHistory">Recycle</a>
+              </li></c:if>
+
+              <c:if test="${role eq 'user'}">
+              <li class="nav-item">
+                <a class="nav-link" href="/event/">Event</a>
               </li></c:if>
             
               <c:if test="${role eq 'admin'}">
@@ -87,7 +92,7 @@
               Profile
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="profile">View Profile</a></li>
+                <li><a class="dropdown-item" href="/profile">View Profile</a></li>
              
                 <li><a class="dropdown-item" href="/mbip/">Logout</a></li>
               </ul>
