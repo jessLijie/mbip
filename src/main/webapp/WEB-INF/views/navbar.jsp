@@ -60,7 +60,7 @@
 
               <c:if test="${role eq 'user'}">
               <li class="nav-item">
-                <a class="nav-link" href="/event/">Event</a>
+                <a class="nav-link" href="/event/eventlist">Event</a>
               </li></c:if>
             
               <c:if test="${role eq 'admin'}">
