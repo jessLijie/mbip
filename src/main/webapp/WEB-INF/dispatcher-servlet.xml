@@ -12,7 +12,6 @@
 
 		   
 	<!-- src\main\webapp\WEB-INF\dispatcher-servlet.xml -->
-
 	<ctx:annotation-config />
 	<ctx:component-scan base-package="my.utm.ip.spring_jdbc" />
 

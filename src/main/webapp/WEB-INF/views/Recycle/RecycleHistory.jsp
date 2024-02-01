@@ -12,11 +12,11 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <script src="/static/js/Bill/History.js"></script>
    
 </head>
-
+<%@include file= "/WEB-INF/views/navbar.jsp" %>
 <body style="background-color: #ccf3ea;">
   
     
-      <a href="/Recycle">
+      <a href="/recycle/InsertRecycleConsumption">
         <div class="backbtn">
         <svg  xmlns="http://www.w3.org/2000/svg" width="31" height="29" viewBox="0 0 31 29" fill="none">
             <ellipse cx="15.5" cy="13.5" rx="15.5" ry="13.5" transform="matrix(-1 0 0 1 31 0)"
