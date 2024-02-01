@@ -10,12 +10,15 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <title>Dashboard</title>
     <link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">
 </head>
-<body>
+<body style="background-color: #ccf3ea;">
     
     <%@include file= "/WEB-INF/views/navbar.jsp" %>
     <%@ page session="true" %>
-    <div class="card-container">
+    <div class="name-container">
+        <h1>Hello, ${name}</h1>
+    </div>
 
+    <div class="card-container">
     <!-- Electricity Consumption Card -->
     <div class="card" style="background-color: #f8d7da;">
         <div class="icon-info-container">
@@ -23,7 +26,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 <i class="fas fa-bolt"></i>
             </div>            
             <div class="card-info">
-                <h2>500 kWh</h2>
+                <h2>${totalElectricity} kWh</h2>
                 <p>Electricity Consumption</p>
             </div>
         </div>
@@ -36,7 +39,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 <i class="fas fa-tint"></i>
             </div>  
             <div class="card-info">
-                <h2>1000 gallons</h2>
+                <h2>${totalWater} gallons</h2>
                 <p>Water Consumption</p>
             </div>
         </div>
@@ -49,7 +52,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 <i class="fas fa-leaf"></i>
             </div>  
             <div class="card-info">
-                <h2>25 kg CO2</h2>
+                <h2>${totalCarbon} kg CO2</h2>
                 <p>Carbon Footprint</p>
             </div>
         </div>
@@ -62,7 +65,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 <i class="fas fa-recycle"></i>
             </div>  
             <div class="card-info">
-                <h2>500 kg</h2>
+                <h2>${recycleWeight} kg</h2>
                 <p>Weight of Recycled Items</p>
             </div>
         </div>
