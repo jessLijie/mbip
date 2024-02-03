@@ -1,6 +1,7 @@
 package my.utm.ip.spring_jdbc.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
+import my.utm.ip.spring_jdbc.model.MonthlyCarbonFootprint;
+
 
 @Controller
 public class userDashboardController {
@@ -68,7 +76,7 @@ public class userDashboardController {
         }
 
         String formattedTotalWater = String.format("%.2f", totalWater);
-
+        
 
         //retrieve total carbon comsumption 
         String totalCarbonSql= "SELECT SUM(e.carbonFootprint) + SUM(w.carbonFootprint) AS totalCarbonFootprint " + 
@@ -87,13 +95,46 @@ public class userDashboardController {
         }
 
 
+        // retrieve data for carbon footprint linechart
+        String totalCarbonFootprintByMonthSql=  "SELECT e.month, SUM(e.carbonFootprint) + SUM(w.carbonFootprint) AS totalCarbonFootprint " + 
+                                                "FROM electricity e JOIN water w " + 
+                                                "on e.userid = w.userid AND e.month = w.month " + 
+                                                "WHERE e.userid =? " +
+                                                "GROUP BY e.month ORDER BY e.month";
+        
+        List<Map<String, Object>> carbonFootprintByMonth= template.queryForList(totalCarbonFootprintByMonthSql, userid);
+        List<MonthlyCarbonFootprint> carbonDataList= new ArrayList<>();
+
+        for(Map<String, Object> carbonFootprint : carbonFootprintByMonth){
+            int month= (int)carbonFootprint.get("month");
+            BigDecimal carbonData= (BigDecimal)carbonFootprint.get("totalCarbonFootprint");
+            String monthlyCarbonFootprint= String.format("%.2f", carbonData.doubleValue());
+
+            MonthlyCarbonFootprint monthlyCarbonData= new MonthlyCarbonFootprint(month, monthlyCarbonFootprint);
+            carbonDataList.add(monthlyCarbonData);
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new SimpleModule());
+        objectMapper.registerModule(new SimpleModule().addSerializer(MonthlyCarbonFootprint.class, new MonthlyCarbonFootprintSerializer()));
+
+        String carbonDataListJson;
+        
+        try {
+            carbonDataListJson = objectMapper.writeValueAsString(carbonDataList);
+            System.out.println("Carbon Data List JSON: " + carbonDataListJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            carbonDataListJson = "";
+        }
+        
         mv.addObject("name", name);
         mv.addObject("userid", userid);
         mv.addObject("recycleWeight", totalWeight);
         mv.addObject("totalElectricity", formattedTotalElectricity);
         mv.addObject("totalWater", formattedTotalWater); 
         mv.addObject("totalCarbon", formattedTotalCarbon); 
-
+        mv.addObject("carbonDataListJson", carbonDataListJson);
 
         return mv;
     }

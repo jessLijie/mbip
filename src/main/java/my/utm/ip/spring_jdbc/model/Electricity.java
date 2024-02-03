@@ -26,7 +26,6 @@ public class Electricity {
         this.date = "";
         this.currentConsumption = 0.0;
         this.carbonFootprint = 0.0;
-
     }
 
     public int getId() {

@@ -1,38 +1,48 @@
-const lineChart = document.getElementById('lineChart');
+var carbonDataListJson = '${carbonDataListJson}';
 
-new Chart(lineChart, {
-    type: 'line',
-    data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novermber', 'December'],
-      datasets: [{
-        label: 'Carbon Emission',
-        data: [65, 59, 80, 81, 56, 55, 40, 80, 50, 65, 71, 62],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0
-      }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
+if (carbonDataListJson.trim() !== '') {
+    var carbonDataList = JSON.parse(carbonDataListJson);
+
+    var labels = carbonDataList.map(entry => entry.month);
+    var data = carbonDataList.map(entry => entry.totalCarbonData);
+
+    var carbonFootprintChart = document.getElementById('carbonFootprintChart').getContext('2d');
+    new Chart(carbonFootprintChart, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total Carbon Footprint',
+                data: data,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Carbon (kg CO2)',
+                        font: {
+                            size: 10
+                        }
+                    },
+                }
+            },
+            plugins: {
                 title: {
                     display: true,
-                    text: 'carbon (kg CO2)', 
+                    text: 'Total Carbon Footprint by Month',
                     font: {
-                        size: 10 
+                        size: 16
                     }
-                },
-            }
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Carbon Footprint over Months',
-                font: {
-                    size: 16
                 }
             }
         }
-    }
-});
+    });
+} else {
+    console.error('JSON data is empty or invalid.');
+}
