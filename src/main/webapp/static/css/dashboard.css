@@ -4,6 +4,10 @@ body {
     margin: 0;
 }
 
+.name-container{ 
+    margin-left: 45px;
+}
+
 .card-container { 
     display: flex;
     padding: 20px 45px;

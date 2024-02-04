@@ -13,7 +13,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
-<%@include file="../navbar.jsp"%> 
+<%@include file= "/WEB-INF/views/navbar.jsp" %>
 <body style="background-color: #CCF3EA">
     <div class="container-fluid"><!--button container-->
         <div class="row m-5">
