@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import my.utm.ip.spring_jdbc.model.User;
+import my.utm.ip.spring_jdbc.services.UserService;
 import my.utm.ip.spring_jdbc.model.Recycle;
 
 import javax.servlet.http.HttpServletRequest;
