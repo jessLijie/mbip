@@ -1,8 +1,6 @@
 package my.utm.ip.spring_jdbc.model.Repository;
 
 import java.util.List;
-
-import org.springframework.stereotype.Repository;
 import my.utm.ip.spring_jdbc.model.DAO.ElectricityDAO;
 import my.utm.ip.spring_jdbc.model.DAO.UserDAO;
 

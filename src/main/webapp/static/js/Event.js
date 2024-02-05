@@ -82,3 +82,17 @@ function applyFilterEvent() {
 
 //     // Navigate to the filtered URL
 //     window.location.href = filterUrl;
+function validateFileSize() {
+    var fileInput = document.getElementById('event_img');  // Correct id here
+    var maxFileSize = 50 * 1024; // 50KB in bytes
+
+    if (fileInput.files.length > 0) {
+        var fileSize = fileInput.files[0].size; // in bytes
+
+        if (fileSize > maxFileSize) {
+            alert('File size exceeds 50KB. Please choose a smaller file.');
+            // Reset the file input
+            fileInput.value = '';
+        }
+    }
+}

@@ -49,7 +49,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     </button>
 
     <div class="container mt-2 justify-content-center" style="width: 60%">
-      <form action="/recycle/SaveUpdateBilll" method="post" enctype="multipart/form-data">
+      <form
+        action="/recycle/SaveUpdateBilll"
+        method="post"
+        enctype="multipart/form-data"
+      >
         <div class="bg-white p-4 px-5 rounded shadow m-3">
           <!--address section-->
           <div class="row mb-3">
@@ -140,11 +144,18 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 required
               />
             </div>
-
             <script>
-              const defaultDate =
-                "${recycleBill.getYear()}-${recycleBill.getMonth()}"; // Use the period value from your ModelAndView
+              const year = "${recycleBill.getYear()}";
+              const month = "${recycleBill.getMonth()}";
+
+              // Ensure single-digit months have a leading zero
+              const formattedMonth = month.length === 1 ? "0" + month : month;
+
+              const defaultDate = year+"-"+formattedMonth;
               document.getElementById("period").value = defaultDate;
+              console.log("Default Year:", year);
+              console.log("Default Year:", defaultDate);
+              console.log("Default Month:", formattedMonth);
             </script>
           </div>
           <div class="row mb-5 align-items-center">
@@ -164,15 +175,25 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               />
             </div>
           </div>
-          <img
-            src="data:image/jpeg;base64,${billimg}"
-            style="width: 100px; height: 100px"
-            alt="Bill Image"
-          />
+
+
+          <div class="row mb-5 align-items-center">
+            <div class="col-md-6">
+             <b>Image</b>
+            </div>
+            <div class="col-md-6">
+              <img
+              src="data:image/jpeg;base64,${billimg}"
+              style="max-width:100%; height: 200px"
+              alt="Bill Image"
+            />
+            </div>
+          </div>
+          
 
           <!-- Upload Section -->
           <p class="mt-4" style="color: red">
-            <b>**Please upload your bills for reference (eg: jpg, png)</b>
+            <b>**You can reupload the image (eg: jpg, png)</b>
           </p>
 
           <div class="row mb-3">
@@ -188,7 +209,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               </div>
             </div>
           </div>
-          <input type="hidden" name="recycleid" value="${recycleBill.getId()}" />
+          <input
+            type="hidden"
+            name="recycleid"
+            value="${recycleBill.getId()}"
+          />
 
           <div class="text-center mt-4">
             <button

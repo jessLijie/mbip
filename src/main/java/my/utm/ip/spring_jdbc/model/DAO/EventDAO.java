@@ -1,11 +1,9 @@
-package my.utm.ip.spring_jdbc.model;
+package my.utm.ip.spring_jdbc.model.DAO;
 
 import java.util.Arrays;
 import java.util.Date;
 
-import my.utm.ip.spring_jdbc.model.DAO.EventDAO;
-
-public class Event {
+public class EventDAO {
     private int id;
     private String title;
     private Date startDate;
@@ -17,12 +15,11 @@ public class Event {
     private String base64Image;
     private int userid;
 
-
-    public Event() {
+    public EventDAO(EventDAO dao) {
         // Default constructor
     }
 
-    public Event(int id, String title, Date startDate, Date endDate, String location, String organizer, String description, byte[] imageData) {
+    public EventDAO(int id, String title, Date startDate, Date endDate, String location, String organizer, String description, byte[] imageData) {
         this.id = id;
         this.title = title;
         this.startDate = startDate;
@@ -32,8 +29,12 @@ public class Event {
         this.description = description;
         this.imageData = imageData;
     }
-    
-    // Getters and setters for all fields
+
+
+    public EventDAO() {
+        //TODO Auto-generated constructor stub
+    }
+
     public int getId() {
         return id;
     }
@@ -113,55 +114,20 @@ public class Event {
     public void setUserid(int userid) {
         this.userid = userid;
     }
-    public void fromDAO(EventDAO dao) {
-        if (dao != null) {
-            this.id = dao.getId();
-            this.title = dao.getTitle();
-            this.startDate = dao.getStartDate();
-            this.endDate = dao.getEndDate();
-            this.location = dao.getLocation();
-            this.organizer = dao.getOrganizer();
-            this.description = dao.getDescription();
-            this.imageData = dao.getImageData();
-            this.userid = dao.getUserid();
-        } else {
-            // Handle the case where dao is null (optional)
-        }
-    }
-
-    public EventDAO toDAO() {
-        EventDAO dao = new EventDAO();
-
-        dao.setId(this.id);
-        dao.setTitle(this.title);
-        dao.setStartDate(this.startDate);
-        dao.setEndDate(this.endDate);
-        dao.setLocation(this.location);
-        dao.setOrganizer(this.organizer);
-        dao.setDescription(this.description);
-        dao.setImageData(this.imageData);
-        dao.setUserid(this.userid);
-
-        return dao;
-    }
-
-    public Event(EventDAO dao) {
-        this.fromDAO(dao);
-    }
 
     @Override
     public String toString() {
-    return "Event{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            ", startDate=" + startDate +
-            ", endDate=" + endDate +
-            ", location='" + location + '\'' +
-            ", organizer='" + organizer + '\'' +
-            ", description='" + description + '\'' +
-            ", imageData=" + Arrays.toString(imageData) +'\'' +
-            ", userid=" + userid +
-            '}';
-}
-
+        return "Event{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", location='" + location + '\'' +
+                ", organizer='" + organizer + '\'' +
+                ", description='" + description + '\'' +
+                ", imageData=" + Arrays.toString(imageData) +
+                ", base64Image='" + base64Image + '\'' +
+                ", userid=" + userid +
+                '}';
+    }
 }

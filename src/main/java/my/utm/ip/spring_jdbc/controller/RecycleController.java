@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mysql.cj.jdbc.Blob;
 
 import my.utm.ip.spring_jdbc.model.User;
+import my.utm.ip.spring_jdbc.services.UserService;
 import my.utm.ip.spring_jdbc.model.Recycle;
 import my.utm.ip.spring_jdbc.model.Recycle;
 import my.utm.ip.spring_jdbc.services.ElectricityService;

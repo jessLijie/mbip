@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1" isELIgnored="false" %> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,8 +13,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   </head>
   <%@include file= "/WEB-INF/views/navbar.jsp" %>
   <body style="background-color: #ccf3ea">
-    <a href="/recycle/InsertRecycleConsumption">
-      <div class="backbtn">
+    <!-- <a href="/recycle/InsertRecycleConsumption"> -->
+      <!-- <div class="backbtn">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="31"
@@ -47,7 +48,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           />
         </svg>
       </div>
-    </a>
+    </a> -->
 
     <div class="outcontainer">
       <div class="outcontainer2">
@@ -57,18 +58,20 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <td class="col2">Period</td>
             <td class="col3">Address</td>
             <td class="col4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="33"
-                fill="currentColor"
-                class="bi bi-plus-circle-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"
-                />
-              </svg>
+              <a  style="text-decoration: none;" href="/recycle/Recycle"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="35"
+                  height="33"
+                  fill="black"
+                  class="bi bi-plus-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"
+                  />
+                </svg>
+              </a>
               <div class="filter">
                 <button id="showFilter">
                   <svg
@@ -230,13 +233,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <tr>
                 <td>${status.index + 1}</td>
                 <td>${recycle.year}-${recycle.month}</td>
-                <td>${recycle.address}</td>
+                <td>${fn:replace(recycle.address, '<br>', ', ')}</td>
 
                 <td class="button">
-                  <div class="viewdetailbutton">
-                    <a
-                      href="/recycle/RecycleHistoryDetail?billId=${recycle.id}"
-                    >
+                  <a
+                  href="/recycle/RecycleHistoryDetail?billId=${recycle.id}"
+                >
+                  <button class="viewdetailbutton">
+                   
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -250,43 +254,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                           d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"
                         />
                       </svg>
+                      View
+                    </button>
                     </a>
-                    <a
-                    href="/recycle/RecycleUpdateBill?billId=${recycle.id}"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-pencil-square"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
-                      />
-                    </svg>
-                    </a>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-trash-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"
-                      />
-                    </svg>
-                  </div>
+               
 
                   <a href="/recycle/RecycleDownloadReport?billId=${recycle.id}">
-                    <button class="downloadbutton">
+                    <button class="viewdetailbutton">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="13"
@@ -300,6 +274,29 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         />
                       </svg>
                       Download
+                    </button>
+                  </a>
+                  <a href="/recycle/RecycleHistoryDetail?billId=${recycle.id}"></a>
+                    <button class="viewdetailbutton">
+     
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-pencil-square"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
+                          />
+                        </svg>
+                        Update
+               
                     </button>
                   </a>
                 </td>
