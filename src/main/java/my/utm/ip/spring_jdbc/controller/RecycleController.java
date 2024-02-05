@@ -40,7 +40,7 @@ public class RecycleController {
     @Autowired
     private AllTypeService allTypeService;
 
-    @RequestMapping("/RecycleHistory" )
+    @RequestMapping("/RecycleHistory")
     public ModelAndView historypage(HttpSession session) {
         int userid = (int) session.getAttribute("userid");
         ModelAndView mv = new ModelAndView("/Recycle/RecycleHistory");
@@ -134,10 +134,6 @@ public class RecycleController {
 
         return modelAndView;
     }
-    
-
-
-
 
     @RequestMapping("/InsertRecycleConsumptionDAta")
     public String insert(@RequestParam("address1") String address1,
@@ -148,7 +144,7 @@ public class RecycleController {
             @RequestParam("period") String period,
             @RequestParam("totalWConsumption") double totalWConsumption,
             @RequestParam("bill_img") MultipartFile bill_img,
-            HttpServletRequest request, HttpSession session) throws IOException{
+            HttpServletRequest request, HttpSession session) throws IOException {
 
         int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
@@ -214,63 +210,86 @@ public class RecycleController {
     }
 
     @RequestMapping({ "/RecycleUpdateBill" })
-public ModelAndView updatebill(@RequestParam("billId") int billId, HttpSession session) {
-    int userid = (int) session.getAttribute("userid");
-    ModelAndView modelAndView = new ModelAndView("/Recycle/Editbill");
+    public ModelAndView updatebill(@RequestParam("billId") int billId, HttpSession session) {
+        int userid = (int) session.getAttribute("userid");
+        ModelAndView modelAndView = new ModelAndView("/Recycle/Editbill");
 
-    String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM recycle WHERE id=?";
+        String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM recycle WHERE id=?";
 
-    List<Recycle> result = template.query(sql, new Object[]{billId}, new BeanPropertyRowMapper<>(Recycle.class));
+        List<Recycle> result = template.query(sql, new Object[] { billId }, new BeanPropertyRowMapper<>(Recycle.class));
 
-    if (!result.isEmpty()) {
-        Recycle recycleBill = result.get(0);
+        if (!result.isEmpty()) {
+            Recycle recycleBill = result.get(0);
 
-        String period = Recycle.getPeriod(recycleBill.getMonth(), recycleBill.getYear());
-        User user = userService.getUserById(userid);
-        modelAndView.addObject("user", user);
-        modelAndView.addObject("recycleBill", recycleBill);
-        modelAndView.addObject("period", period);
-        
-        byte[] imageData = recycleBill.getBillImg();
-        if (imageData != null) {
+            String period = Recycle.getPeriod(recycleBill.getMonth(), recycleBill.getYear());
+            User user = userService.getUserById(userid);
+            modelAndView.addObject("user", user);
+            modelAndView.addObject("recycleBill", recycleBill);
+            modelAndView.addObject("period", period);
 
-            modelAndView.addObject("billimg", imageData);
-            modelAndView.addObject("hey", "hey");
-        } else {
-            modelAndView.addObject("hey", "yo");
-            modelAndView.addObject("billimg", ""); // Set an empty string or some default value
-        }
-    } else {
-        // Handle the case where no record is found for the specified billId
-        // You may want to show an error message or redirect to an error page
-        modelAndView.addObject("errorMessage", "No record found for the specified billId");
-    }
-
-    return modelAndView;
-}
-
-// Create a ResultSetExtractor class to handle the BLOB data retrieval
-private class RecycleResultSetExtractor implements ResultSetExtractor<List<Recycle>> {
-    @Override
-    public List<Recycle> extractData(ResultSet rs) throws SQLException, DataAccessException {
-        List<Recycle> result = new ArrayList<>();
-        while (rs.next()) {
-            Recycle recycle = new Recycle();
-            recycle.setId(rs.getInt("id"));
-            recycle.setAddress(rs.getString("address"));
-            recycle.setMonth(rs.getInt("month"));
-            recycle.setYear(rs.getInt("year"));
-            recycle.setCurrentConsumption(rs.getDouble("currentConsumption"));
-            recycle.setCarbonFootprint(rs.getDouble("carbonFootprint"));
-            
-            Blob blob = (Blob) rs.getBlob("bill_img");
-            if (blob != null) {
-                recycle.setBillImg(blob.getBytes(1, (int) blob.length()));
+            if (recycleBill.getBillImg() != null) {
+                String imagedata = Base64.getEncoder().encodeToString(recycleBill.getBillImg());
+                modelAndView.addObject("billimg", imagedata);
+            } else {
+                modelAndView.addObject("billimg", ""); // Set an empty string or some default value
             }
-            
-            result.add(recycle);
+        } else {
+
+            modelAndView.addObject("errorMessage", "No record found for the specified billId");
         }
-        return result;
+
+        return modelAndView;
     }
-}
+
+
+    @RequestMapping("/SaveUpdateBilll")
+    public ModelAndView updatebill(@RequestParam("address1") String address1,
+            @RequestParam("address2") String address2,
+            @RequestParam("postcode") String postcode,
+            @RequestParam("city") String city,
+            @RequestParam("state") String state,
+            @RequestParam("period") String period,
+            @RequestParam("totalWConsumption") double totalWConsumption,
+            @RequestParam("bill_img") MultipartFile bill_img,
+            @RequestParam("recycleid") int id,
+            HttpServletRequest request, HttpSession session) throws IOException {
+
+        int userid = (int) session.getAttribute("userid");
+        session.setAttribute("userid", userid);
+
+        String fullAddress = address1 + "<br>" + address2 + "<br>" + postcode + ", " + city + "<br>" + state;
+
+        String inputdate = period;
+        String split_values[] = inputdate.split("-");
+        int year = Integer.parseInt(split_values[0].trim());
+        int month = Integer.parseInt(split_values[1].trim());
+
+        double carbonFootprint = totalWConsumption * 2.860;
+
+        Recycle recycle = new Recycle();
+        recycle.setUserid(userid);
+        recycle.setId(id);
+        recycle.setAddress(fullAddress);
+        recycle.setYear(year);
+        recycle.setMonth(month);
+        recycle.setCurrentConsumption(totalWConsumption);
+        recycle.setCarbonFootprint(carbonFootprint);
+        if (!bill_img.isEmpty()) {
+            byte[] fileBytes = bill_img.getBytes();
+            recycle.setBillImg(fileBytes);
+        } else {
+            String sql = "select bill_img from recycle where id=" + id;
+            byte[] fileBytes = template.queryForObject(sql, new Object[] { id }, byte[].class);
+            recycle.setBillImg(fileBytes);
+        }
+
+        String sql = "UPDATE recycle SET userid=?, address=?, year=?, month=?, " +
+                "currentConsumption=?, carbonFootprint=?, bill_img=? WHERE id=?";
+        template.update(sql, recycle.getUserid(), recycle.getAddress(), recycle.getYear(),
+                recycle.getMonth(), recycle.getCurrentConsumption(),
+                recycle.getCarbonFootprint(), recycle.getBillImg(), recycle.getId());
+
+        ModelAndView mv = new ModelAndView("/Recycle/RecycleHistory");
+        return mv;
+    }
 }
