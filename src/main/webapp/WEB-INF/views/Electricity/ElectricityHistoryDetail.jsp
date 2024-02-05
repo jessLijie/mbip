@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;  charset=ISO-8859-1" 
 pageEncoding="ISO-8859-1" isELIgnored="false" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
         <!DOCTYPE html>
         <html>
@@ -49,26 +49,26 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     <h3>Electricity Bills</h3>
                     <table>
                         <tr>
-                            <td><b>Address: </b></td>
+                            <td style="vertical-align: top;"><b>Address: </b></td>
                             <td>${electricityBill.address}</td>
                         </tr>
-                        <tr>
-                            <td><b>Date:</b></td>
-                            <td>${electricityBill.date}</td>
+                        
+                            <td><b>Period:</b></td>
+                            <td>${period}</td>
                         </tr>
                         <td><b>Prorata Factor:</b></td>
                         <td>1.00000</td>
                         </tr>
                         <tr>
                             <td><b>Current Consumption Value (kWh):</b></td>
-                            <td>${electricityBill.currentConsumption}</td>
+                            <td><fmt:formatNumber value="${electricityBill.currentConsumption}" pattern="0.00"/></td>
                         </tr>
                     </table>
                     <hr>
 
                     <div class="carbon-footprint-section">
                         <b>Carbon Footprint (kg CO<sub>2</sub>):  </b>
-                        <p> <c:out value="${carbonFootprint}" /> kgCO<sub>2</sub></p>
+                        <p class="ms-3"><fmt:formatNumber value="${electricityBill.carbonFootprint}" pattern="0.00"/> kgCO<sub>2</sub></p>
                     </div>
 
                 </div>

@@ -3,12 +3,16 @@ package my.utm.ip.spring_jdbc.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +20,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import my.utm.ip.spring_jdbc.model.Bill;
+import my.utm.ip.spring_jdbc.model.Recycle;
+
 @Controller
 public class userProfileController {
     @Autowired
     JdbcTemplate template;
 
+   
     @RequestMapping("/profile")
     public ModelAndView profile(HttpSession session) {
         ModelAndView mv = new ModelAndView("/Profile/userProfile");
@@ -76,14 +84,14 @@ public class userProfileController {
 
         String username = (String) session.getAttribute("username");
         System.out.println(username);
-        
+
         String sql = "SELECT id FROM User WHERE username=?";
         Map<String, Object> user = template.queryForMap(sql, username);
 
         int userid = (int) user.get("id");
         session.setAttribute("userid", userid);
         System.out.println(userid);
-        
+
         sql = "Select * from user where id=?";
         List<Map<String, Object>> result = template.queryForList(sql, userid);
         user = result.get(0);
@@ -99,7 +107,7 @@ public class userProfileController {
     }
 
     @RequestMapping("/profile/edit")
-    public ModelAndView edit(HttpSession session){
+    public ModelAndView edit(HttpSession session) {
         ModelAndView mv = new ModelAndView("/Profile/editUserProfile");
         int userid = (int) session.getAttribute("userid");
         mv.addObject("userid", userid);
@@ -134,24 +142,23 @@ public class userProfileController {
 
     @RequestMapping("/profile/update")
     public String updateInfo(
-        @RequestParam("fullname") String fullname,
-        @RequestParam("birthdate") String birthdateString,
-        @RequestParam("password") String password,
-        @RequestParam("phone") String phone,
-        @RequestParam("add1") String add1,
-        @RequestParam("add2") String add2,
-        @RequestParam("zipcode") String zipcode,
-        @RequestParam("state") String state,
-        HttpSession session
-    ) throws ParseException{
+            @RequestParam("fullname") String fullname,
+            @RequestParam("birthdate") String birthdateString,
+            @RequestParam("password") String password,
+            @RequestParam("phone") String phone,
+            @RequestParam("add1") String add1,
+            @RequestParam("add2") String add2,
+            @RequestParam("zipcode") String zipcode,
+            @RequestParam("state") String state,
+            HttpSession session) throws ParseException {
         Date birthdate = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date parsedDate = sdf.parse(birthdateString);
         birthdate = new java.sql.Date(parsedDate.getTime());
-    
+
         int userid = (int) session.getAttribute("userid");
         String sql = "UPDATE user SET fullname=?, birthdate=?, password=?, phone=?, add1=?, add2=?, zipcode=?, state=? WHERE id=?";
-        System.out.println("updating for"+userid);
+        System.out.println("updating for" + userid);
         template.update(sql, fullname, birthdate, password, phone, add1, add2, zipcode, state, userid);
         return "redirect:/profile";
     }

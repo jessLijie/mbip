@@ -20,7 +20,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                   <td class="col1">ID</td>
                   <td class="col2">User</td>
                   <td class="col3">Email</td>
-                  <td class="col4">Action</td>
+                  <td class="col4" style="text-align:center;">Action</td>
                 </thead>
                 <tbody>
                   <c:forEach var="user" items="${userList}"  >
@@ -28,8 +28,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                           <td>${user.id}</td>
                           <td>${user.fullname}</td>
                           <td>${user.email}</td>
-                          <!-- can pass user.id into link ref -->
-                          <td><a href="" style="text-decoration: none;"><i class="fas fa-eye" id="eyeIcon"></i></a></td>
+                          <td><a href="/viewrecord?userid=${user.id}" style="text-decoration: none;"><i class="fas fa-eye" id="eyeIcon"></i></a></td>
                           
                       </tr>
                   </c:forEach>

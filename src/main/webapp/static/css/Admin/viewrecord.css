@@ -1,0 +1,259 @@
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    
+  }
+  
+  
+  .backbtn svg{
+    margin-left: 100px;
+    margin-top:20px;
+  }
+  
+  .backbtn{
+    width:50px;
+  }
+  .outcontainer {
+    background-color: #ccf3ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  
+  
+  .outcontainer2 {
+    height: fit-content;
+    width: 85%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(36, 131, 137, 0.14);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset,
+      0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      margin: 70px 0
+  }
+  
+  .tablehistory {
+    margin: 50px auto;
+    width: 90%;
+    border: none;
+    border-collapse: collapse;
+  }
+  
+  hr {
+    width: 90%;
+  }
+  
+  td {
+    text-align: center;
+    vertical-align: middle;
+    height: 40px;
+    padding: 5px;
+  }
+  
+  thead {
+    color: #000;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.28);
+  }
+  
+  .col1 {
+    width: 10%;
+    padding-bottom: 15px;
+  }
+  
+  .col2 {
+    width: 20%;
+    padding-bottom: 15px;
+  }
+  
+  .col3 {
+    width: 20%;
+    padding-bottom: 15px;
+  }
+  
+  .col4 {
+    width: 20%;
+    padding-bottom: 15px;
+  }
+
+  .col5 {
+    width: 30%;
+    padding-bottom: 15px;
+    text-align: right;
+  }
+  svg {
+    margin-right: 10px;
+  }
+  .viewdetailbutton {
+    background-color: rgba(100, 180, 214, 0.66);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 10px 20px;
+    margin: 10px;
+    color: #000;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    border-radius:5px;
+    line-height: normal;
+  }
+  
+  .downloadbutton {
+    background-color: rgba(76, 151, 64, 0.5);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 10px 20px;
+    margin: 10px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+    border-radius:5px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  tbody {
+    color: #000;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  .filter {
+    position: relative;
+  }
+  
+  .filterbox {
+    display:none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 1000;
+    background-color: #fffffffe;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+  
+  #showFilter{
+    background-color: transparent;
+    border:none;
+    cursor:pointer;
+  }
+  #showFilter:hover{
+    background-color: transparent;
+    border:none;
+    filter: drop-shadow(0px 4px 4px rgba(209, 209, 209, 0.25));
+    cursor:pointer;
+  }
+  
+  .filteryear {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .filteryear h2 {
+    color: #243e69;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: auto 14px;
+  }
+  
+  .month {
+    display: flex;
+    padding-top: 0;
+    flex-direction: row;
+    text-align: left;
+    color: #000;
+    font-family: "Lato", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: fit-content;
+  }
+  
+  .selectmonthfont {
+    text-align: left;
+    color: #000;
+    margin-bottom: 0;
+    font-family: "Inria Serif", serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 20px;
+  }
+  
+  .filtercol1,
+  .filtercol2 {
+    margin: 5px 20px 5px 20px;
+  }
+  
+  input[type="checkbox"] {
+    margin: 7px auto;
+  }
+  
+  #applyFilter {
+    background-color: #5478b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  .centerbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: "Inria Serif", serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  a{
+      text-decoration: none;
+  }
+  
+  
+  #leftArrowYear,#rightArrowYear{
+    background-color: transparent;
+    cursor: pointer;
+    border:none;
+  }
+

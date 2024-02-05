@@ -13,7 +13,8 @@ public class Config {
  source.setDriverClassName("com.mysql.cj.jdbc.Driver");
  source.setUrl("jdbc:mysql://localhost:3306/mbip");
  source.setUsername("root");
- source.setPassword("jkty12138");
+ source.setPassword("wong123");
+
  return source;
  }
  @Bean

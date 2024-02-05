@@ -2,19 +2,20 @@ package my.utm.ip.spring_jdbc.controller;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import my.utm.ip.spring_jdbc.model.Electricity;
 import my.utm.ip.spring_jdbc.model.User;
-import java.util.logging.Logger;
 
 
 @Controller
@@ -28,16 +29,17 @@ public class ElectricityController {
     private UserService userService;
 
     @RequestMapping({ "/ElectricityHistory" })
-    public ModelAndView historypage() {
-        ModelAndView mv = new ModelAndView("/Electricity/History");
+    public ModelAndView historypage(HttpSession session) {
+        ModelAndView mv = new ModelAndView("/Electricity/ElectricityHistory");
         mv.addObject("title", "List Records");
 
-        String sql = "SELECT * FROM electricity WHERE userid=1";
+        int userid= (int)session.getAttribute("userid");
+        String sql = "SELECT * FROM electricity WHERE userid=" + userid;
 
         List<Electricity> electricityList = template.query(sql, new BeanPropertyRowMapper<>(Electricity.class));
 
         mv.addObject("electricityList", electricityList);
-        String userSql = "SELECT * FROM user WHERE userid=1";
+        String userSql = "SELECT * FROM user WHERE id=" + userid;
         List<User> userList = template.query(userSql, new BeanPropertyRowMapper<>(User.class));
         if (!userList.isEmpty()) {
             mv.addObject("user", userList.get(0));

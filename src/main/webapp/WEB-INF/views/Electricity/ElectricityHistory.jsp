@@ -9,14 +9,14 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="/static/css/Bill/History.css">
-    <script src="/static/js/Bill/History.js"></script>
+    <script src="/static/js/Bill/ElectricityHistory.js"></script>
    
 </head>
 <jsp:include page="../navbar.jsp" />
 <body style="background-color: #ccf3ea;">
   
     
-      <a href="/Recycle">
+      <a href="/electricity/Electricity">
         <div class="backbtn">
         <svg  xmlns="http://www.w3.org/2000/svg" width="31" height="29" viewBox="0 0 31 29" fill="none">
             <ellipse cx="15.5" cy="13.5" rx="15.5" ry="13.5" transform="matrix(-1 0 0 1 31 0)"
@@ -32,6 +32,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
         </svg>
       </div>
       </a>
+      <div style="text-align: center;"><h2>Electricity History</h2></div>
     
     <div class="outcontainer">
       
@@ -194,8 +195,8 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     </div>
                   </div>
                   <div class="centerbutton">
-                  <button id="applyFilter" onclick="applyFilter()">Done</button>
-                </div>
+                    <button id="applyFilter" onclick="applyFilterElectricity()">Done</button>
+                  </div>
                 </div>
               </div>
             </td>
@@ -204,11 +205,11 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             <c:forEach var="electricity" items="${electricityList}" varStatus="status" >
                 <tr>
                     <td>${status.index + 1}</td>
-                    <td>${electricity.date}</td>
+                    <td>${electricity.getPeriod(electricity.getMonth(), electricity.getYear())}</td>
                     <td>${electricity.address}</td>
                    
                     <td class="button" >
-                      <a href="/electricity/ElectricityHistoryView?billId=${status.index+1}">
+                      <a href="/electricity/ElectricityHistoryDetail?billId=${electricity.id}">
                       <div class="viewdetailbutton">
                        
                         <svg
@@ -230,7 +231,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         View Details
                       </div>
                     </a>
-                    <a href="/electricity/ElectricityDownloadReport?billId=${status.index + 1}" >
+                    <a href="/electricity/ElectricityDownloadReport?billId=${electricity.id}" >
                       <button class="downloadbutton" >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -257,7 +258,5 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
         </table>
       </div>
     </div>
- </body>
- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+  </body>
 </html>

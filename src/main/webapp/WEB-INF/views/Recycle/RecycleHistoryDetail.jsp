@@ -12,7 +12,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             <link rel="stylesheet" type="text/css" href="/static/css/Bill/viewdetails.css">
 
         </head>
-        <jsp:include page="../navbar.jsp" />
+        <%@include file= "/WEB-INF/views/navbar.jsp" %>
 
         <body>
             <div id="main">
@@ -58,7 +58,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         </tr>
                         </tr>
                         <tr>
-                            <td><b>Current Consumption Value (kWh):</b></td>
+                            <td><b>Current Consumption Value (kg):</b></td>
                             <td><fmt:formatNumber value="${recycleBill.currentConsumption}" pattern="0.00"/></td>
                         </tr>
                     </table>

@@ -1,0 +1,287 @@
+/* event.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ccf3ea;
+    margin: 100px;
+}
+
+h2 {
+    margin: 100px auto 100px auto;
+    color: #333;
+}
+
+.outcontainer {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.event-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: #a2ddce;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-left: 50px;
+}
+
+.info-container {
+    flex-grow: 1;
+    margin-left: 60px;
+}
+
+h3 {
+    color: black;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+a.view-details {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: #000;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+a.view-details:hover {
+    background-color: #ada8a8;
+    /* Darken the background on hover */
+    text-decoration: none;
+    color: white;
+}
+
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    margin: 50px 100px 50px 150px;
+}
+
+p {
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.pagination a {
+    color: rgb(143, 141, 141);
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin: 0 4px;
+    border-radius: 5px;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination a.prev-next {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+    color: #007bff;
+}
+
+/* Optional: Style for active Previous and Next buttons */
+.pagination a.prev-next.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.filter {
+    position: relative;
+    margin-right: 100px;
+}
+
+.filterbox {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 1000;
+    background-color: #fffffffe;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    width: 515%;
+}
+
+#showFilter {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#showFilter:hover {
+    background-color: transparent;
+    border: none;
+    filter: drop-shadow(0px 4px 4px rgba(209, 209, 209, 0.25));
+    cursor: pointer;
+}
+
+.filteryear {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.filteryear h2 {
+    color: #243e69;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: auto 14px;
+}
+
+.month {
+    display: flex;
+    padding-top: 0;
+    flex-direction: row;
+    text-align: left;
+    color: #000;
+    font-family: "Lato", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: fit-content;
+}
+
+.selectmonthfont {
+    text-align: left;
+    color: #000;
+    margin-bottom: 0;
+    font-family: "Inria Serif", serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 20px;
+}
+
+.filtercol1,
+.filtercol2 {
+    margin: 5px 20px 5px 20px;
+}
+
+input[type="checkbox"] {
+    margin: 7px auto;
+}
+
+#applyFilter {
+    background-color: #5478b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.centerbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: "Inria Serif", serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+#leftArrowYear, #rightArrowYear {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.title,
+.filter-form,
+.filter {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.filter-form {
+    margin: auto auto auto 600px; /* Default margin */
+}
+
+/* Add this CSS in your style file or in a style block in your HTML */
+
+/* Style for the filter form container */
+.filter-form {
+    margin-top: 20px;
+}
+
+/* Style for the form and its elements */
+form {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the input field */
+#eventName {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for the filter button */
+button {
+    padding: 8px 12px;
+    background-color: #bfbfbf;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Hover effect for the filter button */
+button:hover {
+    background-color: #65c66c;
+    color: #adadad;
+}
+
+
+@media (max-width: 768px) {
+    .filter-form {
+        margin: auto; /* Center the element when the screen width is 768 pixels or smaller */
+    }
+}
+
+

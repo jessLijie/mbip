@@ -54,7 +54,26 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.13.0</version> <!-- Use the latest version available -->
+    </dependency>
+
+    <dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.4</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+	<!-- <dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>2.11.0</version>
+	</dependency> -->
+
   </dependencies>
+  
   <build>
     <finalName>springmvcmaven</finalName>
     <plugins>
@@ -73,7 +92,6 @@
         <version>2.2</version>
         <configuration>
           <path>/</path>
-          <port>9090</port>
         </configuration>
       </plugin>
     </plugins>

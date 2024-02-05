@@ -27,20 +27,45 @@ function changeYear(year) {
     let newYear = currentYear + year;
     yearElement.innerText = newYear.toString();
 };
-
 });
 
-function applyFilter() {
-    const year = document.getElementById("yearDisplay").innerText; // Get the displayed year
-    
+function monthNameToNumber(monthName) {
+    const months = {
+        'January': 1,
+        'February': 2,
+        'March': 3,
+        'April': 4,
+        'May': 5,
+        'June': 6,
+        'July': 7,
+        'August': 8,
+        'September': 9,
+        'October': 10,
+        'November': 11,
+        'December': 12
+    };
+
+    return months[monthName];
+}
+
+function applyFilterWater() {
+    const year = document.getElementById("yearDisplay").innerText;
     let selectedMonths = [];
     const months = document.getElementsByName("month");
+
     months.forEach(month => {
         if (month.checked) {
-            selectedMonths.push(month.value)
+            selectedMonths.push(monthNameToNumber(month.value));
         }
     });
+
     const monthsString = selectedMonths.join(',');
-   
-    window.location.href = `/recycle/applyFilter?year=${year}&month=${monthsString}`;
+
+    // Construct the filter URL
+    const filterUrl = `/water/applyFilterWater?year=${year}&month=${monthsString}`;
+
+    // Navigate to the filtered URL
+    window.location.href = filterUrl;
 }
+
+
