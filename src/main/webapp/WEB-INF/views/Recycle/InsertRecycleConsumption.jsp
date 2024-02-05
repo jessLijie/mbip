@@ -15,7 +15,7 @@
 <script>
     function validateFileSize() {
         var fileInput = document.getElementById('bill_img');  // Correct id here
-        var maxFileSize = 50 * 1024; // 50KB in bytes
+        var maxFileSize = 500 * 1024; // 50KB in bytes
     
         if (fileInput.files.length > 0) {
             var fileSize = fileInput.files[0].size; // in bytes

@@ -18,6 +18,7 @@ public class User {
     private String phone;
     private String matricsNo;
     private String role;
+    private byte[] userImg;
 
     public User() {
         this.id = 0;
@@ -35,9 +36,22 @@ public class User {
         this.phone = "";
         this.matricsNo = "";
         this.role = "";
+        this.userImg = null;
     }
 
     
+
+    public byte[] getUserImg() {
+        return userImg;
+    }
+
+
+
+    public void setUserImg(byte[] userImg) {
+        this.userImg = userImg;
+    }
+
+
 
     public User(int id, String username, String password) {
         this.id = id;
@@ -48,7 +62,7 @@ public class User {
 
 
     public User(int id, String username, String password, String fullname, Date birthdate, String email, String add1,
-            String add2, String zipcode, String state, String city, String job, String phone, String matricsNo, String role) {
+            String add2, String zipcode, String state, String city, String job, String phone, String matricsNo, String role, byte[] userImg) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -64,6 +78,7 @@ public class User {
         this.phone = phone;
         this.matricsNo = matricsNo;
         this.role = role;
+        this.userImg = userImg;
     }
 
     public int getId() {
