@@ -70,17 +70,17 @@ thead {
 }
 
 .col2 {
-  width: 30%;
+  width: 20%;
   padding-bottom: 15px;
 }
 
 .col3 {
-  width: 30%;
+  width: 35%;
   padding-bottom: 15px;
 }
 
 .col4 {
-  width: 35%;
+  width: 40%;
   padding-bottom: 15px;
   display:flex;
   align-items: end;
