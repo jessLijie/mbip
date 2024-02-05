@@ -47,7 +47,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5"/>
                         <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/>
                     </svg>
-                    <a href="/recycle/InsertRecycleConsumption" style="text-decoration: none; color: black"><span class="ms-2"><b>Add Bills</b></span></a>
+                    <a href="/recycle/Recycle" style="text-decoration: none; color: black"><span class="ms-2"><b>Add Bills</b></span></a>
                 </button>
             </div>
         </div>
@@ -58,7 +58,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             <!--left side-->
             <div class="col-md-4 d-flex flex-column justify-content-between">
                 <div class="bg-white p-4 px-5 rounded shadow m-3 text-center"><!--current recycle consumption section-->
-                    <img src="/images/recycleConsumption.png" alt="Current Recycle Consumption" width="80" height="75">
+                    <img src="/static/images/recycle.png" alt="Current Recycle Consumption" width="80" height="75">
                     <div class="d-flex flex-column align-items-center justify-content-center mb-3">
                         <span class="mt-2">Total Recycle Consumption (kg)</span>
                         <h1 class="mt-auto mb-0"><b><fmt:formatNumber value="${sumConsumption}" pattern="0.00"/></b></h1>
@@ -66,7 +66,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 </div>
 
                 <div class="bg-white p-4 px-5 rounded shadow m-3 text-center"><!--carbon footprint section-->
-                    <img src="/images/carbonFootprint.png" alt="Carbon Footprint" width="65" height="65">
+                    <img src="/static/images/carbonFootprint.png" alt="Carbon Footprint" width="65" height="65">
                     <div class="d-flex flex-column align-items-center justify-content-center">
                         <span class="mt-2">Total Carbon Footprint (kg CO<sub>2</sub>)</span>
                         <h1 class="mt-auto mb-0"><b>${sumCarbonFootprint}</b></h1>

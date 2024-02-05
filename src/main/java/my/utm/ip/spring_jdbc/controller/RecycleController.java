@@ -13,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,8 +42,9 @@ public class RecycleController {
     @Autowired
     private AllTypeService allTypeService;
 
-@Autowired
+    @Autowired
     private UserService userService;
+
     @RequestMapping({ "/RecycleHistory" })
     public ModelAndView historypage(HttpSession session) {
 
@@ -215,7 +217,9 @@ public class RecycleController {
             User user = userService.getUserById(userid);
             modelAndView.addObject("user", user);
             modelAndView.addObject("recycleBill", recycleBill);
-            modelAndView.addObject("period", period);
+            modelAndView.addObject("period",recycleBill.getYear()+"-"+recycleBill.getMonth()); 
+        
+            
 
             if (recycleBill.getBillImg() != null) {
                 String imagedata = Base64.getEncoder().encodeToString(recycleBill.getBillImg());
@@ -267,9 +271,16 @@ public class RecycleController {
             byte[] fileBytes = bill_img.getBytes();
             recycle.setBillImg(fileBytes);
         } else {
-            String sql = "select bill_img from recycle where id=" + id;
-            byte[] fileBytes = template.queryForObject(sql, new Object[] { id }, byte[].class);
-            recycle.setBillImg(fileBytes);
+            String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM recycle WHERE id=?";
+
+            Recycle result = template.queryForObject(sql, new Object[]{id},
+                    new BeanPropertyRowMapper<>(Recycle.class));
+            if (result.getBillImg() != null) {
+                recycle.setBillImg(result.getBillImg());
+            } else {
+                // Handle the case where result.getBillImg() is null
+            }
+
         }
 
         String sql = "UPDATE recycle SET userid=?, address=?, year=?, month=?, " +
@@ -278,7 +289,7 @@ public class RecycleController {
                 recycle.getMonth(), recycle.getCurrentConsumption(),
                 recycle.getCarbonFootprint(), recycle.getBillImg(), recycle.getId());
 
-        ModelAndView mv = new ModelAndView("/Recycle/RecycleHistory");
-        return mv;
+                ModelAndView mv = new ModelAndView("redirect:/recycle/RecycleHistory");
+                return mv;
     }
 }
