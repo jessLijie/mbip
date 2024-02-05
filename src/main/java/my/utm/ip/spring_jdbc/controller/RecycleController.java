@@ -165,7 +165,18 @@ public class RecycleController {
         if (!bill_img.isEmpty()) {
             byte[] fileBytes = bill_img.getBytes();
             recycle.setBillImg(fileBytes);
-        }
+        } else {
+            String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM recycle WHERE id=?";
+
+            Recycle result = template.queryForObject(sql, new Object[]{id},
+                    new BeanPropertyRowMapper<>(Recycle.class));
+            if (result.getBillImg() != null) {
+                recycle.setBillImg(result.getBillImg());
+            } else {
+                // Handle the case where result.getBillImg() is null
+            }
+
+    }
 
         String sql = "INSERT INTO recycle (id, userid, address, year, month, currentConsumption, carbonFootprint, bill_img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, recycle.getId(), recycle.getUserid(), recycle.getAddress(), recycle.getYear(),
