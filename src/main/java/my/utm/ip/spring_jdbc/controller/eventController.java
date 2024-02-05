@@ -31,7 +31,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/event")
-public class EventController {
+public class eventController {
     @Autowired
     JdbcTemplate template;
 

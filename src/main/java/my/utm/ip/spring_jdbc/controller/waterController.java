@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/water")
-public class WaterController 
+public class waterController 
 {
     @Autowired
     JdbcTemplate template;
