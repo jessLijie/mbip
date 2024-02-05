@@ -235,7 +235,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <td class="button">
                   <div class="viewdetailbutton">
                     <a
-                      href="/recycle/RecycleHistoryDetail?billId=${recycle.id}"
+                      href="/water/WaterHistoryDetail?billId=${water.id}"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -252,7 +252,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       </svg>
                     </a>
                     <a
-                    href="/recycle/RecycleUpdateBill?billId=${recycle.id}"
+                    href="/water/WaterUpdateBill?billId=${water.id}"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -285,7 +285,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     </svg>
                   </div>
 
-                  <a href="/recycle/RecycleDownloadReport?billId=${recycle.id}">
+                  <a href="/water/WaterDownloadReport?billId=${water.id}">
                     <button class="downloadbutton">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -24,14 +24,29 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       crossorigin="anonymous"
     ></script>
   </head>
-
+  <script>
+    function validateFileSize() {
+        var fileInput = document.getElementById('bill_img');  // Correct id here
+        var maxFileSize = 500 * 1024; // 500KB in bytes
+    
+        if (fileInput.files.length > 0) {
+            var fileSize = fileInput.files[0].size; // in bytes
+    
+            if (fileSize > maxFileSize) {
+                alert('File size exceeds 50KB. Please choose a smaller file.');
+                // Reset the file input
+                fileInput.value = '';
+            }
+        }
+    }
+  </script>
   <%@include file="../navbar.jsp"%>
   <body style="background-color: #ccf3ea">
     <button
       type="button"
       class="px-4 p-2 m-4 mb-0 ms-5 rounded shadow"
       style="background-color: #a7c3f9; border: none"
-      onclick="window.location.href='/recycle/RecycleHistory;'"
+      onclick="window.location.href='/water/WaterHistory;'"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +64,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     </button>
 
     <div class="container mt-2 justify-content-center" style="width: 60%">
-      <form action="/recycle/SaveUpdateBilll" method="post" enctype="multipart/form-data">
+      <form action="/water/SaveUpdateBill" method="post" enctype="multipart/form-data">
         <div class="bg-white p-4 px-5 rounded shadow m-3">
           <!--address section-->
           <div class="row mb-3">
@@ -125,7 +140,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <hr />
 
           <!--insert section-->
-          <b class="mt-4 text-center d-block fs-5">RECYCLE CONSUMPTION</b>
+          <b class="mt-4 text-center d-block fs-5">WATER CONSUMPTION</b>
 
           <div class="row mb-3 mt-4 align-items-center">
             <div class="col-md-6">
@@ -143,7 +158,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
             <script>
               const defaultDate =
-                "${recycleBill.getYear()}-${recycleBill.getMonth()}"; // Use the period value from your ModelAndView
+                "${waterBill.getYear()}-${waterBill.getMonth()}"; // Use the period value from your ModelAndView
               document.getElementById("period").value = defaultDate;
             </script>
           </div>
@@ -160,7 +175,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 name="totalWConsumption"
                 class="form-control"
                 required
-                value="${recycleBill.currentConsumption}"
+                value="${waterBill.currentConsumption}"
               />
             </div>
           </div>
@@ -184,11 +199,12 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                   name="bill_img"
                   class="form-control"
                   accept=".jpg, .jpeg, .png"
+                  onchange="validateFileSize()"
                 />
               </div>
             </div>
           </div>
-          <input type="hidden" name="recycleid" value="${recycleBill.getId()}" />
+          <input type="hidden" name="waterid" value="${waterBill.getId()}" />
 
           <div class="text-center mt-4">
             <button

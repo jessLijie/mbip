@@ -1,5 +1,7 @@
 package my.utm.ip.spring_jdbc.model;
 
+import my.utm.ip.spring_jdbc.model.DAO.WaterDAO;
+
 public class Water {
     private int id;
     private int userid;
@@ -96,6 +98,40 @@ public class Water {
         return bill_img;
     }
 
+public void fromDAO(WaterDAO dao) {
+        if (dao != null) {
+            this.id = dao.getId();
+            this.userid = dao.getUserid();
+            this.address = dao.getAddress();
+            this.year = dao.getYear();
+            this.month = dao.getMonth();
+            this.currentConsumption = dao.getCurrentConsumption();
+            this.carbonFootprint = dao.getCarbonFootprint();
+            this.bill_img = dao.getBillImg();
+        } else {
+            // Handle the case where dao is null (optional)
+        }
+    }
+
+    public WaterDAO toDAO() {
+        WaterDAO dao = new WaterDAO();
+        
+        dao.setId(this.id);
+        dao.setUserid(this.userid);
+        dao.setAddress(this.address);
+        dao.setYear(this.year);
+        dao.setMonth(this.month);
+        dao.setCurrentConsumption(this.currentConsumption);
+        dao.setCarbonFootprint(this.carbonFootprint);
+        dao.setBillImg(this.getBillImg());
+
+        return dao;
+    }
+
+    public Water(WaterDAO dao) {
+        this.fromDAO(dao);
+    }
+    
     @Override
     public String toString() {
         return "Water{" +
@@ -118,5 +154,6 @@ public class Water {
             return "";
         }
     }
-}
 
+
+}
