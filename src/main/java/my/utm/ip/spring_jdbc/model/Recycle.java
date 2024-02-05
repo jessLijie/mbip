@@ -8,8 +8,9 @@ public class Recycle {
     private int month;
     private double currentConsumption;
     private double carbonFootprint;
+    private byte[] bill_img;
 
-    public Recycle(int id, int userid, String address, int year,int month, double currentConsumption, double carbonFootprint) {
+    public Recycle(int id, int userid, String address, int year, int month, double currentConsumption, double carbonFootprint, byte[] bill_img) {
         this.id = id;
         this.userid = userid;
         this.address = address;
@@ -17,7 +18,7 @@ public class Recycle {
         this.month = month;
         this.currentConsumption = currentConsumption;
         this.carbonFootprint = carbonFootprint;
-
+        this.bill_img = bill_img;
     }
 
     public Recycle() {
@@ -28,7 +29,7 @@ public class Recycle {
         this.month = 0;
         this.currentConsumption = 0.0;
         this.carbonFootprint = 0.0;
-
+        this.bill_img = null;
     }
 
     public int getId() {
@@ -59,13 +60,12 @@ public class Recycle {
         return year;
     }
 
-     public int getMonth() {
-        return month;
-    }
-    
-
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getMonth() {
+        return month;
     }
 
     public void setMonth(int month) {
@@ -86,6 +86,14 @@ public class Recycle {
 
     public void setCarbonFootprint(double carbonFootprint) {
         this.carbonFootprint = carbonFootprint;
+    }
+
+    public void setBillImg(byte[] bill_img){
+        this.bill_img = bill_img;
+    }
+
+    public byte[] getBillImg(){
+        return bill_img;
     }
 
     @Override
@@ -109,4 +117,6 @@ public class Recycle {
             // Handle invalid month values
             return "";
         }
-}}
+    }
+}
+

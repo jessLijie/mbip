@@ -1,18 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"  isELIgnored="false" import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <title>Insert Recycle Consumption</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
 
-<%@ include file="../navbar.jsp"%> 
-
+<%@include file="../navbar.jsp"%> 
 <body style="background-color: #CCF3EA">
     <button type="button" class="px-4 p-2 m-4 mb-0 ms-5 rounded shadow" style="background-color: #A7C3F9; border:none;" onclick="window.location.href='/recycle/RecycleHistory;'">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -22,18 +24,18 @@
         </svg>
         <span class="ms-2">History</span>
     </button>
-
+    
     <div class="container mt-2 justify-content-center" style="width: 60%">
-        <form action="/recycle/InsertRecycleConsumptionDAta" method="post" enctype="multipart/form-data">
-            <div class="bg-white p-4 px-5 rounded shadow m-3">
-                <!-- Address section -->
+        <form action="/recycle/InsertRecycleConsumption" method="post">
+            <div class="bg-white p-4 px-5 rounded shadow m-3"> 
+                <!--address section-->
                 <div class="row mb-3">
                     <div class="col-md-2">
                         <label for="address" class="form-label"><b>Address</b></label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" id="address1" name="address1" value="${user.add1}" class="form-control mb-3" required><!-- Retrieve address1 -->
-                        <input type="text" id="address2" name="address2" value="${user.add2}" class="form-control" required><!-- Retrieve address2 -->
+                        <input type="text" id="address1" name="address1" value="${user.add1}" class="form-control mb-3" required><!--retrive address1-->
+                        <input type="text" id="address2" name="address2" value="${user.add2}" class="form-control" required><!--retrive address2-->
                     </div>
                 </div>
 
@@ -42,13 +44,13 @@
                         <label for="state"><b>State</b></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" id="state" name="state" value="${user.state}" class="form-control" required><!-- Retrieve state -->
+                        <input type="text" id="state" name="state" value="${user.state}" class="form-control" required><!--retrieve state-->
                     </div>
                     <div class="col-md-2">
                         <label for="city"><b>City</b></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" id="city" name="city" value="${user.city}" class="form-control" required><!-- Retrieve city -->
+                        <input type="text" id="city" name="city" value="${user.city}" class="form-control" required><!--retrieve city-->
                     </div>
                 </div>
 
@@ -57,13 +59,13 @@
                         <label for="postcode"><b>Postcode</b></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" id="postcode" name="postcode" maxlength="5" value="${user.zipcode}" class="form-control" required><!-- Retrieve postcode -->
+                        <input type="text" id="postcode" name="postcode" maxlength="5" value="${user.zipcode}" class="form-control" required><!--retrieve postcode-->
                     </div>
                 </div>
-
+            
                 <hr>
-
-                <!-- Insert section -->
+                
+                <!--insert section-->
                 <b class="mt-4 text-center d-block fs-5">RECYCLE CONSUMPTION</b>
 
                 <div class="row mb-3 mt-4 align-items-center">
@@ -79,10 +81,11 @@
                         <label for="totalWConsumption"><b>Total Consumption (kg)</b></label>
                     </div>
                     <div class="col-md-6">
-                        <input type="number" id="totalWConsumption" name="totalWConsumption" class="form-control" required>
+                        <input type="number" id="totalWConsumption" name="totalWConsumption" class="form-control" required value="${recycleBill.currentConsumption}">
                     </div>
                 </div>
-
+                <img src="data:image/*;base64,${Base64.getEncoder().encodeToString(recycleBill.getBillImg())}" alt="Bill Image">
+                <h2>${hey}</h2>
                 <!-- Upload Section -->
                 <p class="mt-4" style="color:red"><b>**Please upload your bills for reference (eg: jpg, png)</b></p>
 
@@ -93,13 +96,11 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-lg px-5" style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button>
+                    <a href="/recycle/InsertRecycleConsumption"><button type="submit" class="btn btn-lg px-5" style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button></a>
                 </div>
             </div>
-
         </form>
-    </div>
+    </div>    
 </body>
-
-</html>
