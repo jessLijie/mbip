@@ -29,7 +29,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/event")
-public class EventController {
+public class eventController {
     @Autowired
     JdbcTemplate template;
 
@@ -94,6 +94,7 @@ public class EventController {
         event.setDescription(desc);
         event.setImageData(event_img);
         event.setUserid(userid);
+        
 
         String sql = "INSERT INTO event (id, title, start_date, end_date, location, organizer, description, image_data, userid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, event.getId(), event.getTitle(), event.getStartDate(), event.getEndDate(), event.getLocation(), event.getOrganizer(), event.getDescription(), event.getImageData(), event.getUserid());

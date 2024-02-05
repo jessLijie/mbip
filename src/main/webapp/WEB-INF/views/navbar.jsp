@@ -50,12 +50,12 @@
 
             <c:if test="${role eq 'user'}">
             <li class="nav-item">
-                <a class="nav-link" href="/electricity/InsertElectricityConsumption">Electricity</a>
+                <a class="nav-link" href="/electricity/Electricity">Electricity</a>
               </li></c:if>
 
               <c:if test="${role eq 'user'}">
               <li class="nav-item">
-                <a class="nav-link" href="recycle/InsertRecycleConsumption">Recycle</a>
+                <a class="nav-link" href="/recycle/InsertRecycleConsumption">Recycle</a>
               </li></c:if>
 
               <c:if test="${role eq 'user'}">

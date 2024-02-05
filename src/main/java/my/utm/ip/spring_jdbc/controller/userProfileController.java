@@ -72,7 +72,7 @@ public class userProfileController {
             @RequestParam("email") String email,
             @RequestParam("matricsNo") String matricsNo,
             HttpSession session) {
-        String sql = "INSERT INTO User (username, password, email, matricsNo) VALUES (?, ?, ?,?)";
+        String sql = "INSERT INTO user (username, password, email, matricsNo) VALUES (?, ?, ?,?)";
         template.update(sql, un, password, email, matricsNo);
         session.setAttribute("username", un);
         return "redirect:/profile/view";
