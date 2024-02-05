@@ -58,6 +58,16 @@ public class EventController {
         return mv;
     }
 
+    @RequestMapping("/editEventForm")
+    public ModelAndView editEvent(@RequestParam("id") int id, HttpSession session){
+        ModelAndView mv = new ModelAndView("/Event/eventEditForm");
+        String sql = "SELECT * FROM event WHERE id = ?";
+        Event event = template.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Event.class));
+
+        mv.addObject("event", event);
+        return mv;
+    }
+
     @RequestMapping(value="/addEvent", method=RequestMethod.POST)
     public String insert(@RequestParam("title") String title,
                     @RequestParam("sdate") Date sdate,
@@ -87,6 +97,38 @@ public class EventController {
 
         String sql = "INSERT INTO event (id, title, start_date, end_date, location, organizer, description, image_data, userid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, event.getId(), event.getTitle(), event.getStartDate(), event.getEndDate(), event.getLocation(), event.getOrganizer(), event.getDescription(), event.getImageData(), event.getUserid());
+
+        // Redirect to the event list page
+        return "redirect:/event/events";
+    }
+
+    @RequestMapping(value="/editEvent", method=RequestMethod.POST)
+    public String update(@RequestParam("eventId") int eventId,
+                    @RequestParam("title") String title,
+                    @RequestParam("sdate") Date sdate,
+                    @RequestParam("edate") Date edate,
+                    @RequestParam("location") String location,
+                    @RequestParam("organizer") String organizer,
+                    @RequestParam("desc") String desc, 
+                    @RequestParam("event_img") byte[] event_img,
+                    HttpServletRequest request, HttpSession session) {
+    
+        int userid = (int) session.getAttribute("userid");
+        session.setAttribute("userid", userid);
+
+        Event event = new Event();
+        event.setId(eventId);
+        event.setTitle(title);
+        event.setStartDate(sdate);
+        event.setEndDate(edate);
+        event.setLocation(location);
+        event.setOrganizer(organizer);
+        event.setDescription(desc);
+        event.setImageData(event_img);
+        event.setUserid(userid);
+
+        String sql = "UPDATE event SET title=?, start_date=?, end_date=?, location=?, organizer=?, description=?, image_data=?, userid=? WHERE id=?";
+    template.update(sql, event.getTitle(), event.getStartDate(), event.getEndDate(), event.getLocation(), event.getOrganizer(), event.getDescription(), event.getImageData(), event.getUserid(), event.getId());
 
         // Redirect to the event list page
         return "redirect:/event/events";

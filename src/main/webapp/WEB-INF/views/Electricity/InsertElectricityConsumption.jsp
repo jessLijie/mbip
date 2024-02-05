@@ -137,7 +137,8 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                             href="/electricity/InsertElectricityConsumption"><button
                                 type="submit"
                                 class="btn btn-lg px-5"
-                                style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button></a>
+                                style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button>
+                        </a>
                     </div>
                 </div>
             </form>
