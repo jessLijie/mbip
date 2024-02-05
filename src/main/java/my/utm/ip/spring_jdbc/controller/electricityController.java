@@ -2,10 +2,11 @@ package my.utm.ip.spring_jdbc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -122,7 +123,7 @@ public class electricityController {
         return "/Electricity/InsertElectricityConsumption";
     }
 
-    @RequestMapping(value = "/InsertElectricityConsumption", method = RequestMethod.POST)
+    @RequestMapping(value = "/InsertElectricityConsumptionDAta", method = RequestMethod.POST)
     public String insert(@RequestParam("address1") String address1,
             @RequestParam("address2") String address2,
             @RequestParam("postcode") String postcode,
@@ -184,5 +185,88 @@ public class electricityController {
         modelAndView.addObject("sumCarbonFootprint", sumCarbonFootprint);
 
         return modelAndView;
+    }
+
+    @RequestMapping({ "/ElectricityUpdateBill" })
+    public ModelAndView updatebill(@RequestParam("billId") int billId, HttpSession session) {
+        int userid = (int) session.getAttribute("userid");
+        ModelAndView modelAndView = new ModelAndView("/Electricity/Editbill");
+
+        String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM electricity WHERE id=?";
+
+        List<Electricity> result = template.query(sql, new Object[] { billId }, new BeanPropertyRowMapper<>(Electricity.class));
+
+        if (!result.isEmpty()) {
+            Electricity electricityBill = result.get(0);
+
+            String period = electricityBill.getPeriod(electricityBill.getMonth(), electricityBill.getYear());
+            User user = electricityService.getUserById(userid);
+            modelAndView.addObject("user", user);
+            modelAndView.addObject("electricityBill", electricityBill);
+            modelAndView.addObject("period", period);
+
+            if (electricityBill.getBillImg() != null) {
+                String imagedata = Base64.getEncoder().encodeToString(electricityBill.getBillImg());
+                modelAndView.addObject("billimg", imagedata);
+            } else {
+                modelAndView.addObject("billimg", ""); // Set an empty string or some default value
+            }
+        } else {
+
+            modelAndView.addObject("errorMessage", "No record found for the specified billId");
+        }
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/SaveUpdateBilll")
+    public ModelAndView updatebill(@RequestParam("address1") String address1,
+            @RequestParam("address2") String address2,
+            @RequestParam("postcode") String postcode,
+            @RequestParam("city") String city,
+            @RequestParam("state") String state,
+            @RequestParam("period") String period,
+            @RequestParam("totalWConsumption") double totalWConsumption,
+            @RequestParam("bill_img") MultipartFile bill_img,
+            @RequestParam("electricityid") int id,
+            HttpServletRequest request, HttpSession session) throws IOException {
+
+        int userid = (int) session.getAttribute("userid");
+        session.setAttribute("userid", userid);
+
+        String fullAddress = address1 + "<br>" + address2 + "<br>" + postcode + ", " + city + "<br>" + state;
+
+        String inputdate = period;
+        String split_values[] = inputdate.split("-");
+        int year = Integer.parseInt(split_values[0].trim());
+        int month = Integer.parseInt(split_values[1].trim());
+
+        double carbonFootprint = totalWConsumption * 2.860;
+
+        Electricity electricity = new Electricity();
+        electricity.setUserid(userid);
+        electricity.setId(id);
+        electricity.setAddress(fullAddress);
+        electricity.setYear(year);
+        electricity.setMonth(month);
+        electricity.setCurrentConsumption(totalWConsumption);
+        electricity.setCarbonFootprint(carbonFootprint);
+        if (!bill_img.isEmpty()) {
+            byte[] fileBytes = bill_img.getBytes();
+            electricity.setBillImg(fileBytes);
+        } else {
+            String sql = "select bill_img from electricity where id=" + id;
+            byte[] fileBytes = template.queryForObject(sql, new Object[] { id }, byte[].class);
+            electricity.setBillImg(fileBytes);
+        }
+
+        String sql = "UPDATE electricity SET userid=?, address=?, year=?, month=?, " +
+                "currentConsumption=?, carbonFootprint=?, bill_img=? WHERE id=?";
+        template.update(sql, electricity.getUserid(), electricity.getAddress(), electricity.getYear(),
+                electricity.getMonth(), electricity.getCurrentConsumption(),
+                electricity.getCarbonFootprint(), electricity.getBillImg(), electricity.getId());
+
+        ModelAndView mv = new ModelAndView("/Electricity/ElectricityHistory");
+        return mv;
     }
 }
