@@ -208,10 +208,12 @@ public class userProfileController {
     }
 
     @RequestMapping("/updatePassword")
-    public String updatePassword(@RequestParam("username")String username,
+    public String updatePassword(@RequestParam("fullname")String fullname,
     @RequestParam("email")String email,
     @RequestParam("password")String password
     ){
+        String sql = "UPDATE user SET password=? WHERE fullname=? AND email=?";
+        template.update(sql,password, fullname,email);
         return "welcome";
     }
 
