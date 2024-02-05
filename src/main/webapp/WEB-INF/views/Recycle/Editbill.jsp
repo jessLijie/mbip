@@ -65,7 +65,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 type="text"
                 id="address1"
                 name="address1"
-                value="${user.add1}"
+                value="${address1}"
                 class="form-control mb-3"
                 required
               /><!--retrive address1-->
@@ -73,7 +73,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 type="text"
                 id="address2"
                 name="address2"
-                value="${user.add2}"
+                value="${address2}"
                 class="form-control"
                 required
               /><!--retrive address2-->
@@ -89,7 +89,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 type="text"
                 id="state"
                 name="state"
-                value="${user.state}"
+                value="${state}"
                 class="form-control"
                 required
               /><!--retrieve state-->
@@ -102,7 +102,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 type="text"
                 id="city"
                 name="city"
-                value="${user.city}"
+                value="${city}"
                 class="form-control"
                 required
               /><!--retrieve city-->
@@ -119,7 +119,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 id="postcode"
                 name="postcode"
                 maxlength="5"
-                value="${user.zipcode}"
+                value="${postcode}"
                 class="form-control"
                 required
               /><!--retrieve postcode-->
