@@ -73,7 +73,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     </div>
     <div class= "graphBox">
         <div class="box" style="height: 350px; width: 350px" >
-            <canvas id="doughnutChart"></canvas>
+            <canvas id="pieChart"></canvas>
         </div>
         <div class="box" style="height: 350px; width: 1050px">
             <canvas id="carbonFootprintChart" height="100"></canvas>
@@ -84,7 +84,6 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../static/js/DashboardChart/doughnutChart.js"></script>
 
 <script>
     var carbonDataListJson = '${carbonDataListJson}';
@@ -135,6 +134,37 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     } else {
         console.error('JSON data is empty or invalid.');
     }
+</script>
+<script>
+    var contributionListJson = '${contributionList}';
+    var contributionList = JSON.parse(contributionListJson);
+
+    var electricityPercentage = contributionList[0].electricityPercentage;
+    var waterPercentage = contributionList[0].waterPercentage;
+
+    var pieChart = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieChart, {
+        type: 'pie',
+        data: {
+            labels: ['Electricity', 'Water'],
+            datasets: [{
+                data: [electricityPercentage, waterPercentage],
+                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Percentage Contribution to Total Carbon Footprint',
+                    font: {
+                        size: 16
+                    }
+                }
+            }
+        }
+    });
 </script>
 
 </html>

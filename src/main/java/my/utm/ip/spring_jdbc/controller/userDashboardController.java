@@ -1,6 +1,7 @@
 package my.utm.ip.spring_jdbc.controller;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import my.utm.ip.spring_jdbc.model.MonthlyCarbonFootprint;
+import my.utm.ip.spring_jdbc.model.PercentageContributions;
 
 
 @Controller
@@ -48,6 +50,9 @@ public class userDashboardController {
             BigDecimal currentConsumption= (BigDecimal)recycle.get("currentConsumption");
             totalWeight += currentConsumption.doubleValue();
         }
+
+        String formattedTotalRecycle= String.format("%.2f", totalWeight.doubleValue());
+
 
 
         //retrieve total electricity consumption 
@@ -95,7 +100,7 @@ public class userDashboardController {
         }
 
 
-        // retrieve data for carbon footprint linechart
+        // retrieve data for carbon footprint linechart (carbon footprint vs month)
         String totalCarbonFootprintByMonthSql=  "SELECT e.month, SUM(e.carbonFootprint) + SUM(w.carbonFootprint) AS totalCarbonFootprint " + 
                                                 "FROM electricity e JOIN water w " + 
                                                 "on e.userid = w.userid AND e.month = w.month " + 
@@ -127,14 +132,51 @@ public class userDashboardController {
             e.printStackTrace();
             carbonDataListJson = "";
         }
+
+
+        // retrieve data for doughnut chart (percentage contribution to total carbon footprint)
+        String carbonFootprintPercentageSql=  "SELECT " + 
+                                              "(SUM(e.carbonFootprint) / (SUM(e.carbonFootprint) + SUM(w.carbonFootprint))) * 100 AS electricityPercentage, " + 
+                                              "(SUM(w.carbonFootprint) / (SUM(e.carbonFootprint) + SUM(w.carbonFootprint))) * 100 AS waterPercentage " +
+                                              "FROM electricity e JOIN water w " + 
+                                              "on e.userid = w.userid AND e.month = w.month " + 
+                                              "WHERE e.userid =? " ;
+
+        List<Map<String, Object>> percentageContribution= template.queryForList(carbonFootprintPercentageSql, userid);
+        List<PercentageContributions> contributionList= new ArrayList<>(); 
         
+        for(Map<String, Object> percentages : percentageContribution){
+            BigDecimal electricityPercentage= (BigDecimal)percentages.get("electricityPercentage");
+            BigDecimal waterPercentage= (BigDecimal)percentages.get("waterPercentage");
+
+            // Round the percentages to 1 decimal point
+            electricityPercentage = electricityPercentage.setScale(1, RoundingMode.HALF_UP);
+            waterPercentage = waterPercentage.setScale(1, RoundingMode.HALF_UP);
+
+            PercentageContributions contribution= new PercentageContributions(electricityPercentage, waterPercentage);
+            contributionList.add(contribution);
+        }
+
+        objectMapper.registerModule(new SimpleModule().addSerializer(PercentageContributions.class, new PercentageContributionsSerializer()));
+        
+        String contributionListJson;
+
+        try {
+            contributionListJson = objectMapper.writeValueAsString(contributionList);
+            System.out.println("Contribution List JSON: " + contributionListJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            contributionListJson = "";
+        }
+
         mv.addObject("name", name);
         mv.addObject("userid", userid);
-        mv.addObject("recycleWeight", totalWeight);
+        mv.addObject("recycleWeight", formattedTotalRecycle);
         mv.addObject("totalElectricity", formattedTotalElectricity);
         mv.addObject("totalWater", formattedTotalWater); 
         mv.addObject("totalCarbon", formattedTotalCarbon); 
         mv.addObject("carbonDataListJson", carbonDataListJson);
+        mv.addObject("contributionList", contributionListJson);
 
         return mv;
     }
