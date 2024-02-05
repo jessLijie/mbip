@@ -201,13 +201,7 @@ public class userProfileController {
         return "redirect:/profile";
     }
 
-    @RequestMapping("/forgotPassword")
-    public String forgotpassword(@RequestParam("username")String username,
-    @RequestParam("email")String email,
-    @RequestParam("password")String password
-    ){
-        
-    }
+
 
 
 }

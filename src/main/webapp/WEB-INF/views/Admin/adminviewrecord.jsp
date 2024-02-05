@@ -10,7 +10,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="/static/css/Admin/viewrecord.css" />
     <script src="/static/js/Bill/adminviewrecord.js"></script>
   </head>
-
+  <%@include file="/WEB-INF/views/navbar.jsp" %>
   <body style="background-color: #ccf3ea">
     <a href="/adminDashboard">
       <div class="backbtn">
