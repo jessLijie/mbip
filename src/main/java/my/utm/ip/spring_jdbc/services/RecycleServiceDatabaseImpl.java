@@ -58,6 +58,5 @@ public class RecycleServiceDatabaseImpl implements RecycleService {
     public User getUserById(int id) {
         UserDAO dao = repo.getUserById(id);
         return new User();
-       
     }
 }

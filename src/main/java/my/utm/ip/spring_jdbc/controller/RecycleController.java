@@ -123,7 +123,7 @@ public class RecycleController {
         int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
         ModelAndView modelAndView = new ModelAndView("/Recycle/InsertRecycleConsumption");
-        User user = userService.getUserById(userid);
+        User user = recycleService.getUserById(userid);
 
         modelAndView.addObject("user", user);
 
@@ -201,7 +201,7 @@ public class RecycleController {
         return modelAndView;
     }
 
-    @RequestMapping({ "/RecycleUpdateBill" })
+    @RequestMapping("/RecycleUpdateBill")
     public ModelAndView updatebill(@RequestParam("billId") int billId, HttpSession session) {
         int userid = (int) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView("/Recycle/Editbill");
@@ -214,7 +214,7 @@ public class RecycleController {
             Recycle recycleBill = result.get(0);
 
             String period = Recycle.getPeriod(recycleBill.getMonth(), recycleBill.getYear());
-            User user = userService.getUserById(userid);
+            User user = recycleService.getUserById(userid);
             modelAndView.addObject("user", user);
             modelAndView.addObject("recycleBill", recycleBill);
             modelAndView.addObject("period", period);

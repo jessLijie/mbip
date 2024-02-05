@@ -54,7 +54,7 @@
             <div class="rounded" style="background-color: #fff; border: 1px solid #ddd;">
                 <div class="text-center mt-5"><h1>${event.title}</h1></div>
                 <div class="image-container">
-                    <img src="data:image/png;base64,${event.base64Image}" alt="Event Image" style="width: 30%">
+                    <img src="data:image/png;base64,${event.base64Image}" alt="Event Image"style="width: 60%; height: 30%;">
                 </div>
                 <div class="event-details">
                 <div class="event-content">
