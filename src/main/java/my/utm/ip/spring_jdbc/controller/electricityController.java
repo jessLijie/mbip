@@ -1,5 +1,6 @@
 package my.utm.ip.spring_jdbc.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import my.utm.ip.spring_jdbc.model.Electricity;
 import my.utm.ip.spring_jdbc.model.User;
@@ -128,8 +130,8 @@ public class electricityController {
             @RequestParam("state") String state,
             @RequestParam("period") String period,
             @RequestParam("totalWConsumption") double totalWConsumption,
-            @RequestParam("bill_img") byte[] bill_img,
-            HttpServletRequest request, HttpSession session) {
+             @RequestParam("bill_img") MultipartFile billImg,
+            HttpServletRequest request, HttpSession session) throws IOException {
 
         int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
@@ -145,7 +147,7 @@ public class electricityController {
         int billId = lastElectricityId != null ? lastElectricityId + 1 : 1;
 
         double carbonFootprint = totalWConsumption * 0.584;
-
+        byte[] billImgBytes = billImg.getBytes();
         Electricity electricity = new Electricity();
         electricity.setUserid(userid);
         electricity.setId(billId);
@@ -154,7 +156,7 @@ public class electricityController {
         electricity.setMonth(month);
         electricity.setCurrentConsumption(totalWConsumption);
         electricity.setCarbonFootprint(carbonFootprint);
-        electricity.setBillImg(bill_img);
+        electricity.setBillImg(billImgBytes);
 
         electricityService.insertElectricity(electricity);
 
