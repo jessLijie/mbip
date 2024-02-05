@@ -47,7 +47,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" id="fullname" value="${fullname}" name="fullname" required>
+                                    <input type="text" id="fullname" value="${fullname}" name="fullname" required placeholder="Enter your full name">
                                 </div>
                             </div>
                             <hr>
@@ -84,7 +84,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" id="phone" value="${phone}" name="phone" required>
+                                    <input type="text" id="phone" value="${phone}" name="phone" required placeholder="+(60)">
                                 </div>
                             </div>
                             <hr>
@@ -93,13 +93,15 @@
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" id="add1" value="${add1}"  name="add1" required>,
+                                    <input type="text" id="add1" value="${add1}"  name="add1" required placeholder="Address Line 1">,
                     
-                                    <input type="text" id="add2" value="${add2}" name="add2" required>,
+                                    <input type="text" id="add2" value="${add2}" name="add2" required placeholder="Address Line 2">,
                                 
-                                    <input type="text" id="zipcode" value="${zipcode}"name="zipcode" required>,
+                                    <input type="text" id="zipcode" value="${zipcode}"name="zipcode" required placeholder="Postal">,
                                 
-                                    <input type="text" id="state" value="${state}"name="state" required>
+                                    <input type="text" id="state" value="${city}"name="city" required placeholder="City">
+
+                                    <input type="text" id="state" value="${state}"name="state" required placeholder="State">
                                 </div>
                             </div>
                             <hr>

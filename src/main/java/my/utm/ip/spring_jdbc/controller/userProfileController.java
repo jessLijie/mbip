@@ -49,6 +49,7 @@ public class userProfileController {
         String add2 = (String) user.get("add2");
         String zipcode = (String) user.get("zipcode");
         String state = (String) user.get("state");
+        String city = (String) user.get("city");
         String role = (String) session.getAttribute("role");
         mv.addObject("name", name);
         mv.addObject("fullname", fullname);
@@ -61,6 +62,7 @@ public class userProfileController {
         mv.addObject("add2", add2);
         mv.addObject("zipcode", zipcode);
         mv.addObject("state", state);
+        mv.addObject("city", city);
         mv.addObject("role", role);
 
         return mv;
@@ -72,8 +74,8 @@ public class userProfileController {
             @RequestParam("email") String email,
             @RequestParam("matricsNo") String matricsNo,
             HttpSession session) {
-        String sql = "INSERT INTO user (username, password, email, matricsNo) VALUES (?, ?, ?,?)";
-        template.update(sql, un, password, email, matricsNo);
+        String sql = "INSERT INTO user (username, password, email, matricsNo,role) VALUES (?,?,?,?,?)";
+        template.update(sql, un, password, email, matricsNo,"user");
         session.setAttribute("username", un);
         return "redirect:/profile/view";
     }
@@ -126,6 +128,7 @@ public class userProfileController {
         String add2 = (String) user.get("add2");
         String zipcode = (String) user.get("zipcode");
         String state = (String) user.get("state");
+        String city = (String) user.get("city");
         mv.addObject("name", name);
         mv.addObject("fullname", fullname);
         mv.addObject("birthdate", birthdate);
@@ -134,6 +137,7 @@ public class userProfileController {
         mv.addObject("phone", phone);
         mv.addObject("matricsNo", matricsNo);
         mv.addObject("add1", add1);
+        mv.addObject("city", city);
         mv.addObject("add2", add2);
         mv.addObject("zipcode", zipcode);
         mv.addObject("state", state);
@@ -150,6 +154,7 @@ public class userProfileController {
             @RequestParam("add2") String add2,
             @RequestParam("zipcode") String zipcode,
             @RequestParam("state") String state,
+            @RequestParam("city") String city,
             HttpSession session) throws ParseException {
         Date birthdate = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -157,9 +162,9 @@ public class userProfileController {
         birthdate = new java.sql.Date(parsedDate.getTime());
 
         int userid = (int) session.getAttribute("userid");
-        String sql = "UPDATE user SET fullname=?, birthdate=?, password=?, phone=?, add1=?, add2=?, zipcode=?, state=? WHERE id=?";
+        String sql = "UPDATE user SET fullname=?, birthdate=?, password=?, phone=?, add1=?, add2=?, zipcode=?, state=?, city=? WHERE id=?";
         System.out.println("updating for" + userid);
-        template.update(sql, fullname, birthdate, password, phone, add1, add2, zipcode, state, userid);
+        template.update(sql, fullname, birthdate, password, phone, add1, add2, zipcode, state,city, userid);
         return "redirect:/profile";
     }
 

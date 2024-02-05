@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html;  charset=ISO-8859-1" 
 pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -8,26 +9,25 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <meta charset="UTF-8">
     <title>Add Event Form</title>
     <link rel="stylesheet" type="text/css">
-    <script src="/static/js/Event.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
 <script>
-    function validateFileSize() {
-        var fileInput = document.getElementById('event_img');  // Correct id here
-        var maxFileSize = 50 * 1024; // 50KB in bytes
-    
-        if (fileInput.files.length > 0) {
-            var fileSize = fileInput.files[0].size; // in bytes
-    
-            if (fileSize > maxFileSize) {
-                alert('File size exceeds 50KB. Please choose a smaller file.');
-                // Reset the file input
-                fileInput.value = '';
-            }
+function validateFileSize() {
+    var fileInput = document.getElementById('event_img');  // Correct id here
+    var maxFileSize = 50 * 1024; // 50KB in bytes
+
+    if (fileInput.files.length > 0) {
+        var fileSize = fileInput.files[0].size; // in bytes
+
+        if (fileSize > maxFileSize) {
+            alert('File size exceeds 50KB. Please choose a smaller file.');
+            // Reset the file input
+            fileInput.value = '';
         }
     }
+}
 </script>
 <%@include file="/WEB-INF/views/navbar.jsp" %>
 <body style="background-color: #CCF3EA">
@@ -47,16 +47,17 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     </div>
     
     <div class="container mt-2 justify-content-center" style="width: 60%">
-        <form action="/event/addEvent" method="post" enctype="multipart/form-data">
+        <form action="/event/editEvent" method="post" enctype="multipart/form-data">
             <div class="bg-white p-4 px-5 rounded shadow m-3"> 
                 <b class="mb-4 mt-2 text-center d-block fs-3">EVENT FORM</b>
+                <input type="hidden" id="eventId" name="eventId" value="${event.id}">
                 <!--general event info-->
                 <div class="row mb-3 align-items-center">
                     <div class="col-md-2">
                         <label for="title" class="form-label"><b>Title</b></label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" id="title" name="title" class="form-control" required>
+                        <input type="text" id="title" name="title" value="${event.title}" class="form-control" required>
                     </div>
                 </div>
 
@@ -65,7 +66,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <label for="sdate"><b>Start Date</b></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="date" id="sdate" name="sdate" class="form-control" required>
+                        <input type="date" id="sdate" name="sdate" value="<fmt:formatDate value="${event.startDate}" pattern="yyyy-MM-dd" />" class="form-control" required>
                     </div>
                 </div>
 
@@ -74,7 +75,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <label for="edate"><b>End Date</b></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="date" id="edate" name="edate" class="form-control mb-3" required>
+                        <input type="date" id="edate" name="edate" value="<fmt:formatDate value="${event.endDate}" pattern='yyyy-MM-dd' />" class="form-control mb-3" required>
                     </div>
                 </div>
             
@@ -86,7 +87,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <label for="location"><b>Location</b></label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" id="location" name="location" class="form-control" required>
+                        <input type="text" id="location" name="location" value="${event.location}" class="form-control" required>
                     </div>
                 </div>
 
@@ -95,7 +96,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <label for="organizer"><b>Organizer</b></label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" id="organizer" name="organizer" class="form-control" required>
+                        <input type="text" id="organizer" name="organizer" value="${event.organizer}" class="form-control" required>
                     </div>
                 </div>
 
@@ -104,12 +105,17 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <label for="desc"><b>Description</b></label>
                     </div>
                     <div class="col-md-10">
-                        <textarea id="desc" name="desc" class="form-control" required></textarea>
+                        <textarea id="desc" name="desc" class="form-control" required>${event.description}</textarea>
                     </div>
                 </div>
 
+                <!-- Display the current image -->
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="data:image/jpeg;base64,${eventImg}" alt="Event Image" style="width: 40%">
+                </div>
+
                 <!-- Upload Section -->
-                <p style="color:red"><b>**Please upload image related for reference (eg: jpg, png)</b></p>
+                <p style="color:red"><b>**Please upload a new image for reference (eg: jpg, png)</b></p>
 
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3">
@@ -120,7 +126,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 </div>
 
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-lg px-5" style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button>
+                    <button type="submit" class="btn btn-lg px-5" style="background-color: #4C8BC6; color: white;"><b>UPDATE</b></button>
                 </div>
             </div>
         </form>

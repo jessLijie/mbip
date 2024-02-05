@@ -63,6 +63,83 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 </div>
             
                 <hr>
+
+                    <!--insert section-->
+                    <b class="mt-4 text-center d-block fs-5">ELECTRICITY
+                        CONSUMPTION</b>
+
+                    <div class="row mb-3 mt-4 align-items-center">
+                        <div class="col-md-6">
+                            <label for="period"><b>Period</b></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="month" id="period" name="period"
+                                class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row mb-5 align-items-center">
+                        <div class="col-md-6">
+                            <label for="totalWConsumption"><b>Total Consumption
+                                    (kWh)</b></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" id="totalWConsumption"
+                                name="totalWConsumption"
+                                class="form-control" required>
+                        </div>
+                    </div>
+
+                    <!-- Upload Section -->
+                    <p class="mt-4" style="color:red"><b>**Please upload your
+                            bills for reference (eg: jpg,
+                            png)</b></p>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <div class="input-group">
+                                <input type="file" id="formFile"
+                                    class="form-control"
+                                    accept=".jpg, .jpeg, .png"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a
+                            href="/electricity/InsertElectricityConsumption"><button
+                                type="submit"
+                                class="btn btn-lg px-5"
+                                style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row mb-3 align-items-center">
+                    <div class="col-md-2">
+                        <label for="state"><b>State</b></label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" id="state" name="state" value="${user.state}" class="form-control" required><!--retrieve state-->
+                    </div>
+                    <div class="col-md-2">
+                        <label for="city"><b>City</b></label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" id="city" name="city" value="${user.city}" class="form-control" required><!--retrieve city-->
+                    </div>
+                </div>
+
+                <div class="row mb-4 align-items-center">
+                    <div class="col-md-2">
+                        <label for="postcode"><b>Postcode</b></label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" id="postcode" name="postcode" maxlength="5" value="${user.zipcode}" class="form-control" required><!--retrieve postcode-->
+                    </div>
+                </div>
+            
+                <hr>
                 
                 <!--insert section-->
                 <b class="mt-4 text-center d-block fs-5">ELECTRICITY CONSUMPTION</b>
