@@ -12,7 +12,22 @@
 </head>
 
 <%@ include file="../navbar.jsp"%> 
-
+<script>
+    function validateFileSize() {
+        var fileInput = document.getElementById('bill_img');  // Correct id here
+        var maxFileSize = 50 * 1024; // 50KB in bytes
+    
+        if (fileInput.files.length > 0) {
+            var fileSize = fileInput.files[0].size; // in bytes
+    
+            if (fileSize > maxFileSize) {
+                alert('File size exceeds 50KB. Please choose a smaller file.');
+                // Reset the file input
+                fileInput.value = '';
+            }
+        }
+    }
+</script>
 <body style="background-color: #CCF3EA">
     <button type="button" class="px-4 p-2 m-4 mb-0 ms-5 rounded shadow" style="background-color: #A7C3F9; border:none;" onclick="window.location.href='/recycle/RecycleHistory;'">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -89,7 +104,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3">
                         <div class="input-group">
-                            <input type="file" id="bill_img" name="bill_img" class="form-control" accept=".jpg, .jpeg, .png" required>
+                            <input type="file" id="bill_img" name="bill_img" class="form-control" accept=".jpg, .jpeg, .png" required onchange="validateFileSize()">
                         </div>
                     </div>
                 </div>
