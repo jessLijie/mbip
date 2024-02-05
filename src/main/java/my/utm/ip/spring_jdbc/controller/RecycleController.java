@@ -25,6 +25,8 @@ import com.mysql.cj.jdbc.Blob;
 import my.utm.ip.spring_jdbc.model.User;
 import my.utm.ip.spring_jdbc.model.Recycle;
 import my.utm.ip.spring_jdbc.model.Recycle;
+import my.utm.ip.spring_jdbc.services.ElectricityService;
+import my.utm.ip.spring_jdbc.services.RecycleService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,26 +37,30 @@ public class RecycleController {
     JdbcTemplate template;
 
     @Autowired
-    private UserService userService;
-
+    private RecycleService recycleService;
     @Autowired
     private AllTypeService allTypeService;
 
-    @RequestMapping("/RecycleHistory")
+@Autowired
+    private UserService userService;
+    @RequestMapping({ "/RecycleHistory" })
     public ModelAndView historypage(HttpSession session) {
-        int userid = (int) session.getAttribute("userid");
+
         ModelAndView mv = new ModelAndView("/Recycle/RecycleHistory");
         mv.addObject("title", "List Records");
+        Integer userid = (Integer) session.getAttribute("userid");
+        if (userid == null) {
+            // Handle case when userid is null
+            // For example, redirect to login page
+            mv.setViewName("redirect:/login");
+            return mv;
+        }
+        List<Recycle> recycleList = recycleService.getRecycleByUserId(userid);
 
-        String sql = "SELECT * FROM recycle WHERE userid=" + userid;
-
-        List<Recycle> recycleList = template.query(sql, new BeanPropertyRowMapper<>(Recycle.class));
         mv.addObject("recycleList", recycleList);
-
-        String userSql = "SELECT * FROM user WHERE id=" + userid;
-        List<User> userList = template.query(userSql, new BeanPropertyRowMapper<>(User.class));
-        if (!userList.isEmpty()) {
-            mv.addObject("user", userList.get(0));
+        User user = recycleService.getUserById(userid);
+        if (user != null) {
+            mv.addObject("user", user);
         }
 
         return mv;
@@ -67,20 +73,8 @@ public class RecycleController {
         ModelAndView mv = new ModelAndView("/Recycle/RecycleHistory");
         String[] selectedMonths = month.split(",");
         mv.getModel().remove("recycleList");
-        StringBuilder sql = new StringBuilder("SELECT * FROM recycle WHERE userid=" + userid);
-        sql.append("AND year =  ");
-        sql.append(year);
-        sql.append(" AND month IN (");
-        for (int i = 0; i < selectedMonths.length; i++) {
-            if (i > 0) {
-                sql.append(", ");
-                sql.append(selectedMonths[i]);
-            } else {
-                sql.append(selectedMonths[i]);
-            }
-        }
-        sql.append(")");
-        List<Recycle> recycleList = template.query(sql.toString(), new BeanPropertyRowMapper<>(Recycle.class));
+
+        List<Recycle> recycleList = recycleService.filterRecycle(userid, year, selectedMonths);
         mv.addObject("recycleList", recycleList);
 
         return mv;
@@ -105,14 +99,13 @@ public class RecycleController {
     }
 
     @RequestMapping("/RecycleDownloadReport")
-    public ModelAndView downloadReport(@RequestParam("billId") int billId, HttpSession session) {
+    public ModelAndView downloadReport(
+            @RequestParam("billId") int billId, HttpSession session) {
         int userid = (int) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView("/Recycle/RecycleDownloadReport");
-        User user = userService.getUserById(userid);
+        User user = recycleService.getUserById(userid);
 
-        String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint FROM recycle WHERE id=?";
-        Recycle recycleBill = template.queryForObject(sql, new Object[] { billId },
-                new BeanPropertyRowMapper<>(Recycle.class));
+        Recycle recycleBill = recycleService.getRecycleById(billId);
 
         String period = Recycle.getPeriod(recycleBill.getMonth(), recycleBill.getYear());
 
@@ -185,21 +178,18 @@ public class RecycleController {
 
     @RequestMapping({ "/RecycleFootprint" })
     public ModelAndView footprint(@RequestParam("billId") int billId, HttpSession session) {
-
-        int userid = (int) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView("/Recycle/RecycleFootprint");
 
+        int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
         // User user = userService.getUserById(userid);
 
-        String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint FROM Recycle WHERE id=?";
-        Recycle recycleBill = template.queryForObject(sql, new Object[] { billId },
-                new BeanPropertyRowMapper<>(Recycle.class));
+        Recycle recycleBill = recycleService.getRecycleById(billId);
 
         String period = Recycle.getPeriod(recycleBill.getMonth(), recycleBill.getYear());
 
-        double sumConsumption = allTypeService.cumulativeConsumption(userid, "Recycle");
-        double sumCarbonFootprint = allTypeService.cumulativeCarbonFootprint(userid, "Recycle");
+        double sumConsumption = allTypeService.cumulativeConsumption(userid, "recycle");
+        double sumCarbonFootprint = allTypeService.cumulativeCarbonFootprint(userid, "recycle");
 
         modelAndView.addObject("recycleBill", recycleBill);
         modelAndView.addObject("period", period);
@@ -240,7 +230,6 @@ public class RecycleController {
 
         return modelAndView;
     }
-
 
     @RequestMapping("/SaveUpdateBilll")
     public ModelAndView updatebill(@RequestParam("address1") String address1,
