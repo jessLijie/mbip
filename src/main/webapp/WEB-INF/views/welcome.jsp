@@ -51,7 +51,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
           <button type="button" id="togglePasswordSignIn">
             <i class="fas fa-eye" id="eyeIconSignIn"></i> Show Password
             </button>
-          <a href="">Forgot your password?</a>
+          <a href="/forgotPassword">Forgot your password?</a>
           <!-- temp -->
           <button type="submit">Sign In</button>
           <!-- <a href="/userDashboard"style="text-decoration: none;"></a> -->
