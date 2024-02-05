@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/electricity")
-public class ElectricityController {
+public class electricityController {
 
     @Autowired
     JdbcTemplate template;
