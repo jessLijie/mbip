@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import my.utm.ip.spring_jdbc.model.Electricity;
+import my.utm.ip.spring_jdbc.model.Recycle;
 import my.utm.ip.spring_jdbc.model.User;
 import my.utm.ip.spring_jdbc.services.ElectricityService;
 import my.utm.ip.spring_jdbc.services.UserService;
@@ -253,11 +254,18 @@ public class electricityController {
         electricity.setCarbonFootprint(carbonFootprint);
         if (!bill_img.isEmpty()) {
             byte[] fileBytes = bill_img.getBytes();
-            electricity.setBillImg(fileBytes);
+         electricity.setBillImg(fileBytes);
         } else {
-            String sql = "select bill_img from electricity where id=" + id;
-            byte[] fileBytes = template.queryForObject(sql, new Object[] { id }, byte[].class);
-            electricity.setBillImg(fileBytes);
+            String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM electricity WHERE id=?";
+
+            Electricity result = template.queryForObject(sql, new Object[]{id},
+                    new BeanPropertyRowMapper<>(Electricity.class));
+            if (result.getBillImg() != null) {
+                electricity.setBillImg(result.getBillImg());
+            } else {
+                // Handle the case where result.getBillImg() is null
+    }
+
         }
 
         String sql = "UPDATE electricity SET userid=?, address=?, year=?, month=?, " +
