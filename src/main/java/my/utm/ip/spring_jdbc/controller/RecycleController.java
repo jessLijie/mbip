@@ -273,9 +273,6 @@ public class RecycleController {
             recycle.setBillImg(fileBytes);
         }
 
-        
-     
-
         ModelAndView mv = new ModelAndView("/Recycle/RecycleHistory");
         return mv;
     }

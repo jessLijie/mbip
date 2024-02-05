@@ -1,7 +1,6 @@
 package my.utm.ip.spring_jdbc.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -16,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import my.utm.ip.spring_jdbc.model.Electricity;
-import my.utm.ip.spring_jdbc.model.Recycle;
 import my.utm.ip.spring_jdbc.model.User;
 import my.utm.ip.spring_jdbc.services.ElectricityService;
-import my.utm.ip.spring_jdbc.services.UserService;
+// import my.utm.ip.spring_jdbc.services.UserService;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,7 +28,8 @@ public class electricityController {
 
     @Autowired
     JdbcTemplate template;
-
+    @Autowired
+    private UserSevices userServices;
 
     @Autowired
     private ElectricityService electricityService;
@@ -42,7 +42,7 @@ public class electricityController {
         int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
         ModelAndView modelAndView = new ModelAndView("/Electricity/InsertElectricityConsumption"); // Corrected view name
-        User user = electricityService.getUserById(userid);
+        User user = userServices.getUserById(userid);
     
         modelAndView.addObject("user", user);
     
@@ -106,15 +106,28 @@ public class electricityController {
             @RequestParam("billId") int billId, HttpSession session) {
         int userid = (int) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView("/Electricity/ElectricityDownloadReport");
-        User user = electricityService.getUserById(userid);
+        
+        System.out.println("Fetching user data for userid: " + userid);
+
+    User user = userServices.getUserById(userid);
+
+    // Check if user is not null before accessing properties
+    if (user != null) {
+        // Add logging statement to check the retrieved user data
+        System.out.println("Retrieved user data: " + user.toString());
 
         Electricity electricityBill = electricityService.getElectricityById(billId);
-
         String period = Electricity.getPeriod(electricityBill.getMonth(), electricityBill.getYear());
 
         modelAndView.addObject("electricityBill", electricityBill);
         modelAndView.addObject("period", period);
         modelAndView.addObject("user", user);
+        
+        System.out.println("User Object: " + user);
+    } else {
+        // Handle the case where user is null
+        System.out.println("User not found for userid: " + userid);
+    }
 
         return modelAndView;
     }
@@ -133,12 +146,15 @@ public class electricityController {
             @RequestParam("period") String period,
             @RequestParam("totalWConsumption") double totalWConsumption,
              @RequestParam("bill_img") MultipartFile billImg,
-            HttpServletRequest request, HttpSession session) throws IOException {
+            HttpServletRequest request, HttpSession session, Model model) throws IOException {
 
         int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
 
         String fullAddress = address1 + "<br>" + address2 + "<br>" + postcode + ", " + city + "<br>" + state;
+        User user = userServices.getUserById(userid);
+    
+       model.addAttribute("user", user);
 
         String inputdate = period;
         String split_values[] = inputdate.split("-");
@@ -192,7 +208,8 @@ public class electricityController {
     public ModelAndView updatebill(@RequestParam("billId") int billId, HttpSession session) {
         int userid = (int) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView("/Electricity/Editbill");
-
+        User user = userServices.getUserById(userid);
+ 
         String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM electricity WHERE id=?";
 
         List<Electricity> result = template.query(sql, new Object[] { billId }, new BeanPropertyRowMapper<>(Electricity.class));
@@ -201,7 +218,7 @@ public class electricityController {
             Electricity electricityBill = result.get(0);
 
             String period = electricityBill.getPeriod(electricityBill.getMonth(), electricityBill.getYear());
-            User user = electricityService.getUserById(userid);
+            
             modelAndView.addObject("user", user);
             modelAndView.addObject("electricityBill", electricityBill);
             modelAndView.addObject("period", period);

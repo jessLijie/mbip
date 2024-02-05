@@ -1,6 +1,9 @@
 package my.utm.ip.spring_jdbc.model;
 
 import java.sql.Date;
+import java.util.Arrays;
+
+import my.utm.ip.spring_jdbc.model.DAO.UserDAO;
 
 public class User {
     private int id;
@@ -170,5 +173,76 @@ public class User {
     }
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", birthdate=" + birthdate +
+                ", email='" + email + '\'' +
+                ", add1='" + add1 + '\'' +
+                ", add2='" + add2 + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", job='" + job + '\'' +
+                ", phone='" + phone + '\'' +
+                ", matricsNo='" + matricsNo + '\'' +
+                ", role='" + role + '\'' +
+                ", userImg=" + Arrays.toString(userImg) +
+                '}';
+    }
+    public void fromDAO(UserDAO dao) {
+        if (dao != null) {
+            this.id = dao.getId();
+            this.username = dao.getUsername();
+            this.password = dao.getPassword();
+            this.fullname = dao.getFullname();
+            this.birthdate = dao.getBirthdate();
+            this.email = dao.getEmail();
+            this.add1 = dao.getAdd1();
+            this.add2 = dao.getAdd2();
+            this.zipcode = dao.getZipcode();
+            this.state = dao.getState();
+            this.city = dao.getCity();
+            this.job = dao.getJob();
+            this.phone = dao.getPhone();
+            this.matricsNo = dao.getMatricsNo();
+            this.role = dao.getRole();
+            this.userImg = dao.getUserImg();
+        } else {
+            // Handle the case where dao is null (optional)
+        }
+    }
+
+    public UserDAO toDAO() {
+        UserDAO dao = new UserDAO();
+
+        dao.setId(this.id);
+        dao.setUsername(this.username);
+        dao.setPassword(this.password);
+        dao.setFullname(this.fullname);
+        dao.setBirthdate(this.birthdate);
+        dao.setEmail(this.email);
+        dao.setAdd1(this.add1);
+        dao.setAdd2(this.add2);
+        dao.setZipcode(this.zipcode);
+        dao.setState(this.state);
+        dao.setCity(this.city);
+        dao.setJob(this.job);
+        dao.setPhone(this.phone);
+        dao.setMatricsNo(this.matricsNo);
+        dao.setRole(this.role);
+        dao.setUserImg(this.userImg);
+
+        return dao;
+    }
+
+    public User(UserDAO dao) {
+        this.fromDAO(dao);
     }
 }
