@@ -76,6 +76,4 @@ public class RecycleRepository_JDBC  implements RecycleRepository {
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(UserDAO.class));
     }
 
-   
-
 }
