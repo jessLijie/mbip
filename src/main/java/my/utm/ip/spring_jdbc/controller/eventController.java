@@ -5,12 +5,14 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import my.utm.ip.spring_jdbc.model.Event;
 import my.utm.ip.spring_jdbc.model.User;
@@ -19,6 +21,7 @@ import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,6 +67,13 @@ public class eventController {
         String sql = "SELECT * FROM event WHERE id = ?";
         Event event = template.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Event.class));
 
+        if (event.getImageData() != null) {
+            String imagedata = Base64.getEncoder().encodeToString(event.getImageData());
+            mv.addObject("eventImg", imagedata);
+        } else {
+            mv.addObject("eventImg", ""); // Set an empty string or some default value
+        }
+
         mv.addObject("event", event);
         return mv;
     }
@@ -75,8 +85,8 @@ public class eventController {
                     @RequestParam("location") String location,
                     @RequestParam("organizer") String organizer,
                     @RequestParam("desc") String desc, 
-                    @RequestParam("event_img") byte[] event_img,
-                    HttpServletRequest request, HttpSession session) {
+                    @RequestParam("event_img") MultipartFile event_img,
+                    HttpServletRequest request, HttpSession session) throws IOException {
     
         int userid = (int) session.getAttribute("userid");
     
@@ -92,7 +102,10 @@ public class eventController {
         event.setLocation(location);
         event.setOrganizer(organizer);
         event.setDescription(desc);
-        event.setImageData(event_img);
+        if (!event_img.isEmpty()) {
+            byte[] fileBytes = event_img.getBytes();
+            event.setImageData(fileBytes);
+        }
         event.setUserid(userid);
         
 
@@ -111,8 +124,8 @@ public class eventController {
                     @RequestParam("location") String location,
                     @RequestParam("organizer") String organizer,
                     @RequestParam("desc") String desc, 
-                    @RequestParam("event_img") byte[] event_img,
-                    HttpServletRequest request, HttpSession session) {
+                    @RequestParam("event_img") MultipartFile event_img,
+                    HttpServletRequest request, HttpSession session) throws IOException{
     
         int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
@@ -125,11 +138,16 @@ public class eventController {
         event.setLocation(location);
         event.setOrganizer(organizer);
         event.setDescription(desc);
-        event.setImageData(event_img);
+        
+        if (!event_img.isEmpty()) {
+            byte[] fileBytes = event_img.getBytes();
+            event.setImageData(fileBytes);
+        }
+
         event.setUserid(userid);
 
         String sql = "UPDATE event SET title=?, start_date=?, end_date=?, location=?, organizer=?, description=?, image_data=?, userid=? WHERE id=?";
-    template.update(sql, event.getTitle(), event.getStartDate(), event.getEndDate(), event.getLocation(), event.getOrganizer(), event.getDescription(), event.getImageData(), event.getUserid(), event.getId());
+        template.update(sql, event.getTitle(), event.getStartDate(), event.getEndDate(), event.getLocation(), event.getOrganizer(), event.getDescription(), event.getImageData(), event.getUserid(), event.getId());
 
         // Redirect to the event list page
         return "redirect:/event/events";

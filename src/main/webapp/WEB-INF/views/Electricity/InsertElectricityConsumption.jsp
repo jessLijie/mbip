@@ -32,40 +32,37 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     <div class="col-md-2">
                         <label for="address" class="form-label"><b>Address</b></label>
                     </div>
-<<<<<<< HEAD
-
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-md-2">
-                            <label for="state"><b>State</b></label>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" id="state" name="state" value
-                                class="form-control"
-                                required><!--retrieve state-->
-                        </div>
-                        <div class="col-md-2">
-                            <label for="city"><b>City</b></label>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" id="city" name="city" value
-                                class="form-control"
-                                required><!--retrieve city-->
-                        </div>
+                    <div class="col-md-10">
+                        <input type="text" id="address1" name="address1" value="${user.add1}" class="form-control mb-3" required><!--retrive address1-->
+                        <input type="text" id="address2" name="address2" value="${user.add2}" class="form-control" required><!--retrive address2-->
                     </div>
+                </div>
 
-                    <div class="row mb-4 align-items-center">
-                        <div class="col-md-2">
-                            <label for="postcode"><b>Postcode</b></label>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" id="postcode" name="postcode"
-                                maxlength="5" value
-                                class="form-control"
-                                required><!--retrieve postcode-->
-                        </div>
+                <div class="row mb-3 align-items-center">
+                    <div class="col-md-2">
+                        <label for="state"><b>State</b></label>
                     </div>
+                    <div class="col-md-4">
+                        <input type="text" id="state" name="state" value="${user.state}" class="form-control" required><!--retrieve state-->
+                    </div>
+                    <div class="col-md-2">
+                        <label for="city"><b>City</b></label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" id="city" name="city" value="${user.city}" class="form-control" required><!--retrieve city-->
+                    </div>
+                </div>
 
-                    <hr>
+                <div class="row mb-4 align-items-center">
+                    <div class="col-md-2">
+                        <label for="postcode"><b>Postcode</b></label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" id="postcode" name="postcode" maxlength="5" value="${user.zipcode}" class="form-control" required><!--retrieve postcode-->
+                    </div>
+                </div>
+            
+                <hr>
 
                     <!--insert section-->
                     <b class="mt-4 text-center d-block fs-5">ELECTRICITY
@@ -115,11 +112,6 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                                 class="btn btn-lg px-5"
                                 style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button>
                         </a>
-=======
-                    <div class="col-md-10">
-                        <input type="text" id="address1" name="address1" value="${user.add1}" class="form-control mb-3" required><!--retrive address1-->
-                        <input type="text" id="address2" name="address2" value="${user.add2}" class="form-control" required><!--retrive address2-->
->>>>>>> 2837b66e7453e9efdc2f22d7ac483c84b07ac64c
                     </div>
                 </div>
 

@@ -13,7 +13,22 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
+<script>
+function validateFileSize() {
+    var fileInput = document.getElementById('event_img');  // Correct id here
+    var maxFileSize = 50 * 1024; // 50KB in bytes
 
+    if (fileInput.files.length > 0) {
+        var fileSize = fileInput.files[0].size; // in bytes
+
+        if (fileSize > maxFileSize) {
+            alert('File size exceeds 50KB. Please choose a smaller file.');
+            // Reset the file input
+            fileInput.value = '';
+        }
+    }
+}
+</script>
 <%@include file="/WEB-INF/views/navbar.jsp" %>
 <body style="background-color: #CCF3EA">
     <div class="col-auto mx-5 mb-4 mt-5" onclick="window.location.href='/event/events';">
@@ -32,7 +47,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     </div>
     
     <div class="container mt-2 justify-content-center" style="width: 60%">
-        <form action="/event/editEvent" method="post">
+        <form action="/event/editEvent" method="post" enctype="multipart/form-data">
             <div class="bg-white p-4 px-5 rounded shadow m-3"> 
                 <b class="mb-4 mt-2 text-center d-block fs-3">EVENT FORM</b>
                 <input type="hidden" id="eventId" name="eventId" value="${event.id}">
@@ -94,13 +109,18 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     </div>
                 </div>
 
+                <!-- Display the current image -->
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="data:image/jpeg;base64,${eventImg}" alt="Event Image" style="width: 40%">
+                </div>
+
                 <!-- Upload Section -->
-                <p style="color:red"><b>**Please upload image related for reference (eg: jpg, png)</b></p>
+                <p style="color:red"><b>**Please upload a new image for reference (eg: jpg, png)</b></p>
 
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3">
                         <div class="input-group">
-                            <input type="file" id="bill_img" name="event_img" class="form-control" value="${event.imageData}" accept=".jpg, .jpeg, .png" required>
+                            <input type="file" id="event_img" name="event_img" class="form-control" accept=".jpg, .jpeg, .png" required onchange="validateFileSize()">
                         </div>
                     </div>
                 </div>

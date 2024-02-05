@@ -12,7 +12,22 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
-
+<script>
+    function validateFileSize() {
+        var fileInput = document.getElementById('bill_img');  // Correct id here
+        var maxFileSize = 50 * 1024; // 50KB in bytes
+    
+        if (fileInput.files.length > 0) {
+            var fileSize = fileInput.files[0].size; // in bytes
+    
+            if (fileSize > maxFileSize) {
+                alert('File size exceeds 50KB. Please choose a smaller file.');
+                // Reset the file input
+                fileInput.value = '';
+            }
+        }
+    }
+</script>
 <%@include file="../navbar.jsp"%> 
 <body style="background-color: #CCF3EA">
     <button type="button" class="px-4 p-2 m-4 mb-0 ms-5 rounded shadow" style="background-color: #A7C3F9; border:none;" onclick="window.location.href='/water/WaterHistory;'">
@@ -90,7 +105,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3">
                         <div class="input-group">
-                            <input type="file" id="bill_img" name="bill_img" class="form-control" accept=".jpg, .jpeg, .png" required>
+                            <input type="file" id="bill_img" name="bill_img" class="form-control" accept=".jpg, .jpeg, .png" required onchange="validateFileSize()">
                         </div>
                     </div>
                 </div>

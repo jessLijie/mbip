@@ -60,7 +60,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 <div class="bg-white p-4 px-5 rounded shadow m-3 text-center"><!--current recycle consumption section-->
                     <img src="/images/recycleConsumption.png" alt="Current Recycle Consumption" width="80" height="75">
                     <div class="d-flex flex-column align-items-center justify-content-center mb-3">
-                        <span class="mt-2">Total Recycle Consumption (m<sup>3</sup>)</span>
+                        <span class="mt-2">Total Recycle Consumption (kg)</span>
                         <h1 class="mt-auto mb-0"><b><fmt:formatNumber value="${sumConsumption}" pattern="0.00"/></b></h1>
                     </div>
                 </div>
@@ -94,11 +94,6 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     <div class="row mb-4">
                         <div class="col-md-6"><b>Period:</b></div>
                         <div class="col-md-6">${period}</div>
-                    </div>
-
-                    <div class="row mb-4">
-                        <div class="col-md-6"><b>Prorata Factor:</b></div>
-                        <div class="col-md-6">1.03333</div>
                     </div>
 
                     <div class="row mb-5">

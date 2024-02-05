@@ -51,14 +51,15 @@
                     </a>
                 </c:when> 
             </c:choose>
-            
-                <div class="title"><h1>${event.title}</h1></div>
+
+            <div class="rounded" style="background-color: #fff; border: 1px solid #ddd;">
+                <div class="text-center mt-5"><h1>${event.title}</h1></div>
                 <div class="image-container">
-                    <img src="data:image/png;base64,${event.base64Image}" alt="Event Image">
+                    <img src="data:image/png;base64,${event.base64Image}" alt="Event Image" style="width: 30%">
                 </div>
                 <div class="event-details">
                 <div class="event-content">
-                    <h4>Event Details 📅</h4>
+                    <h4 class="fw-bold">Event Details 📅</h4>
                     <br>
                     <p><strong>Date:</strong> 
                         <fmt:parseDate value="${event.startDate}" pattern="yyyy-MM-dd" var="parsedStartDate"/>
@@ -73,6 +74,7 @@
                     <p><strong>Organizer:</strong> ${event.organizer}</p>
                    
                     <p>${event.description}</p>
+                </div>
                 </div>
             </div>
         </div>

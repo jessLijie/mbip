@@ -82,7 +82,11 @@ thead {
 .col4 {
   width: 35%;
   padding-bottom: 15px;
-  text-align: right;
+  display:flex;
+  align-items: end;
+  flex-direction: row;
+  justify-content:flex-end;
+  width: 100%;
 }
 svg {
   margin-right: 10px;

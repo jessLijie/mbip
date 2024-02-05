@@ -12,7 +12,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             <link rel="stylesheet" type="text/css" href="/static/css/Bill/viewdetails.css">
 
         </head>
-        <jsp:include page="../navbar.jsp" />
+        <%@include file="../navbar.jsp"%> 
 
         <body>
             <div id="main">

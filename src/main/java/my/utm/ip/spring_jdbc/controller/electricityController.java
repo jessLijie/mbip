@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,14 +25,24 @@ public class electricityController {
     JdbcTemplate template;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private ElectricityService electricityService;
 
     @Autowired
     private AllTypeService allTypeService;
 
     @RequestMapping({ "/Electricity" })
-    public String mainpage() {
-        return "/Electricity/InsertElectricityConsumption";
+    public ModelAndView mainpage(HttpSession session) {
+        int userid = (int) session.getAttribute("userid");
+        session.setAttribute("userid", userid);
+        ModelAndView modelAndView = new ModelAndView("/Electricity/InsertElectricityConsumption"); // Corrected view name
+        User user = userService.getUserById(userid);
+    
+        modelAndView.addObject("user", user);
+    
+        return modelAndView;
     }
 
     @RequestMapping({ "/ElectricityHistory" })
