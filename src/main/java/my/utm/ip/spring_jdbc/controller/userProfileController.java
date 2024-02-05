@@ -202,11 +202,17 @@ public class userProfileController {
     }
 
     @RequestMapping("/forgotPassword")
-    public String forgotpassword(@RequestParam("username")String username,
+    public ModelAndView forgotpassword(){
+        ModelAndView mv = new ModelAndView ("/Profile/forgotPassword");
+        return mv;
+    }
+
+    @RequestMapping("/updatePassword")
+    public String updatePassword(@RequestParam("username")String username,
     @RequestParam("email")String email,
     @RequestParam("password")String password
     ){
-        return "/welcome";
+        return "welcome";
     }
 
 

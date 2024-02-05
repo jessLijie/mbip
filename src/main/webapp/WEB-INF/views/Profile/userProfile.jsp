@@ -38,7 +38,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                       </c:if>
                       <c:if test="${empty userImg}">
                           <!-- Display a placeholder or default image if userImg is empty -->
-                          <img src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="Default Image">
+                          <img src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" style="width: 200px; height: 200px; border: 2px solid #000; border-radius: 50%;" alt="Default Image">
                       </c:if>
 
                         <div class="mt-3">
