@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import my.utm.ip.spring_jdbc.model.Electricity;
 import my.utm.ip.spring_jdbc.model.User;
 import my.utm.ip.spring_jdbc.services.ElectricityService;
+import my.utm.ip.spring_jdbc.services.UserService;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -26,8 +28,6 @@ public class electricityController {
     @Autowired
     JdbcTemplate template;
 
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private ElectricityService electricityService;
@@ -40,7 +40,7 @@ public class electricityController {
         int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
         ModelAndView modelAndView = new ModelAndView("/Electricity/InsertElectricityConsumption"); // Corrected view name
-        User user = userService.getUserById(userid);
+        User user = electricityService.getUserById(userid);
     
         modelAndView.addObject("user", user);
     
