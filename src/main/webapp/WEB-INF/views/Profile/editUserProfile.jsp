@@ -8,6 +8,9 @@
     <title>Editing Profile</title>
 </head>
 <style>
+    body{
+        background-color: #ccf3ea;
+    }
     .main-body{
         margin-top: 10px;
     }
