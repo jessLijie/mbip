@@ -32,7 +32,6 @@ public class RecycleRepository_JDBC  implements RecycleRepository {
         if (selectedMonths == null || selectedMonths.length == 0) {
             throw new IllegalArgumentException("Selected months must not be null or empty");
         }
-
         String sql = "SELECT * FROM recycle WHERE userid = ? AND year = ? AND month IN ("
                 + String.join(",", Collections.nCopies(selectedMonths.length, "?")) + ")";
 

@@ -276,7 +276,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       Download
                     </button>
                   </a>
-                  <a href="/recycle/RecycleHistoryDetail?billId=${recycle.id}"></a>
+
+                  <a href="/recycle/RecycleUpdateBill?billId=${recycle.id}">
                     <button class="viewdetailbutton">
      
                         <svg
