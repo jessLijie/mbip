@@ -12,7 +12,6 @@ import my.utm.ip.spring_jdbc.model.User;
 public class UserServiceImpl implements UserService {
     
     public User getUserById(int userid) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getUserById'");
     }
 }
