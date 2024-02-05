@@ -42,8 +42,9 @@ public class RecycleController {
     @Autowired
     private AllTypeService allTypeService;
 
-@Autowired
+    @Autowired
     private UserService userService;
+    
     @RequestMapping({ "/RecycleHistory" })
     public ModelAndView historypage(HttpSession session) {
 

@@ -31,9 +31,9 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <div class="outcontainer">
         <div class="outcontainer2" style="margin-top: 15px">
           <table class="tablehistory">
-            <thead class="text-center mb-3">
+            <thead class="text-center">
               <td class="col">ID</td>
-              <td class="col3">Title</td>
+              <td class="col2">Title</td>
               <td class="col">Start Date</td>
               <td class="col">End Date</td>
               <td class="col">Location</td>

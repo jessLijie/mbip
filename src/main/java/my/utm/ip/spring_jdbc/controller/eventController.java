@@ -5,7 +5,6 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,16 +18,12 @@ import my.utm.ip.spring_jdbc.model.User;
 import my.utm.ip.spring_jdbc.services.EventService;
 import my.utm.ip.spring_jdbc.services.UserService;
 
-import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
-import java.util.Collections;
 import java.util.List;
 import java.util.Date;
 
@@ -40,7 +35,7 @@ public class eventController {
 
     @Autowired
     private EventService eventService;
-    
+
     @Autowired
     private UserService userService;
 
@@ -235,7 +230,7 @@ public class eventController {
     @RequestMapping("/event/details/{eventId}")
     public ModelAndView eventDetails(@PathVariable("eventId") int eventId, HttpSession session) {
         int userid = (int) session.getAttribute("userid");
-        User user = eventService.getUserById(userid);
+        User user = userService.getUserById(userid);
 
         Event event = eventService.getEventById(eventId);
         // Convert image data to Base64 for displaying in HTML

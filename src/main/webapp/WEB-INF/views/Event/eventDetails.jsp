@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" import="java.util.*"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,6 @@
 </head>
 <%@include file="/WEB-INF/views/navbar.jsp" %>
 <body style="background-color: #ccf3ea;">
-
     <c:if test="${not empty event}">
         <div class="container">
             <c:choose>
@@ -51,7 +50,7 @@
                     </a>
                 </c:when> 
             </c:choose>
-
+            
             <div class="rounded" style="background-color: #fff; border: 1px solid #ddd;">
                 <div class="text-center mt-5"><h1>${event.title}</h1></div>
                 <div class="image-container">

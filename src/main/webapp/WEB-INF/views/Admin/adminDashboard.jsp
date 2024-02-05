@@ -10,8 +10,11 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
         <link rel="stylesheet" href="/static/css/Bill/History.css">
     </head>
     <%@include file="/WEB-INF/views/navbar.jsp" %>
-    <body>
-        
+    <body style="background-color: #ccf3ea">
+        <div class="text-center pt-5 pb-2">
+          <h2>Event List</h2>
+        </div>
+
         <div class="outcontainer">
             <div class="outcontainer2">
               <table class="tablehistory">
@@ -29,7 +32,6 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                           <td>${user.fullname}</td>
                           <td>${user.email}</td>
                           <td><a href="/viewrecord?userid=${user.id}" style="text-decoration: none;"><i class="fas fa-eye" id="eyeIcon"></i></a></td>
-                          
                       </tr>
                   </c:forEach>
               </tbody>

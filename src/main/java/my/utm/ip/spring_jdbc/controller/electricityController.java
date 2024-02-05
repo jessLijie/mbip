@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import my.utm.ip.spring_jdbc.model.Electricity;
 import my.utm.ip.spring_jdbc.model.User;
 import my.utm.ip.spring_jdbc.services.ElectricityService;
+import my.utm.ip.spring_jdbc.services.UserService;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
