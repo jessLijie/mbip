@@ -266,7 +266,7 @@ public class electricityController {
                 electricity.getMonth(), electricity.getCurrentConsumption(),
                 electricity.getCarbonFootprint(), electricity.getBillImg(), electricity.getId());
 
-        ModelAndView mv = new ModelAndView("/Electricity/ElectricityHistory");
+        ModelAndView mv = new ModelAndView("redirect:/electricity/ElectricityHistory");
         return mv;
     }
 }
