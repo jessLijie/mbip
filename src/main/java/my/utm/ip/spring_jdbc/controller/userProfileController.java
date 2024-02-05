@@ -206,7 +206,7 @@ public class userProfileController {
     @RequestParam("email")String email,
     @RequestParam("password")String password
     ){
-        
+        return "/welcome";
     }
 
 
