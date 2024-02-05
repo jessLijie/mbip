@@ -33,8 +33,8 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <label for="address" class="form-label"><b>Address</b></label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" id="address1" name="address1" value="" class="form-control mb-3" required><!--retrive address1-->
-                        <input type="text" id="address2" name="address2" value="" class="form-control" required><!--retrive address2-->
+                        <input type="text" id="address1" name="address1" value="${user.add1}" class="form-control mb-3" required><!--retrive address1-->
+                        <input type="text" id="address2" name="address2" value="${user.add2}" class="form-control" required><!--retrive address2-->
                     </div>
                 </div>
 
@@ -43,13 +43,13 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <label for="state"><b>State</b></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" id="state" name="state" value="" class="form-control" required><!--retrieve state-->
+                        <input type="text" id="state" name="state" value="${user.state}" class="form-control" required><!--retrieve state-->
                     </div>
                     <div class="col-md-2">
                         <label for="city"><b>City</b></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" id="city" name="city" value="" class="form-control" required><!--retrieve city-->
+                        <input type="text" id="city" name="city" value="${user.city}" class="form-control" required><!--retrieve city-->
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <label for="postcode"><b>Postcode</b></label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text" id="postcode" name="postcode" maxlength="5" value="" class="form-control" required><!--retrieve postcode-->
+                        <input type="text" id="postcode" name="postcode" maxlength="5" value="${user.zipcode}" class="form-control" required><!--retrieve postcode-->
                     </div>
                 </div>
             
@@ -90,7 +90,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3">
                         <div class="input-group">
-                            <input type="file" id="formFile" class="form-control" accept=".jpg, .jpeg, .png" required>
+                            <input type="file" id="bill_img" name="bill_img" class="form-control" accept=".jpg, .jpeg, .png" required>
                         </div>
                     </div>
                 </div>
