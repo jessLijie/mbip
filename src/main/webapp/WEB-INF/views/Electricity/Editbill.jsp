@@ -161,7 +161,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <div class="row mb-5 align-items-center">
             <div class="col-md-6">
               <label for="totalWConsumption"
-                ><b>Total Consumption (kg)</b></label
+                ><b>Total Consumption (kWh)</b></label
               >
             </div>
             <div class="col-md-6">

@@ -201,9 +201,6 @@ public class userProfileController {
         return "redirect:/profile";
     }
 
-<<<<<<< HEAD
-
-=======
     @RequestMapping("/forgotPassword")
     public ModelAndView forgotpassword(){
         ModelAndView mv = new ModelAndView ("/Profile/forgotPassword");
@@ -217,7 +214,6 @@ public class userProfileController {
     ){
         return "welcome";
     }
->>>>>>> 0ab5ae2d9b48b260980af92ae17f6e31454d0480
 
 
 }
