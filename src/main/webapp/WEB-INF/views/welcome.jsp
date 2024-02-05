@@ -47,11 +47,11 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
           </div>
           <span>or use your account</span>
           <input type="text" placeholder="Username" name="username"required />
-          <input type="password" placeholder="Password" name="password" id="passwordInput" required />
-          <button type="button" id="togglePassword">
-            <i class="fas fa-eye" id="eyeIcon"></i> Show Password
+          <input type="password" placeholder="Password" name="password" id="passwordInputSignIn" required />
+          <button type="button" id="togglePasswordSignIn">
+            <i class="fas fa-eye" id="eyeIconSignIn"></i> Show Password
             </button>
-          <a href="#">Forgot your password?</a>
+          <a href="">Forgot your password?</a>
           <!-- temp -->
           <button type="submit">Sign In</button>
           <!-- <a href="/userDashboard"style="text-decoration: none;"></a> -->
@@ -78,6 +78,21 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     document.getElementById("togglePassword").addEventListener("click", function () {
         var passwordInput = document.getElementById("passwordInput");
         var eyeIcon = document.getElementById("eyeIcon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.classList.remove("fa-eye");
+            eyeIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.classList.remove("fa-eye-slash");
+            eyeIcon.classList.add("fa-eye");
+        }
+    });
+
+    document.getElementById("togglePasswordSignIn").addEventListener("click", function () {
+        var passwordInput = document.getElementById("passwordInputSignIn");
+        var eyeIcon = document.getElementById("eyeIconSignIn");
 
         if (passwordInput.type === "password") {
             passwordInput.type = "text";

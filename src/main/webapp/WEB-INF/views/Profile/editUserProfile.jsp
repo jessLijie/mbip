@@ -22,14 +22,29 @@
 <%@include file="/WEB-INF/views/navbar.jsp" %>
 <body>
     <div class="container">
-        <form action="/profile/update" method="post">
+        <form action="/profile/update" method="post" enctype="multipart/form-data">
         <div class="main-body">
             <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="Admin" class="rounded-circle" width="150">
+                                <c:if test="${not empty userImg}">
+                                    <img src="data:image/jpeg;base64,${userImg}" alt="User Image" style="width: 200px; height: 200px; border: 2px solid #000; border-radius: 50%;">
+                                </c:if>
+                                <c:if test="${empty userImg}">
+                                    <!-- Display a placeholder or default image if userImg is empty -->
+                                    <img src="https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="Default Image">
+                                </c:if>
+                                <br>                                <div class="input-group">
+                                    <input
+                                      type="file"
+                                      id="userImg"
+                                      name="userImg"
+                                      class="form-control"
+                                      accept=".jpg, .jpeg, .png"
+                                    />
+                                  </div>
                                 <div class="mt-3">
                                     <h4>${fullname}</h4>
                                     <p class="text-secondary mb-1">Student ID: ${matricsNo}</p>
