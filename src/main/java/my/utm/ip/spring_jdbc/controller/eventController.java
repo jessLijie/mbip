@@ -42,7 +42,7 @@ public class eventController {
     private EventService eventService;
     
     @Autowired
-    private UserService userService;
+    private UserSevices userServices;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -54,6 +54,11 @@ public class eventController {
     public ModelAndView allEvents(HttpSession session){
         ModelAndView mv = new ModelAndView("/Event/eventList_Admin");
         List<Event> eventList = eventService.getAllEvents();
+        int userid = (int) session.getAttribute("userid");
+        session.setAttribute("userid", userid);
+        User user = userServices.getUserById(userid);
+    
+        mv.addObject("user", user);
         mv.addObject("eventList", eventList);
         return mv;
     }
@@ -235,7 +240,7 @@ public class eventController {
     @RequestMapping("/event/details/{eventId}")
     public ModelAndView eventDetails(@PathVariable("eventId") int eventId, HttpSession session) {
         int userid = (int) session.getAttribute("userid");
-        User user = eventService.getUserById(userid);
+        User user = userServices.getUserById(userid);
 
         Event event = eventService.getEventById(eventId);
         // Convert image data to Base64 for displaying in HTML

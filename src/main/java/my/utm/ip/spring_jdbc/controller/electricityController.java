@@ -90,11 +90,11 @@ public class electricityController {
     public ModelAndView historyDetail(@RequestParam("billId") int billId, HttpSession session) {
         int userid = (int) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView("/Electricity/ElectricityHistoryDetail");
-
+        User user = userServices.getUserById(userid);
         Electricity electricityBill = electricityService.getElectricityById(billId);
 
         String period = Electricity.getPeriod(electricityBill.getMonth(), electricityBill.getYear());
-
+        modelAndView.addObject("user", user);
         modelAndView.addObject("electricityBill", electricityBill);
         modelAndView.addObject("period", period);
 
@@ -123,7 +123,6 @@ public class electricityController {
         modelAndView.addObject("period", period);
         modelAndView.addObject("user", user);
         
-        System.out.println("User Object: " + user);
     } else {
         // Handle the case where user is null
         System.out.println("User not found for userid: " + userid);
