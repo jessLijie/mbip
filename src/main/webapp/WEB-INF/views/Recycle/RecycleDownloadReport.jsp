@@ -82,7 +82,6 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     <tr>
                         <td><b>Phone Number: </b></td>
                         <td>${user.getPhone()}</td>
-                        <h2>${userphone}</h2>
                     </tr>
                     <tr>
                         <td style="vertical-align: top;"><b>Address: </b></td>
