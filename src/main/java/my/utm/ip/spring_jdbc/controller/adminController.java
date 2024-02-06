@@ -1,4 +1,5 @@
 package my.utm.ip.spring_jdbc.controller;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import my.utm.ip.spring_jdbc.model.Bill;
+
 import my.utm.ip.spring_jdbc.model.User;
+
+
 
 @Controller
 public class adminController {
@@ -88,9 +93,9 @@ public class adminController {
         return mv;
     }
 
-    @RequestMapping("/adminDashboard")
-    public ModelAndView dashboard(HttpSession session) {
-        ModelAndView mv = new ModelAndView("/Admin/adminDashboard");
+    @RequestMapping("/userList")
+    public ModelAndView userList(HttpSession session) {
+        ModelAndView mv = new ModelAndView("/Admin/adminUserList");
         int userid = (int) session.getAttribute("userid");
         mv.addObject("userid", userid);
 
@@ -111,4 +116,9 @@ public class adminController {
 
         return mv;
     }
+  
+
+    
+
+
 }

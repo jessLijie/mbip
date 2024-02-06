@@ -15,7 +15,7 @@
     <center>
         <div style="background-color: none">
             <!-- Update Password Form -->
-            <form action="/updatePassword" onsubmit="return checkPasswords()">
+            <form action="/updatePassword" onsubmit="return checkPasswords() && updateSuccess()">
                 <h1>Reset Password</h1>
 
                 <input type="text" placeholder="Fullname" name="fullname" required />
@@ -28,7 +28,7 @@
                     <i class="fas fa-eye" id="eyeIcon"></i> Show Password
                 </button>
                 <br />
-                <button type="submit">
+                <button type="submit" >
                     Update Password
                 </button>
             </form>
@@ -50,6 +50,9 @@
             }
         }
 
+        function updateSuccess(){
+          window.alert("Password updated successfully!")
+        }
         document.getElementById("passwordInput").addEventListener("input", checkPasswords);
         document.getElementById("passwordInput2").addEventListener("input", checkPasswords);
 
@@ -70,6 +73,7 @@
                 eyeIcon.classList.add("fa-eye");
             }
         });
+
     </script>
 
     <script src="../static/js/script.js"></script>
