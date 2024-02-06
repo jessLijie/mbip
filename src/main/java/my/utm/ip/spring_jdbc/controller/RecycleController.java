@@ -168,7 +168,7 @@ public class RecycleController {
         } else {
             String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM recycle WHERE id=?";
 
-            Recycle result = template.queryForObject(sql, new Object[]{id},
+            Recycle result = template.queryForObject(sql, new Object[]{billId},
                     new BeanPropertyRowMapper<>(Recycle.class));
             if (result.getBillImg() != null) {
                 recycle.setBillImg(result.getBillImg());

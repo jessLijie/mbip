@@ -191,13 +191,7 @@ public class userProfileController {
             sql= "UPDATE user SET userImg=? WHERE id=?";
             template.update(sql,fileBytes, userid);
             
-        } else {
-            String sql1 = "select userImg from user where id=" + userid;
-            byte[] fileBytes = template.queryForObject(sql1, new Object[] { userid }, byte[].class);
-            sql= "UPDATE user SET userImg=? WHERE id=?";
-            template.update(sql,fileBytes, userid);
-           
-        }
+        } 
         return "redirect:/profile";
     }
 
@@ -213,6 +207,7 @@ public class userProfileController {
     @RequestParam("password")String password
     ){
         String sql = "UPDATE user SET password=? WHERE fullname=? AND email=?";
+        System.out.println(fullname+" " +email +" " +password);
         template.update(sql,password, fullname,email);
         return "welcome";
     }
