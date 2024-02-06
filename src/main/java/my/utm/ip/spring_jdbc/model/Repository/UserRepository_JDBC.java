@@ -11,9 +11,9 @@ import my.utm.ip.spring_jdbc.model.DAO.UserDAO;
 public class UserRepository_JDBC implements UserRepository{
     @Autowired
     JdbcTemplate jdbcTemplate;
+    
     public UserDAO getUserById(int id) {
         String sql = "SELECT * FROM user WHERE id = ?";
-        System.out.println("Executing SQL: " + sql + " with parameter: " + id);
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(UserDAO.class));
     }
     
