@@ -13,9 +13,11 @@ public class User {
     private String add2;
     private String zipcode;
     private String state;
+    private String city;
     private String job;
     private String phone;
     private String matricsNo;
+    private String role;
 
     public User() {
         this.id = 0;
@@ -28,9 +30,11 @@ public class User {
         this.add2 = "";
         this.zipcode = "";
         this.state = "";
+        this.city = "";
         this.job = "";
         this.phone = "";
         this.matricsNo = "";
+        this.role = "";
     }
 
     
@@ -44,7 +48,7 @@ public class User {
 
 
     public User(int id, String username, String password, String fullname, Date birthdate, String email, String add1,
-            String add2, String zipcode, String state, String job, String phone, String matricsNo) {
+            String add2, String zipcode, String state, String city, String job, String phone, String matricsNo, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -55,9 +59,11 @@ public class User {
         this.add2 = add2;
         this.zipcode = zipcode;
         this.state = state;
+        this.city = city;
         this.job = job;
         this.phone = phone;
         this.matricsNo = matricsNo;
+        this.role = role;
     }
 
     public int getId() {
@@ -120,6 +126,12 @@ public class User {
     public void setState(String state) {
         this.state = state;
     }
+    public void setCity(String city) {
+        this.city = city;;
+    }
+    public String getCity() {
+        return city;
+    }
     public String getJob() {
         return job;
     }
@@ -137,7 +149,11 @@ public class User {
     }
     public void setMatricsNo(String matricsNo) {
         this.matricsNo = matricsNo;
-}
-
-
+    }
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

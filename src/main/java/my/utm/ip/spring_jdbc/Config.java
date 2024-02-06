@@ -14,6 +14,7 @@ public class Config {
  source.setUrl("jdbc:mysql://localhost:3306/mbip");
  source.setUsername("root");
  source.setPassword("ngqianhui0594");
+
  return source;
  }
  @Bean

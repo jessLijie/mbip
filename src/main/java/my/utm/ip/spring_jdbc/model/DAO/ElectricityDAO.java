@@ -1,6 +1,8 @@
-package my.utm.ip.spring_jdbc.model;
+package my.utm.ip.spring_jdbc.model.DAO;
 
-public class Water {
+import java.util.Arrays;
+
+public class ElectricityDAO {
     private int id;
     private int userid;
     private String address;
@@ -10,7 +12,9 @@ public class Water {
     private double carbonFootprint;
     private byte[] bill_img;
 
-    public Water(int id, int userid, String address, int year, int month, double currentConsumption, double carbonFootprint, byte[] bill_img) {
+    // Constructor with parameters
+    public ElectricityDAO(int id, int userid, String address, int year, int month,
+                          double currentConsumption, double carbonFootprint, byte[] bill_img) {
         this.id = id;
         this.userid = userid;
         this.address = address;
@@ -21,7 +25,8 @@ public class Water {
         this.bill_img = bill_img;
     }
 
-    public Water() {
+    // Default constructor
+    public ElectricityDAO() {
         this.id = 0;
         this.userid = 0;
         this.address = "";
@@ -88,35 +93,23 @@ public class Water {
         this.carbonFootprint = carbonFootprint;
     }
 
-    public void setBillImg(byte[] bill_img){
-        this.bill_img = bill_img;
+    public byte[] getBillImg() {
+        return bill_img;
     }
 
-    public byte[] getBillImg(){
-        return bill_img;
+    public void setBillImg(byte[] bill_img) {
+        this.bill_img = bill_img;
     }
 
     @Override
     public String toString() {
-        return "Water{" +
-                "id=" + id +
+        return "ElectricityDAO [id=" + id +
                 ", userid=" + userid +
-                ", address='" + address + '\'' +
-                ", year='" + year + '\'' +
-                ", month='" + month + '\'' +
+                ", address=" + address +
+                ", year=" + year +
+                ", month=" + month +
                 ", currentConsumption=" + currentConsumption +
                 ", carbonFootprint=" + carbonFootprint +
-                '}';
-    }
-
-    public static String getPeriod(int month, int year) {
-        String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        if (month >= 1 && month <= 12) {
-            return monthNames[month - 1] + " " + year;
-        } else {
-            // Handle invalid month values
-            return "";
-        }
+                ", bill_img=" + Arrays.toString(bill_img) + "]";
     }
 }
-

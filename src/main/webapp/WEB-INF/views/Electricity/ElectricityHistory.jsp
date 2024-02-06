@@ -12,7 +12,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <script src="/static/js/Bill/ElectricityHistory.js"></script>
    
 </head>
-<jsp:include page="../navbar.jsp" />
+<%@include file="../navbar.jsp"%> 
 <body style="background-color: #ccf3ea;">
   
     

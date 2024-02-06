@@ -1,22 +1,20 @@
 <%@ page language="java" contentType="text/html;  charset=ISO-8859-1" 
 pageEncoding="ISO-8859-1" isELIgnored="false" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="my.utm.ip.spring_jdbc.model.Water" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Water History</title>
     <link rel="stylesheet" href="/static/css/Bill/History.css">
     <script src="/static/js/Bill/History.js"></script>
    
 </head>
-
+<%@include file="../navbar.jsp"%> 
 <body style="background-color: #ccf3ea;">
-  
-    
-      <a href="/Recycle">
+      <a href="/water/Water">
         <div class="backbtn">
         <svg  xmlns="http://www.w3.org/2000/svg" width="31" height="29" viewBox="0 0 31 29" fill="none">
             <ellipse cx="15.5" cy="13.5" rx="15.5" ry="13.5" transform="matrix(-1 0 0 1 31 0)"
@@ -32,9 +30,9 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
         </svg>
       </div>
       </a>
+      <div style="text-align: center;"><h2>Water History</h2></div>
     
     <div class="outcontainer">
-      
       <div class="outcontainer2">
         <table class="tablehistory">
           <thead>
@@ -98,7 +96,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="january"
                         name="month"
-                        value="01"
+                        value="January"
                       />
                       <label for="january">January</label><br />
 
@@ -106,7 +104,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="february"
                         name="month"
-                        value="02"
+                        value="February"
                       />
                       <label for="february">February</label><br />
 
@@ -114,7 +112,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="march"
                         name="month"
-                        value="03"
+                        value="March"
                       />
                       <label for="march">March</label><br />
 
@@ -122,7 +120,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="april"
                         name="month"
-                        value="04"
+                        value="April"
                       />
                       <label for="april">April</label><br />
 
@@ -130,7 +128,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="may"
                         name="month"
-                        value="05"
+                        value="May"
                       />
                       <label for="may">May</label><br />
 
@@ -138,7 +136,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="june"
                         name="month"
-                        value="06"
+                        value="June"
                       />
                       <label for="june">June</label><br />
                     </div>
@@ -147,7 +145,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="july"
                         name="month"
-                        value="07"
+                        value="July"
                       />
                       <label for="july">July</label><br />
 
@@ -155,7 +153,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="august"
                         name="month"
-                        value="08"
+                        value="August"
                       />
                       <label for="august">August</label><br />
 
@@ -163,7 +161,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="september"
                         name="month"
-                        value="09"
+                        value="September"
                       />
                       <label for="september">September</label><br />
 
@@ -171,7 +169,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="october"
                         name="month"
-                        value="10"
+                        value="October"
                       />
                       <label for="october">October</label><br />
 
@@ -179,7 +177,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="november"
                         name="month"
-                        value="11"
+                        value="November"
                       />
                       <label for="november">November</label><br />
 
@@ -187,28 +185,28 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         type="checkbox"
                         id="december"
                         name="month"
-                        value="12"
+                        value="December"
                       />
 
                       <label for="december">December</label><br /><br />
                     </div>
                   </div>
                   <div class="centerbutton">
-                  <button id="applyFilter" onclick="applyFilter()">Done</button>
+                  <button id="applyFilter" onclick="applyFilterWater()">Done</button>
                 </div>
                 </div>
               </div>
             </td>
           </thead>
           <tbody>
-            <c:forEach var="recycle" items="${recycleList}" varStatus="status" >
+            <c:forEach var="water" items="${waterList}" varStatus="status" >
                 <tr>
                     <td>${status.index + 1}</td>
-                    <td>${recycle.year}-${recycle.month}</td>
-                    <td>${recycle.address}</td>
+                    <td>${water.getPeriod(water.getMonth(), water.getYear())}</td>
+                    <td>${water.address}</td>
                    
                     <td class="button" >
-                      <a href="/RecycleHistoryView?billId=${recycle.id}">
+                      <a href="/water/WaterHistoryDetail?billId=${water.id}">
                       <div class="viewdetailbutton">
                        
                         <svg
@@ -230,7 +228,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         View Details
                       </div>
                     </a>
-                    <a href="RecycleDownloadReport?billId=${recycle.id}" >
+                    <a href="/water/WaterDownloadReport?billId=${water.id}" >
                       <button class="downloadbutton" >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -257,5 +255,5 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
         </table>
       </div>
     </div>
-  </body>
+  </body>
 </html>

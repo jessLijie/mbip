@@ -75,7 +75,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
         <div class="box" style="height: 350px; width: 350px" >
             <canvas id="pieChart"></canvas>
         </div>
-        <div class="box" style="height: 350px; width: 1050px">
+        <div class="box" style="height: 350px; width: 1000px">
             <canvas id="carbonFootprintChart" height="100"></canvas>
 
         </div>

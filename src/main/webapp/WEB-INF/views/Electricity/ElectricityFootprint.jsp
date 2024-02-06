@@ -18,7 +18,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             }
         </style>
     </head>
-    <jsp:include page="../navbar.jsp" />
+    <%@include file="../navbar.jsp"%> 
 
     <body style="background-color: #CCF3EA">
         <div class="container-fluid"><!--button container-->

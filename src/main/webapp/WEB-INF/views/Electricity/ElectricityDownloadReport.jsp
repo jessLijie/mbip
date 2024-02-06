@@ -24,7 +24,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             }
         </style>
     </head>
-    <jsp:include page="../navbar.jsp" />
+    <%@include file="/WEB-INF/views/navbar.jsp" %>
     <body>
         <div class="outcontainer">
             <div class="button-container">

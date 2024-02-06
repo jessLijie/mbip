@@ -45,17 +45,17 @@
             
             <c:if test="${role eq 'user'}">
             <li class="nav-item">
-              <a class="nav-link" href="/Water">Water</a>
+              <a class="nav-link" href="/water/Water">Water</a>
             </li></c:if>
 
             <c:if test="${role eq 'user'}">
             <li class="nav-item">
-                <a class="nav-link" href="/electricity/InsertElectricityConsumption">Electricity</a>
+                <a class="nav-link" href="/electricity/Electricity">Electricity</a>
               </li></c:if>
 
               <c:if test="${role eq 'user'}">
               <li class="nav-item">
-                <a class="nav-link" href="recycle/InsertRecycleConsumption">Recycle</a>
+                <a class="nav-link" href="recycle/RecycleHistory">Recycle</a>
               </li></c:if>
 
               <c:if test="${role eq 'user'}">
@@ -65,13 +65,19 @@
             
               <c:if test="${role eq 'admin'}">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">User List</a>
+                  <a class="nav-link" href="/adminDashboard">Dashboard</a>
                 </li>
               </c:if>
 
               <c:if test="${role eq 'admin'}">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Event</a>
+                  <a class="nav-link" href="/userList">User List</a>
+                </li>
+              </c:if>
+
+              <c:if test="${role eq 'admin'}">
+                <li class="nav-item">
+                  <a class="nav-link" href="/event/events">Event</a>
                 </li>
               </c:if>
           </ul>
@@ -106,8 +112,5 @@
           </c:if>
         </div>
       </nav>
-      
-      
-
 </body>
 </html>

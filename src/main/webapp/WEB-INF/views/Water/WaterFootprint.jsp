@@ -13,11 +13,12 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
+
 <%@include file="../navbar.jsp"%> 
 <body style="background-color: #CCF3EA">
     <div class="container-fluid"><!--button container-->
         <div class="row m-5">
-            <div class="col-auto" onclick="window.location.href='/water/InsertWaterConsumption';">
+            <div class="col-auto" onclick="window.location.href='/water/Water';">
                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="29" viewBox="0 0 31 29" fill="none">
                     <ellipse cx="15.5" cy="13.5" rx="15.5" ry="13.5" transform="matrix(-1 0 0 1 31 0)"
                         fill="#A7C3F9" />
@@ -47,7 +48,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                         <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5"/>
                         <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/>
                     </svg>
-                    <a href="/water/InsertWaterConsumption" style="text-decoration: none; color: black"><span class="ms-2"><b>Add Bills</b></span></a>
+                    <a href="/water/Water" style="text-decoration: none; color: black"><span class="ms-2"><b>Add Bills</b></span></a>
                 </button>
             </div>
         </div>

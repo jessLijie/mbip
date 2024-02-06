@@ -1,5 +1,7 @@
 package my.utm.ip.spring_jdbc.model;
 
+import my.utm.ip.spring_jdbc.model.DAO.RecycleDAO;
+
 public class Recycle {
     private int id;
     private int userid;
@@ -8,8 +10,9 @@ public class Recycle {
     private int month;
     private double currentConsumption;
     private double carbonFootprint;
+    private byte[] bill_img;
 
-    public Recycle(int id, int userid, String address, int year,int month, double currentConsumption, double carbonFootprint) {
+    public Recycle(int id, int userid, String address, int year, int month, double currentConsumption, double carbonFootprint, byte[] bill_img) {
         this.id = id;
         this.userid = userid;
         this.address = address;
@@ -17,7 +20,7 @@ public class Recycle {
         this.month = month;
         this.currentConsumption = currentConsumption;
         this.carbonFootprint = carbonFootprint;
-
+        this.bill_img = bill_img;
     }
 
     public Recycle() {
@@ -28,7 +31,7 @@ public class Recycle {
         this.month = 0;
         this.currentConsumption = 0.0;
         this.carbonFootprint = 0.0;
-
+        this.bill_img = null;
     }
 
     public int getId() {
@@ -59,13 +62,12 @@ public class Recycle {
         return year;
     }
 
-     public int getMonth() {
-        return month;
-    }
-    
-
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getMonth() {
+        return month;
     }
 
     public void setMonth(int month) {
@@ -88,6 +90,48 @@ public class Recycle {
         this.carbonFootprint = carbonFootprint;
     }
 
+    public void setBillImg(byte[] bill_img){
+        this.bill_img = bill_img;
+    }
+
+    public byte[] getBillImg(){
+        return bill_img;
+    }
+
+public void fromDAO(RecycleDAO dao) {
+        if (dao != null) {
+            this.id = dao.getId();
+            this.userid = dao.getUserid();
+            this.address = dao.getAddress();
+            this.year = dao.getYear();
+            this.month = dao.getMonth();
+            this.currentConsumption = dao.getCurrentConsumption();
+            this.carbonFootprint = dao.getCarbonFootprint();
+            this.bill_img = dao.getBillImg();
+        } else {
+            // Handle the case where dao is null (optional)
+        }
+    }
+
+    public RecycleDAO toDAO() {
+        RecycleDAO dao = new RecycleDAO();
+        
+        dao.setId(this.id);
+        dao.setUserid(this.userid);
+        dao.setAddress(this.address);
+        dao.setYear(this.year);
+        dao.setMonth(this.month);
+        dao.setCurrentConsumption(this.currentConsumption);
+        dao.setCarbonFootprint(this.carbonFootprint);
+        dao.setBillImg(this.getBillImg());
+
+        return dao;
+    }
+
+    public Recycle(RecycleDAO dao) {
+        this.fromDAO(dao);
+    }
+    
     @Override
     public String toString() {
         return "Recycle{" +
@@ -109,4 +153,7 @@ public class Recycle {
             // Handle invalid month values
             return "";
         }
-}}
+    }
+
+
+}

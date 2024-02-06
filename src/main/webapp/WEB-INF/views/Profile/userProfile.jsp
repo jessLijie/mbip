@@ -97,7 +97,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                           <h6 class="mb-0">Address</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          ${add1}, ${add2}, ${zipcode}, ${state}
+                          ${add1}, ${add2}, ${zipcode},${city}, ${state}
                         </div>
                       </div>
                       <hr>
