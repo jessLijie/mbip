@@ -12,7 +12,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     <%@include file="/WEB-INF/views/navbar.jsp" %>
     <body style="background-color: #ccf3ea">
         <div class="text-center pt-5 pb-2">
-          <h2>Event List</h2>
+          <h2>User List</h2>
         </div>
 
         <div class="outcontainer">
@@ -23,7 +23,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                   <td class="col1">ID</td>
                   <td class="col2">User</td>
                   <td class="col3">Email</td>
-                  <td class="col4" style="text-align:center;">Action</td>
+                  <td class="col" style="text-align:center;">Action</td>
                 </thead>
                 <tbody>
                   <c:forEach var="user" items="${userList}"  >

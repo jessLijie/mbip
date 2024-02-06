@@ -16,7 +16,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <script>
     function validateFileSize() {
         var fileInput = document.getElementById('event_img');  // Correct id here
-        var maxFileSize = 500 * 1024; // 500KB in bytes
+        var maxFileSize = 50 * 1024; // 500KB in bytes
     
         if (fileInput.files.length > 0) {
             var fileSize = fileInput.files[0].size; // in bytes

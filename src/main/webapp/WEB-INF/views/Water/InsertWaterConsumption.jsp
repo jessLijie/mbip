@@ -15,7 +15,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <script>
     function validateFileSize() {
         var fileInput = document.getElementById('bill_img');  // Correct id here
-        var maxFileSize = 500 * 1024; // 500KB in bytes
+        var maxFileSize = 50 * 1024; // 500KB in bytes
     
         if (fileInput.files.length > 0) {
             var fileSize = fileInput.files[0].size; // in bytes
@@ -40,7 +40,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
     </button>
     
     <div class="container mt-2 justify-content-center" style="width: 60%">
-        <form action="/water/InsertWaterConsumption" method="post">
+        <form action="/water/InsertWaterConsumptionDAta" method="post" enctype="multipart/form-data">
             <div class="bg-white p-4 px-5 rounded shadow m-3"> 
                 <!--address section-->
                 <div class="row mb-3">
@@ -111,7 +111,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                 </div>
 
                 <div class="text-center mt-4">
-                    <a href="/water/InsertWaterConsumption"><button type="submit" class="btn btn-lg px-5" style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button></a>
+                    <button type="submit" class="btn btn-lg px-5" style="background-color: #4C8BC6; color: white;"><b>SUBMIT</b></button>
                 </div>
             </div>
         </form>

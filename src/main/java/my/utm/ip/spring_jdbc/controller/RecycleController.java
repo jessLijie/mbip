@@ -110,7 +110,7 @@ public class RecycleController {
         modelAndView.addObject("recycleBill", recycleBill);
         modelAndView.addObject("period", period);
         modelAndView.addObject("user", user);
-
+        modelAndView.addObject("userphone", user.getPhone());
         return modelAndView;
     }
 
@@ -152,6 +152,7 @@ public class RecycleController {
         int billId = lastRecycleId != null ? lastRecycleId + 1 : 1;
 
         double carbonFootprint = totalWConsumption * 2.860;
+        byte[] billImgBytes = bill_img.getBytes();
 
         Recycle recycle = new Recycle();
         recycle.setUserid(userid);
@@ -161,12 +162,7 @@ public class RecycleController {
         recycle.setMonth(month);
         recycle.setCurrentConsumption(totalWConsumption);
         recycle.setCarbonFootprint(carbonFootprint);
-        if (!bill_img.isEmpty()) {
-            byte[] fileBytes = bill_img.getBytes();
-            recycle.setBillImg(fileBytes);
-        }
-
-        
+        recycle.setBillImg(billImgBytes);
 
         String sql = "INSERT INTO recycle (id, userid, address, year, month, currentConsumption, carbonFootprint, bill_img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, recycle.getId(), recycle.getUserid(), recycle.getAddress(), recycle.getYear(),
@@ -206,26 +202,32 @@ public class RecycleController {
 
         String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint, bill_img FROM recycle WHERE id=?";
 
-        List<Recycle> result = template.query(sql, new Object[] { billId }, new BeanPropertyRowMapper<>(Recycle.class));
+        Recycle recycleBill = template.queryForObject(sql, new Object[] { billId },
+                new BeanPropertyRowMapper<>(Recycle.class));
 
-        if (!result.isEmpty()) {
-            Recycle recycleBill = result.get(0);
+        String addressString = recycleBill.getAddress();
 
-            String period = Recycle.getPeriod(recycleBill.getMonth(), recycleBill.getYear());
-            User user = recycleService.getUserById(userid);
-            modelAndView.addObject("user", user);
-            modelAndView.addObject("recycleBill", recycleBill);
-            modelAndView.addObject("period", period);
+        String[] addressParts = addressString.split("<br>");
 
-            if (recycleBill.getBillImg() != null) {
-                String imagedata = Base64.getEncoder().encodeToString(recycleBill.getBillImg());
-                modelAndView.addObject("billimg", imagedata);
-            } else {
-                modelAndView.addObject("billimg", ""); // Set an empty string or some default value
-            }
+        modelAndView.addObject("address1", addressParts.length > 0 ? addressParts[0] : "");
+        modelAndView.addObject("address2", addressParts.length > 1 ? addressParts[1] : "");
+        modelAndView.addObject("postcode", addressParts.length > 2 ? addressParts[2].trim().split(",")[0] : "");
+        modelAndView.addObject("city", addressParts.length > 2 ? addressParts[2].trim().split(",")[1] : "");
+        modelAndView.addObject("state", addressParts.length > 3 ? addressParts[3] : "");
+
+       
+        
+        String period = Recycle.getPeriod(recycleBill.getMonth(), recycleBill.getYear());
+        User user = recycleService.getUserById(userid);
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("recycleBill", recycleBill);
+        modelAndView.addObject("period", period);
+
+        if (recycleBill.getBillImg() != null) {
+            String imagedata = Base64.getEncoder().encodeToString(recycleBill.getBillImg());
+            modelAndView.addObject("billimg", imagedata);
         } else {
-
-            modelAndView.addObject("errorMessage", "No record found for the specified billId");
+            modelAndView.addObject("billimg", ""); // Set an empty string or some default value
         }
 
         return modelAndView;

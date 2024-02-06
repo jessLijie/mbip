@@ -74,6 +74,4 @@ public class WaterRepository_JDBC implements WaterRepository {
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(UserDAO.class));
     }
 
-   
-
 }

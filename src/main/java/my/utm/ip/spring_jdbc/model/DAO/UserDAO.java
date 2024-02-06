@@ -1,6 +1,7 @@
 package my.utm.ip.spring_jdbc.model.DAO;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 public class UserDAO {
     private int id;
@@ -155,6 +156,26 @@ public class UserDAO {
     public void setUserImg(byte[] userImg) {
         this.userImg = userImg;
     }
-    
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", birthdate=" + birthdate +
+                ", email='" + email + '\'' +
+                ", add1='" + add1 + '\'' +
+                ", add2='" + add2 + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", job='" + job + '\'' +
+                ", phone='" + phone + '\'' +
+                ", matricsNo='" + matricsNo + '\'' +
+                ", role='" + role + '\'' +
+                ", userImg=" + Arrays.toString(userImg) +
+                '}';
+    }
     
 }

@@ -23,6 +23,22 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function validateFileSize() {
+          var fileInput = document.getElementById('bill_img');  // Correct id here
+          var maxFileSize = 50 * 1024; // 50KB in bytes
+      
+          if (fileInput.files.length > 0) {
+              var fileSize = fileInput.files[0].size; // in bytes
+      
+              if (fileSize > maxFileSize) {
+                  alert('File size exceeds 50KB. Please choose a smaller file.');
+                  // Reset the file input
+                  fileInput.value = '';
+              }
+          }
+      }
+  </script>
   </head>
 
   <%@include file="../navbar.jsp"%>
@@ -161,7 +177,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <div class="row mb-5 align-items-center">
             <div class="col-md-6">
               <label for="totalWConsumption"
-                ><b>Total Consumption (kg)</b></label
+                ><b>Total Consumption (kWh)</b></label
               >
             </div>
             <div class="col-md-6">
@@ -205,7 +221,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                   name="bill_img"
                   class="form-control"
                   accept=".jpg, .jpeg, .png"
-                />
+                  required onchange="validateFileSize()"/>
               </div>
             </div>
           </div>

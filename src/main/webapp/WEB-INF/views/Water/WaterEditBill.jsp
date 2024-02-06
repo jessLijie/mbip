@@ -5,7 +5,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Edit Water Bill</title>
+    <title>Water Edit Bill</title>
     <link rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -23,23 +23,24 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-  </head>
-  <script>
-    function validateFileSize() {
-        var fileInput = document.getElementById('bill_img');  // Correct id here
-        var maxFileSize = 500 * 1024; // 500KB in bytes
-    
-        if (fileInput.files.length > 0) {
-            var fileSize = fileInput.files[0].size; // in bytes
-    
-            if (fileSize > maxFileSize) {
-                alert('File size exceeds 50KB. Please choose a smaller file.');
-                // Reset the file input
-                fileInput.value = '';
-            }
-        }
-    }
+    <script>
+      function validateFileSize() {
+          var fileInput = document.getElementById('bill_img');  // Correct id here
+          var maxFileSize = 50 * 1024; // 50KB in bytes
+      
+          if (fileInput.files.length > 0) {
+              var fileSize = fileInput.files[0].size; // in bytes
+      
+              if (fileSize > maxFileSize) {
+                  alert('File size exceeds 50KB. Please choose a smaller file.');
+                  // Reset the file input
+                  fileInput.value = '';
+              }
+          }
+      }
   </script>
+  </head>
+
   <%@include file="../navbar.jsp"%>
   <body style="background-color: #ccf3ea">
     <button
@@ -64,7 +65,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     </button>
 
     <div class="container mt-2 justify-content-center" style="width: 60%">
-      <form action="/water/SaveUpdateBill" method="post" enctype="multipart/form-data">
+      <form
+        action="/water/SaveUpdateBilll"
+        method="post"
+        enctype="multipart/form-data"
+      >
         <div class="bg-white p-4 px-5 rounded shadow m-3">
           <!--address section-->
           <div class="row mb-3">
@@ -155,17 +160,24 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 required
               />
             </div>
-
             <script>
-              const defaultDate =
-                "${waterBill.getYear()}-${waterBill.getMonth()}"; // Use the period value from your ModelAndView
+              const year = "${waterBill.getYear()}";
+              const month = "${waterBill.getMonth()}";
+
+              // Ensure single-digit months have a leading zero
+              const formattedMonth = month.length === 1 ? "0" + month : month;
+
+              const defaultDate = year+"-"+formattedMonth;
               document.getElementById("period").value = defaultDate;
+              console.log("Default Year:", year);
+              console.log("Default Year:", defaultDate);
+              console.log("Default Month:", formattedMonth);
             </script>
           </div>
           <div class="row mb-5 align-items-center">
             <div class="col-md-6">
               <label for="totalWConsumption"
-                ><b>Total Consumption (kg)</b></label
+                ><b>Total Consumption (kWh)</b></label
               >
             </div>
             <div class="col-md-6">
@@ -179,15 +191,25 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               />
             </div>
           </div>
-          <img
-            src="data:image/jpeg;base64,${billimg}"
-            style="width: 100px; height: 100px"
-            alt="Bill Image"
-          />
+
+
+          <div class="row mb-5 align-items-center">
+            <div class="col-md-6">
+             <b>Image</b>
+            </div>
+            <div class="col-md-6">
+              <img
+              src="data:image/jpeg;base64,${billimg}"
+              style="max-width:100%; height: 200px"
+              alt="Bill Image"
+            />
+            </div>
+          </div>
+          
 
           <!-- Upload Section -->
           <p class="mt-4" style="color: red">
-            <b>**Please upload your bills for reference (eg: jpg, png)</b>
+            <b>**You can reupload the image (eg: jpg, png)</b>
           </p>
 
           <div class="row mb-3">
@@ -199,12 +221,15 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                   name="bill_img"
                   class="form-control"
                   accept=".jpg, .jpeg, .png"
-                  onchange="validateFileSize()"
-                />
+                  required onchange="validateFileSize()"/>
               </div>
             </div>
           </div>
-          <input type="hidden" name="waterid" value="${waterBill.getId()}" />
+          <input
+            type="hidden"
+            name="waterid"
+            value="${waterBill.getId()}"
+          />
 
           <div class="text-center mt-4">
             <button

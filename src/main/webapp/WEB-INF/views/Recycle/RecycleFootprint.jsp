@@ -58,7 +58,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
             <!--left side-->
             <div class="col-md-4 d-flex flex-column justify-content-between">
                 <div class="bg-white p-4 px-5 rounded shadow m-3 text-center"><!--current recycle consumption section-->
-                    <img src="/static/images/recycleConsumption.png" alt="Current Recycle Consumption" width="80" height="75">
+                    <img src="/static/images/recycle.png" alt="Current Recycle Consumption" width="80" height="75">
                     <div class="d-flex flex-column align-items-center justify-content-center mb-3">
                         <span class="mt-2">Total Recycle Consumption (kg)</span>
                         <h1 class="mt-auto mb-0"><b><fmt:formatNumber value="${sumConsumption}" pattern="0.00"/></b></h1>
