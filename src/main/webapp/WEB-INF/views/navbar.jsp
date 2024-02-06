@@ -71,12 +71,6 @@
 
               <c:if test="${role eq 'admin'}">
                 <li class="nav-item">
-                  <a class="nav-link" href="/adminDashboard">Dashboard</a>
-                </li>
-              </c:if>
-
-              <c:if test="${role eq 'admin'}">
-                <li class="nav-item">
                   <a class="nav-link" href="/userList">User List</a>
                 </li>
               </c:if>
