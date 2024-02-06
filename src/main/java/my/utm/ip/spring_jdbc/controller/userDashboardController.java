@@ -168,10 +168,8 @@ public class userDashboardController {
             e.printStackTrace();
             contributionListJson = "";
         }
-
-
-
-
+      
+      
         mv.addObject("name", name);
         mv.addObject("userid", userid);
         mv.addObject("recycleWeight", formattedTotalRecycle);

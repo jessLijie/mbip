@@ -13,6 +13,7 @@ public interface RecycleRepository {
     List<RecycleDAO> filterRecycle(int userId, int year, String[] selectedMonths);
     RecycleDAO getRecycleById(int billId);
     Integer getMaxRecycleId();
-    void insertRecycle(RecycleDAO electricity);
+    void insertRecycle(RecycleDAO recycle);
+    void updateRecycle(RecycleDAO recycle);
 }
     

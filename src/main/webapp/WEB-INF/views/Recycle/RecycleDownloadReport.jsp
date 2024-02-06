@@ -74,15 +74,16 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
 
                     <tr>
                         <td><b>Name: </b></td>
-                        <td>${user.fullname}</td>
+                        <td>${user.getFullname()}</td>
                     </tr>
                     <tr>
                         <td><b>Email: </b></td>
-                        <td>${user.email}</td>
+                        <td>${user.getEmail()}</td>
                     </tr>
                     <tr>
                         <td><b>Phone Number: </b></td>
-                        <td>${user.phone}</td>
+                        <td>${user.getPhone()}</td>
+                        <h2>${userphone}</h2>
                     </tr>
                     <tr>
                         <td style="vertical-align: top;"><b>Address: </b></td>

@@ -1,9 +1,11 @@
 package my.utm.ip.spring_jdbc.controller;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import my.utm.ip.spring_jdbc.model.Bill;
@@ -51,6 +54,13 @@ public class userProfileController {
         String state = (String) user.get("state");
         String city = (String) user.get("city");
         String role = (String) session.getAttribute("role");
+        byte[] userImg = (byte[]) user.get("userImg");
+        if (userImg != null) {
+            String imagedata = Base64.getEncoder().encodeToString(userImg);
+            mv.addObject("userImg", imagedata);
+        } else {
+            mv.addObject("userImg", ""); 
+        }
         mv.addObject("name", name);
         mv.addObject("fullname", fullname);
         mv.addObject("birthdate", birthdate);
@@ -64,7 +74,6 @@ public class userProfileController {
         mv.addObject("state", state);
         mv.addObject("city", city);
         mv.addObject("role", role);
-
         return mv;
     }
 
@@ -113,7 +122,7 @@ public class userProfileController {
         ModelAndView mv = new ModelAndView("/Profile/editUserProfile");
         int userid = (int) session.getAttribute("userid");
         mv.addObject("userid", userid);
-
+        System.out.println(userid);
         String sql = "Select * from user where id=?";
         List<Map<String, Object>> result = template.queryForList(sql, userid);
         Map<String, Object> user = result.get(0);
@@ -129,6 +138,14 @@ public class userProfileController {
         String zipcode = (String) user.get("zipcode");
         String state = (String) user.get("state");
         String city = (String) user.get("city");
+        byte[] userImg = (byte[]) user.get("userImg");
+        if (userImg!=null) {
+            String imagedata = Base64.getEncoder().encodeToString(userImg);
+            mv.addObject("userImg", imagedata);
+        }
+        else{
+            mv.addObject("userImg", "");
+        }
         mv.addObject("name", name);
         mv.addObject("fullname", fullname);
         mv.addObject("birthdate", birthdate);
@@ -141,6 +158,7 @@ public class userProfileController {
         mv.addObject("add2", add2);
         mv.addObject("zipcode", zipcode);
         mv.addObject("state", state);
+        
         return mv;
     }
 
@@ -154,8 +172,9 @@ public class userProfileController {
             @RequestParam("add2") String add2,
             @RequestParam("zipcode") String zipcode,
             @RequestParam("state") String state,
-            @RequestParam("city") String city,
-            HttpSession session) throws ParseException {
+            @RequestParam("city") String city, 
+            @RequestParam("userImg") MultipartFile userImg,
+            HttpSession session) throws ParseException, IOException {
         Date birthdate = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date parsedDate = sdf.parse(birthdateString);
@@ -164,8 +183,39 @@ public class userProfileController {
         int userid = (int) session.getAttribute("userid");
         String sql = "UPDATE user SET fullname=?, birthdate=?, password=?, phone=?, add1=?, add2=?, zipcode=?, state=?, city=? WHERE id=?";
         System.out.println("updating for" + userid);
+
         template.update(sql, fullname, birthdate, password, phone, add1, add2, zipcode, state,city, userid);
+
+        if (!userImg.isEmpty()) {
+            byte[] fileBytes = userImg.getBytes();
+            sql= "UPDATE user SET userImg=? WHERE id=?";
+            template.update(sql,fileBytes, userid);
+            
+        } else {
+            String sql1 = "select userImg from user where id=" + userid;
+            byte[] fileBytes = template.queryForObject(sql1, new Object[] { userid }, byte[].class);
+            sql= "UPDATE user SET userImg=? WHERE id=?";
+            template.update(sql,fileBytes, userid);
+           
+        }
         return "redirect:/profile";
     }
+
+    @RequestMapping("/forgotPassword")
+    public ModelAndView forgotpassword(){
+        ModelAndView mv = new ModelAndView ("/Profile/forgotPassword");
+        return mv;
+    }
+
+    @RequestMapping("/updatePassword")
+    public String updatePassword(@RequestParam("fullname")String fullname,
+    @RequestParam("email")String email,
+    @RequestParam("password")String password
+    ){
+        String sql = "UPDATE user SET password=? WHERE fullname=? AND email=?";
+        template.update(sql,password, fullname,email);
+        return "welcome";
+    }
+
 
 }

@@ -55,9 +55,13 @@ public class RecycleServiceDatabaseImpl implements RecycleService {
     }
 
     @Override
+    public void updateRecycle(Recycle recycle) {
+        repo.updateRecycle(recycle.toDAO());
+    }
+
+    @Override
     public User getUserById(int id) {
         UserDAO dao = repo.getUserById(id);
         return new User();
-       
     }
 }

@@ -5,7 +5,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Insert Recycle Consumption</title>
+    <title>Insert Electricity Consumption</title>
     <link rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -23,6 +23,22 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function validateFileSize() {
+          var fileInput = document.getElementById('bill_img');  // Correct id here
+          var maxFileSize = 50 * 1024; // 50KB in bytes
+      
+          if (fileInput.files.length > 0) {
+              var fileSize = fileInput.files[0].size; // in bytes
+      
+              if (fileSize > maxFileSize) {
+                  alert('File size exceeds 50KB. Please choose a smaller file.');
+                  // Reset the file input
+                  fileInput.value = '';
+              }
+          }
+      }
+  </script>
   </head>
 
   <%@include file="../navbar.jsp"%>
@@ -31,7 +47,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       type="button"
       class="px-4 p-2 m-4 mb-0 ms-5 rounded shadow"
       style="background-color: #a7c3f9; border: none"
-      onclick="window.location.href='/recycle/RecycleHistory;'"
+      onclick="window.location.href='/electricity/ElectricityHistory;'"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +66,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
     <div class="container mt-2 justify-content-center" style="width: 60%">
       <form
-        action="/recycle/SaveUpdateBilll"
+        action="/electricity/SaveUpdateBilll"
         method="post"
         enctype="multipart/form-data"
       >
@@ -65,7 +81,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 type="text"
                 id="address1"
                 name="address1"
-                value="${address1}"
+                value="${user.add1}"
                 class="form-control mb-3"
                 required
               /><!--retrive address1-->
@@ -73,7 +89,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 type="text"
                 id="address2"
                 name="address2"
-                value="${address2}"
+                value="${user.add2}"
                 class="form-control"
                 required
               /><!--retrive address2-->
@@ -89,7 +105,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 type="text"
                 id="state"
                 name="state"
-                value="${state}"
+                value="${user.state}"
                 class="form-control"
                 required
               /><!--retrieve state-->
@@ -102,7 +118,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 type="text"
                 id="city"
                 name="city"
-                value="${city}"
+                value="${user.city}"
                 class="form-control"
                 required
               /><!--retrieve city-->
@@ -119,7 +135,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 id="postcode"
                 name="postcode"
                 maxlength="5"
-                value="${postcode}"
+                value="${user.zipcode}"
                 class="form-control"
                 required
               /><!--retrieve postcode-->
@@ -129,7 +145,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <hr />
 
           <!--insert section-->
-          <b class="mt-4 text-center d-block fs-5">RECYCLE CONSUMPTION</b>
+          <b class="mt-4 text-center d-block fs-5">ELECTRICITY CONSUMPTION</b>
 
           <div class="row mb-3 mt-4 align-items-center">
             <div class="col-md-6">
@@ -145,8 +161,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               />
             </div>
             <script>
-              const year = "${recycleBill.getYear()}";
-              const month = "${recycleBill.getMonth()}";
+              const year = "${electricityBill.getYear()}";
+              const month = "${electricityBill.getMonth()}";
 
               // Ensure single-digit months have a leading zero
               const formattedMonth = month.length === 1 ? "0" + month : month;
@@ -161,7 +177,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <div class="row mb-5 align-items-center">
             <div class="col-md-6">
               <label for="totalWConsumption"
-                ><b>Total Consumption (kg)</b></label
+                ><b>Total Consumption (kWh)</b></label
               >
             </div>
             <div class="col-md-6">
@@ -171,7 +187,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 name="totalWConsumption"
                 class="form-control"
                 required
-                value="${recycleBill.currentConsumption}"
+                value="${electricityBill.currentConsumption}"
               />
             </div>
           </div>
@@ -205,14 +221,14 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                   name="bill_img"
                   class="form-control"
                   accept=".jpg, .jpeg, .png"
-                />
+                  required onchange="validateFileSize()"/>
               </div>
             </div>
           </div>
           <input
             type="hidden"
-            name="recycleid"
-            value="${recycleBill.getId()}"
+            name="electricityid"
+            value="${electricityBill.getId()}"
           />
 
           <div class="text-center mt-4">

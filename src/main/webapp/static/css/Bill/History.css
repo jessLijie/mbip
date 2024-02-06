@@ -23,8 +23,6 @@ body{
   width: 100%;
 }
 
-
-
 .outcontainer2 {
   height: fit-content;
   width: 85%;
@@ -72,17 +70,17 @@ thead {
 }
 
 .col2 {
-  width: 30%;
+  width: 20%;
   padding-bottom: 15px;
 }
 
 .col3 {
-  width: 30%;
+  width: 35%;
   padding-bottom: 15px;
 }
 
 .col4 {
-  width: 35%;
+  width: 40%;
   padding-bottom: 15px;
   display:flex;
   align-items: end;
@@ -157,6 +155,7 @@ tbody {
   z-index: 1000;
   background-color: #fffffffe;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  width: 300px;
 }
 
 #showFilter{
@@ -217,6 +216,7 @@ tbody {
 
 .filtercol1,
 .filtercol2 {
+
   margin: 5px 20px 5px 20px;
 }
 

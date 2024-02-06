@@ -1,5 +1,4 @@
 
-
 package my.utm.ip.spring_jdbc.model.Repository;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import my.utm.ip.spring_jdbc.model.DAO.RecycleDAO;
 import my.utm.ip.spring_jdbc.model.DAO.UserDAO;
 
 @Repository
-public class RecycleRepository_JDBC  implements RecycleRepository {
+public class RecycleRepository_JDBC implements RecycleRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -32,7 +31,6 @@ public class RecycleRepository_JDBC  implements RecycleRepository {
         if (selectedMonths == null || selectedMonths.length == 0) {
             throw new IllegalArgumentException("Selected months must not be null or empty");
         }
-
         String sql = "SELECT * FROM recycle WHERE userid = ? AND year = ? AND month IN ("
                 + String.join(",", Collections.nCopies(selectedMonths.length, "?")) + ")";
 
@@ -64,6 +62,21 @@ public class RecycleRepository_JDBC  implements RecycleRepository {
                     recycle.getYear(), recycle.getMonth(), recycle.getCurrentConsumption(),
                     recycle.getCarbonFootprint(), recycle.getBillImg());
         } catch (DataAccessException e) {
+  
+            e.printStackTrace();
+            throw new RuntimeException("Error inserting recycle record", e);
+        }
+    }
+
+    @Override
+    public void updateRecycle(RecycleDAO recycle) {
+        String sql = "UPDATE recycle SET userid=?, address=?, year=?, month=?, " +
+                "currentConsumption=?, carbonFootprint=?, bill_img=? WHERE id=?";
+        try {
+            jdbcTemplate.update(sql, recycle.getUserid(), recycle.getAddress(), recycle.getYear(),
+                    recycle.getMonth(), recycle.getCurrentConsumption(),
+                    recycle.getCarbonFootprint(), recycle.getBillImg(), recycle.getId());
+        } catch (DataAccessException e) {
             // Handle exception or log it
             e.printStackTrace();
             throw new RuntimeException("Error inserting recycle record", e);
@@ -73,9 +86,7 @@ public class RecycleRepository_JDBC  implements RecycleRepository {
     @Override
     public UserDAO getUserById(int id) {
         String sql = "SELECT * FROM user WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(UserDAO.class));
+        return jdbcTemplate.queryForObject(sql, new Object[] { id }, new BeanPropertyRowMapper<>(UserDAO.class));
     }
-
-   
 
 }
