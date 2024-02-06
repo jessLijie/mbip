@@ -2,7 +2,7 @@
 pageEncoding="ISO-8859-1" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page import="my.utm.ip.spring_jdbc.model.User" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,7 +83,7 @@ pageEncoding="ISO-8859-1" isELIgnored="false" %>
                     <tr>
                         <td><b>Phone Number: </b></td>
                         <td>${user.getPhone()}</td>
-                        <h2>${userphone}</h2>
+
                     </tr>
                     <tr>
                         <td style="vertical-align: top;"><b>Address: </b></td>
