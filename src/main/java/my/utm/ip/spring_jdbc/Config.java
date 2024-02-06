@@ -12,8 +12,7 @@ public class Config {
  new DriverManagerDataSource();
  source.setDriverClassName("com.mysql.cj.jdbc.Driver");
  source.setUrl("jdbc:mysql://localhost:3306/mbip");
- source.setUsername("root");
- source.setPassword("ngqianhui0594");
+ source.setUsername("jkty12138");
 
  return source;
  }
