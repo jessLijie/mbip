@@ -301,7 +301,7 @@ public class RecycleController {
                 recycle.getMonth(), recycle.getCurrentConsumption(),
                 recycle.getCarbonFootprint(), recycle.getBillImg(), recycle.getId());
 
-                ModelAndView mv = new ModelAndView("redirect:/Recycle/RecycleHistory");
+                ModelAndView mv = new ModelAndView("redirect:/recycle/RecycleHistory");
                 return mv;
     }
 }
