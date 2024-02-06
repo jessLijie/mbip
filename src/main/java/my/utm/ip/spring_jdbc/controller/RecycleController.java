@@ -24,6 +24,7 @@ import com.mysql.cj.jdbc.Blob;
 
 import my.utm.ip.spring_jdbc.model.User;
 import my.utm.ip.spring_jdbc.services.UserService;
+import my.utm.ip.spring_jdbc.model.Electricity;
 import my.utm.ip.spring_jdbc.model.Recycle;
 import my.utm.ip.spring_jdbc.model.Recycle;
 import my.utm.ip.spring_jdbc.services.ElectricityService;
@@ -44,7 +45,6 @@ public class RecycleController {
 
     @Autowired
     private UserService userService;
-    
     @RequestMapping({ "/RecycleHistory" })
     public ModelAndView historypage(HttpSession session) {
 
@@ -86,11 +86,7 @@ public class RecycleController {
     public ModelAndView historyDetail(@RequestParam("billId") int billId, HttpSession session) {
         int userid = (int) session.getAttribute("userid");
         ModelAndView modelAndView = new ModelAndView("/Recycle/RecycleHistoryDetail");
-
-        String sql = "SELECT id, address, month, year, currentConsumption, carbonFootprint FROM recycle WHERE id=?";
-
-        Recycle recycleBill = template.queryForObject(sql, new Object[] { billId },
-                new BeanPropertyRowMapper<>(Recycle.class));
+        Recycle recycleBill = recycleService.getRecycleById(billId);
 
         String period = Recycle.getPeriod(recycleBill.getMonth(), recycleBill.getYear());
 
@@ -169,6 +165,8 @@ public class RecycleController {
             byte[] fileBytes = bill_img.getBytes();
             recycle.setBillImg(fileBytes);
         }
+
+        
 
         String sql = "INSERT INTO recycle (id, userid, address, year, month, currentConsumption, carbonFootprint, bill_img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, recycle.getId(), recycle.getUserid(), recycle.getAddress(), recycle.getYear(),
@@ -274,11 +272,8 @@ public class RecycleController {
             recycle.setBillImg(fileBytes);
         }
 
-        String sql = "UPDATE recycle SET userid=?, address=?, year=?, month=?, " +
-                "currentConsumption=?, carbonFootprint=?, bill_img=? WHERE id=?";
-        template.update(sql, recycle.getUserid(), recycle.getAddress(), recycle.getYear(),
-                recycle.getMonth(), recycle.getCurrentConsumption(),
-                recycle.getCarbonFootprint(), recycle.getBillImg(), recycle.getId());
+        
+     
 
         ModelAndView mv = new ModelAndView("/Recycle/RecycleHistory");
         return mv;
