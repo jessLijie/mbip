@@ -136,7 +136,7 @@ public class RecycleController {
             @RequestParam("period") String period,
             @RequestParam("totalWConsumption") double totalWConsumption,
             @RequestParam("bill_img") MultipartFile bill_img,
-            HttpServletRequest request, HttpSession session) throws IOException {
+            HttpServletRequest request, HttpSession session, Object id) throws IOException {
 
         int userid = (int) session.getAttribute("userid");
         session.setAttribute("userid", userid);
